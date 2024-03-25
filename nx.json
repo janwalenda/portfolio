@@ -19,7 +19,7 @@
       "plugin": "@nx/nuxt/plugin",
       "options": {
         "buildTargetName": "build",
-        "serveTargetName": "serve",
+        "serveTargetName": "dev",
         "serveStaticTargetName": "serve-static"
       }
     },
