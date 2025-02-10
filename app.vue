@@ -1,13 +1,17 @@
-<script setup>
+<script setup lang="ts">
   useSeoMeta({
     title: 'Jan Walenda',
+    ogTitle: 'Jan Walenda',
     description: 'Jan Walenda / Frontend Developer',
+    ogDescription: 'Jan Walenda / Frontend Developer',
     charset: "utf-8",
   });
 </script>
 
 <template>
-  <main id="app">
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <main>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </main>
 </template>
