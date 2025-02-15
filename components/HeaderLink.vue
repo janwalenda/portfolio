@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { VueElement } from 'vue';
-
-    const props = defineProps<{
-        url: string;
-        content: string | VueElement;
-    }>()
+    import { defineProps } from 'vue';
+const props = defineProps < {
+    url: string,
+} >();
 </script>
 <template>
     <li>
-        <a v-bind:href="props.url">{{ props.content }}</a>
+        <a :href="props.url">
+            <slot></slot>
+        </a>
     </li>
 </template>

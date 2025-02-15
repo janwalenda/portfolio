@@ -5,6 +5,7 @@
     description: 'Jan Walenda / Frontend Developer',
     ogDescription: 'Jan Walenda / Frontend Developer',
     charset: "utf-8",
+    
   });
 </script>
 
