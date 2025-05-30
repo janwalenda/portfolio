@@ -7,7 +7,7 @@ const props = defineProps < {
 <template>
     <li>
         <a :href="props.url">
-            <slot></slot>
+            \ <slot></slot>
         </a>
     </li>
 </template>

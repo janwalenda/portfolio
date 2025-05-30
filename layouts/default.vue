@@ -1,14 +1,15 @@
 <template>
-    <Header>
-        <HeaderLink url="/projects">
-            Projects
-        </HeaderLink>
-        <HeaderLink url="">
-            <UIcon name="cib:linkedin" class="size-5" />
-        </HeaderLink>
-    </Header>
+  <Header>
+    
+    <HeaderLink url="/projects">
+      Projects
+    </HeaderLink>
+    <HeaderLink url="">
+      <UIcon name="cib:linkedin" class="size-5" />
+    </HeaderLink>
+  </Header>
+  <div class="p-4">
     <slot />
-    <footer class="footer">
-        <p>© 2025 Jan Walenda</p>
-    </footer>
+  </div>
+  <Footer />
 </template>

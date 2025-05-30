@@ -16,12 +16,12 @@ const links = [{
 </script>
 
 <template>
-    <header class="navbar bg-base-100 font-mono">
+    <header class="navbar bg-base-100 font-mono border-b-black border-b-[1px]">
         <div class="flex-1">
             <a class="btn btn-ghost text-xl">_janWalenda</a>
         </div>
         <nav class="flex-none">
-            <ul class="menu menu-horizontal px-1">
+            <ul class="menu menu-horizontal">
                 <slot></slot>
             </ul>
         </nav>
