@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         { name: "description", content: "A Nuxt UI example project" },
       ],
       link: [
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
         { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" }
       ],
     }

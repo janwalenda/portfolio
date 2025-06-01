@@ -40,7 +40,7 @@ const { data: page } = await useAsyncData('page', () => {
       </p>
     </article>
     <slot />
-    <ContentRenderer v-if="page" :value="page" class="prose prose-h2:text-2xl w-full" />
+    <ContentRenderer v-if="page" :value="page" tag="article" class="prose w-full" />
   </main>
   <Footer />
 </template>
