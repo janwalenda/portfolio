@@ -1,0 +1,13 @@
+{
+  "title": "_janWalenda",
+  "nav": [
+    {
+      "label": "Projekte",
+      "url": "/projects"
+    },
+    {
+      "icon": "cib:github",
+      "url": "https://github.com/janwalenda"
+    }
+  ]
+}

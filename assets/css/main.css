@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
-@config "../../tailwind.config.js"
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+@utility btn {
+  @apply rounded-none
+}

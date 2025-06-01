@@ -9,6 +9,11 @@ useSeoMeta({
   description: 'Jan Walenda / Frontend Developer',
   ogDescription: 'Jan Walenda / Frontend Developer',
   charset: "utf-8",
+  ogLocaleAlternate: [
+    'de_DE',
+    'en_UK',
+    'ja_JP',
+  ],
 });
 
 const lang = computed(() => locales[locale.value].code)
@@ -24,10 +29,9 @@ useHead({
 
 <template>
   <UApp :locale="locales[locale]">
-    <main>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </main>
+    <NuxtLayout>
+      <NuxtLoadingIndicator/>
+      <NuxtPage />
+    </NuxtLayout>
   </UApp>
 </template>
