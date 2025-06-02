@@ -4,5 +4,9 @@
 @plugin "daisyui";
 
 @utility btn {
-  @apply rounded-none
+  @apply rounded-none font-mono shadow-none;
+}
+
+@utility link {
+  @apply rounded-none font-mono shadow-none;
 }

@@ -6,6 +6,18 @@
       "url": "/projects"
     },
     {
+      "label": "Blog",
+      "url": "/blog"
+    },
+    {
+      "label": "About Me",
+      "url": "/about"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact"
+    },
+    {
       "icon": "cib:github",
       "url": "https://github.com/janwalenda"
     }

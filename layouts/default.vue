@@ -1,11 +1,10 @@
 <script lang="ts" setup>
+import type { PagesCollectionItem } from '@nuxt/content';
+
 const route = useRoute();
 const { locale } = useI18n();
 
-
-
 const { data: link } = await useAsyncData('header', () => {
-  
   return queryCollection('header')
     .where('stem', '=', `${locale.value}/header`)
     .first();
@@ -14,7 +13,7 @@ const { data: link } = await useAsyncData('header', () => {
 let name = '';
 const nameRegex = new RegExp(/(.*)(?=___[a-z]{2})/);
 
-if(typeof route.name === 'string' && nameRegex.test(route.name)) {
+if (typeof route.name === 'string' && nameRegex.test(route.name)) {
   const match = route.name.match(nameRegex);
   name = match![0];
 }
@@ -24,6 +23,16 @@ const { data: page } = await useAsyncData('page', () => {
     .where('stem', '=', `${locale.value}/pages/${name}`)
     .first();
 });
+
+if (page.value) {
+  useSeoMeta({
+    title: `JW \\ ${page.value.title}`,
+    ogTitle: `JW \\ ${page.value.title}`,
+    description: page.value.description || 'Jan Walenda / Frontend Developer',
+    ogDescription: page.value.description || 'Jan Walenda / Frontend Developer',
+  });
+}
+
 </script>
 <template>
   <Header>
@@ -33,10 +42,10 @@ const { data: page } = await useAsyncData('page', () => {
     </HeaderLink>
   </Header>
   <main class="p-4 bg-base-100 font-mono">
-    <article class="prose prose-h1:text-3xl">
-      <h1>{{ page?.title }}</h1>
+    <article v-if="page" class="prose prose-h1:text-3xl">
+      <h1>{{ page.title }}</h1>
       <p>
-        {{ page?.description }}
+        {{ page.description }}
       </p>
     </article>
     <slot />

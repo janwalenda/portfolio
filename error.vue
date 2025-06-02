@@ -17,6 +17,6 @@ const { locale } = useI18n();
       <h2>{{ translations[locale].title + props.error?.statusCode }}</h2>
       {{ translations[locale].message }}
     </p>
-    <UButton @click="handleError">{{ translations[locale].button }}</UButton>
+    <button class="btn btn-error" @click="handleError">{{ translations[locale].button }}</button>
   </div>
 </template>
