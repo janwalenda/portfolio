@@ -2,16 +2,16 @@
   "title": "_janWalenda",
   "nav": [
     {
+      "label": "About Me",
+      "url": "/about"
+    },
+    {
       "label": "Projects",
       "url": "/projects"
     },
     {
       "label": "Blog",
       "url": "/blog"
-    },
-    {
-      "label": "About Me",
-      "url": "/about"
     },
     {
       "label": "Contact",

@@ -1,5 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  srcDir: 'src/',
+  modules: [
+    "@nuxt/content",
+    "@nuxtjs/i18n",
+    "@nuxt/eslint",
+    "@nuxt/eslint",
+    "@nuxt/icon",
+    "@nuxtjs/tailwindcss"
+  ],
   app: {
     head: {
       title: "Jan Walenda",
@@ -14,14 +23,18 @@ export default defineNuxtConfig({
       ],
     }
   },
-  modules: ["@nuxt/ui", "@nuxt/content", "@nuxtjs/i18n"],
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   routeRules: {
     "/**/**": { prerender: true },
   },
+  icon: {
+    mode: 'svg'
+  },
   i18n: {
+    baseUrl: 'https://janwalenda.de',
+    strategy: 'no_prefix',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -30,15 +43,21 @@ export default defineNuxtConfig({
     locales: [
       {
         code: "de",
+        language: "de-DE",
         name: "Deutsch",
+        file: "de.json"
       },
       {
         code: "en",
+        language: "en-US",
         name: "English",
+        file: "en.json"
       },
       {
         code: "ja",
+        language: "ja-JP",
         name: "日本語",
+        file: "ja.json"
       }
     ],
   },

@@ -1,5 +1,4 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
-import { en } from '@nuxt/ui/runtime/locale/index.js';
 
 export default defineContentConfig({
   collections: {
@@ -32,6 +31,17 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         description: z.string().optional(),
+      }),
+    }),
+    blog: defineCollection({
+      source: '**/blog/*.md',
+      type: 'page',
+      schema: z.object({
+        title: z.string(),
+        description: z.string().optional(),
+        date: z.date().optional(),
+        author: z.string(),
+        tags: z.array(z.string()).optional(),
       }),
     })
   }
