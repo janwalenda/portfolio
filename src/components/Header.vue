@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import HeaderThemeSwitch from './HeaderThemeSwitch.vue'
 const { locale } = useI18n();
-const { data: link } = await useAsyncData('header', () => {
+const { data: link } = await useAsyncData('header', (ctx) => {
   return queryCollection('header')
-    .where('stem', '=', `${locale.value}/header`)
+    .select(locale.value)
     .first();
+}, {
+  watch: [locale],
 });
 
 </script>
@@ -17,21 +20,12 @@ export default {
   <header class="navbar bg-base-100 font-mono border-b-neutral border-b-[1px]">
     <div class="flex flex-row flex-1">
       <div class="flex-1">
-        <NuxtLink v-if="link" class="btn btn-ghost text-xl" to="/">{{ link.title }}</NuxtLink>
+        <NuxtLink v-if="link" class="btn btn-ghost text-xl" :href="`/`">{{ link[locale].title }}</NuxtLink>
       </div>
       <HeaderLangSwitch />
-      <label class="swap swap-rotate">
-        <!-- this hidden checkbox controls the state -->
-        <input type="checkbox" class="theme-controller" value="dark" >
-
-        <!-- sun icon -->
-        <Icon name="heroicons:sun" class="swap-off size-5 fill-current" />
-
-        <!-- moon icon -->
-        <Icon name="heroicons:moon" class="swap-on size-5 fill-current" />
-      </label>
+      <HeaderThemeSwitch />
     </div>
-    <HeaderNavVertical :nav="link!.nav" />
-    <HeaderNavHorizontal :nav="link!.nav" />
+    <HeaderNavVertical v-if="link" :nav="link[locale].nav" />
+    <HeaderNavHorizontal v-if="link" :nav="link[locale].nav" />
   </header>
 </template>

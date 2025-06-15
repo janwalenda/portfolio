@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
+
 const { back } = useRouter();
 const { t } = useI18n();
 
@@ -10,7 +11,6 @@ const props = defineProps({
 const handleError = () => {
   back();
 }
-
 </script>
 <script lang="ts">
 export default {
@@ -39,3 +39,18 @@ export default {
     </div>
   </NuxtLayout>
 </template>
+
+<i18n lang="json">{
+  "de": {
+    "back to homepage": "Zurück zur Startseite",
+    "this is an error": "Ein fehler ist aufgetreten"
+  },
+  "en": {
+    "back to homepage": "Back to Homepage",
+    "this is an error": "An error occurred. Please try again later."
+  },
+  "ja": {
+    "back to homepage": "ホームページに戻る",
+    "this is an error": "エラーが発生しました。後でもう一度お試"
+  }
+}</i18n>

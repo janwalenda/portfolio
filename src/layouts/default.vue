@@ -1,12 +1,20 @@
 <script lang="ts" setup>
-
 const route = useRoute();
 const { locale } = useI18n();
+const routeNameRegex = /^[a-z]{1,}(?=_)|^[a-z]{1,}$/;
 
 const { data: page } = await useAsyncData('page', () => {
+  if (!routeNameRegex.test(route.name as string)) {
+    throw new Error('Invalid route name');
+  }
+
+  const routeName = routeNameRegex.exec(route.name as string)![0];
+
   return queryCollection('pages')
-    .where('stem', '=', `${locale.value}/pages/${route.name as string}`)
+    .where('stem', '=', `${locale.value}/pages/${routeName}`)
     .first();
+}, {
+  watch: [locale, route],
 });
 
 if (page.value) {

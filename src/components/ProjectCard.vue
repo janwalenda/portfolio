@@ -1,7 +1,11 @@
 <script lang="ts" setup>
-import type { ProjectsCollectionItem } from '@nuxt/content';
 defineProps<{
-  project: ProjectsCollectionItem;
+  project: {
+    name: string;
+    url: string;
+    github: string;
+    description: string;
+  };
 }>();
 </script>
 <template>

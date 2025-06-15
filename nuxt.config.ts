@@ -1,13 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  srcDir: 'src/',
+  ssr: true,
+  sourcemap: true,
+  srcDir: "src/",
   modules: [
     "@nuxt/content",
     "@nuxtjs/i18n",
     "@nuxt/eslint",
     "@nuxt/eslint",
     "@nuxt/icon",
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
   ],
   app: {
     head: {
@@ -19,46 +21,51 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
-        { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" }
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap",
+        },
       ],
-    }
+    },
   },
   compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ["~/assets/css/main.css"],
   routeRules: {
     "/**/**": { prerender: true },
   },
   icon: {
-    mode: 'svg'
+    mode: "svg",
   },
   i18n: {
-    baseUrl: 'https://janwalenda.de',
-    strategy: 'no_prefix',
+    baseUrl: "https://janwalenda.de",
+    strategy: "no_prefix",
+    defaultLocale: "de",
+    langDir: "translations/",
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root', // recommended
+      cookieKey: "i18n_redirected",
+      redirectOn: "root", // recommended
     },
     locales: [
       {
         code: "de",
         language: "de-DE",
         name: "Deutsch",
-        file: "de.json"
+        file: "de.json",
       },
       {
         code: "en",
         language: "en-US",
         name: "English",
-        file: "en.json"
+        file: "en.json",
       },
       {
         code: "ja",
         language: "ja-JP",
         name: "日本語",
-        file: "ja.json"
-      }
+        file: "ja.json",
+      },
     ],
   },
 });

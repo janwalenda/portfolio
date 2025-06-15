@@ -1,13 +1,13 @@
 <script setup lang="ts">
-    import { defineProps } from 'vue';
-const props = defineProps < {
-    url: string,
-} >();
+const props = defineProps<{
+  url: string,
+}>();
 </script>
 <template>
-    <li>
-        <NuxtLink :to="props.url" class="link no-underline">
-            \ <slot />
-        </NuxtLink>
-    </li>
+  <li>
+    <NuxtLink :to="props.url" class="link no-underline">
+      \
+      <slot />
+    </NuxtLink>
+  </li>
 </template>

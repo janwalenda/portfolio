@@ -1,0 +1,20 @@
+{
+  "de": {
+    "name": "EasyCrypt",
+    "description": "Eine simple und benutzerfreundliche Anwendung zum Verschlüsseln und Entschlüsseln von Texten.",
+    "url": "https://easycrypt.janwalenda.de",
+    "github": "https://github.com/janwalenda/easycrypt"
+  },
+  "en": {
+    "name": "EasyCrypt",
+    "description": "A simple and secure way to encrypt and decrypt text using my own encryption method.",
+    "url": "https://easycrypt.janwalenda.de",
+    "github": "https://github.com/janwalenda/easycrypt"
+  },
+  "ja": {
+    "name": "EasyCrypt",
+    "description": "独自の暗号化方式を用いて、テキストを簡単かつ安全に暗号化・復号化する方法です。",
+    "url": "https://easycrypt.janwalenda.de",
+    "github": "https://github.com/janwalenda/easycrypt"
+  }
+}

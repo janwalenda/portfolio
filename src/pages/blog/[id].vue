@@ -10,6 +10,8 @@ const { data: blog } = await useAsyncData('blog', () => {
   return queryCollection('blog')
     .where('stem', '=', `${locale.value}/blog/${id}`)
     .first();
+}, {
+  watch: [locale],
 });
 
 if(blog && blog.value) {

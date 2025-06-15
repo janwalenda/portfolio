@@ -14,11 +14,11 @@ const localeRef = ref(localeMap);
 <template>
   <details>
     <summary class="btn btn-ghost">
-      <Icon name="i-heroicons:globe-alt-solid" class="size-5" />
+      <Icon name="heroicons:globe-alt" class="size-5" />
     </summary>
     <ul class="absolute menu dropdown-content bg-base-100 max-sm:right-4 z-40 p-2 border-[1px] border-neutral">
       <li v-for="item in localeRef" :key="item.code">
-        <button @click="setLocale(item.code)">{{ item.label }}</button>
+        <button class="btn btn-ghost" @click="setLocale(item.code)">{{ item.label }}</button>
       </li>
     </ul>
   </details>
