@@ -12,11 +12,6 @@ const handleError = () => {
   back();
 }
 </script>
-<script lang="ts">
-export default {
-  name: 'NuxtError',
-}
-</script>
 
 <template>
   <NuxtLayout>
@@ -54,3 +49,9 @@ export default {
     "this is an error": "エラーが発生しました。後でもう一度お試"
   }
 }</i18n>
+
+<script lang="ts">
+export default {
+  name: 'NuxtError',
+}
+</script>
