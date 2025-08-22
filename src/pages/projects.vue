@@ -17,7 +17,7 @@ export default {
 </script>
 <template>
   <div class="font-mono">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 justify-center gap-4">
       <ProjectCard v-for="project in data" :key="project[locale].github" :project="project[locale]" />
     </div>
   </div>

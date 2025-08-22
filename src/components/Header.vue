@@ -17,7 +17,7 @@ export default {
 }
 </script>
 <template>
-  <header class="navbar bg-base-100 font-mono border-b-neutral border-b-[1px]">
+  <header class="navbar bg-base-100/30 backdrop-blur-lg font-mono border-b-neutral border-b-[1px] fixed z-50">
     <div class="flex flex-row flex-1">
       <div class="flex-1">
         <NuxtLink v-if="link" class="btn btn-ghost text-xl" :href="`/`">{{ link[locale].title }}</NuxtLink>
@@ -27,5 +27,12 @@ export default {
     </div>
     <HeaderNavVertical v-if="link" :nav="link[locale].nav" />
     <HeaderNavHorizontal v-if="link" :nav="link[locale].nav" />
+  </header>
+  <header class="navbar invisible">
+    <div class="flex flex-row flex-1">
+      <div class="flex-1">
+        <NuxtLink v-if="link" class="btn btn-ghost text-xl" :href="`/`">{{ link[locale].title }}</NuxtLink>
+      </div>
+    </div>
   </header>
 </template>

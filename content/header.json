@@ -28,19 +28,19 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "About Me 😎",
+        "label": "😎 About Me",
         "url": "/about"
       },
       {
-        "label": "Projects 💻",
+        "label": "💻 Projects",
         "url": "/projects"
       },
       {
-        "label": "Blog",
+        "label": "📝 Blog",
         "url": "/blog"
       },
       {
-        "label": "Contact 📫",
+        "label": "📫 Contact",
         "url": "/contact"
       },
       {

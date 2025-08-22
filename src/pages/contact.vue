@@ -1,3 +1,3 @@
 <template>
-  <div>Contact Page</div>
+  <hr class="m-4">
 </template>

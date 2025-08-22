@@ -10,6 +10,25 @@ function getCSSVar(varName: string) {
   return window.getComputedStyle(document.documentElement).getPropertyValue(varName);
 }
 
+function getRandomWord() {
+  const words = [
+    'Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet', 'Consectetur', 'Adipiscing', 'Elit',
+    'Vivamus', 'Sagittis', 'Semper', 'Vestibulum', 'Curabitur', 'Pharetra', 'Quisque', 'Aliquam',
+    'Mauris', 'Suspendisse', 'Pellentesque', 'Habitant', 'Morbi', 'Tristique', 'Senectus', 'Netus',
+    'Fames', 'Ultrices', 'Nunc', 'Egestas', 'Fusce', 'Tempus', 'Porttitor', 'Integer',
+    'Mollis', 'Orci', 'Luctus', 'Tincidunt', 'Auctor', 'Gravida', 'Eros', 'Dapibus',
+    'Placerat', 'Sollicitudin', 'Accumsan', 'Blandit', 'Cursus', 'Dictum', 'Etiam', 'Facilisis',
+    'Hendrerit', 'Inceptos', 'Justo', 'Lacinia', 'Metus', 'Nibh', 'Odio', 'Praesent',
+    'Quam', 'Risus', 'Sapien', 'Tellus', 'Urna', 'Venenatis', 'Wisi', 'Xenon',
+    'Yonder', 'Zephyr', 'Aenean', 'Bibendum', 'Commodo', 'Donec', 'Enim', 'Fringilla',
+    'Genean', 'Hac', 'Imperdiet', 'Justitia', 'Keen', 'Libero', 'Maximus', 'Nam',
+    'Ornare', 'Proin', 'Quis', 'Rutrum', 'Scelerisque', 'Turpis', 'Ultricies', 'Vestibulum',
+    'Wisi', 'Xylophone', 'Yield', 'Zodiac', 'Aptent', 'Blandit', 'Convallis', 'Dignissim',
+    'Eleifend', 'Fermentum', 'Gravida', 'Habitasse', 'In', 'Justo', 'Kursus', 'Lectus'
+  ];
+  return words[Math.floor(Math.random() * words.length)];
+}
+
 onMounted(() => {
   const container = document.getElementById('sticky-container');
   utils.$('.card').forEach($square => {
@@ -35,6 +54,26 @@ onMounted(() => {
 <template>
   <div id="sticky-container" class="flex flex-1 flex-col gap-20 w-full">
     <span class="hidden shadow-xl" />
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
+    <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
     <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
     <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
     <div class="card p-4 border-2 border-base-300 w-fit text-neutral-700">{{ t('home.title') }}</div>
