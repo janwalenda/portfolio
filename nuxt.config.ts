@@ -59,13 +59,7 @@ export default defineNuxtConfig({
         language: "en-US",
         name: "English",
         file: "en.json",
-      },
-      {
-        code: "ja",
-        language: "ja-JP",
-        name: "日本語",
-        file: "ja.json",
-      },
+      }
     ],
   },
 });

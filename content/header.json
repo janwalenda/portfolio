@@ -3,11 +3,11 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "Über mich",
+        "label": "Über mich 😎",
         "url": "/about"
       },
       {
-        "label": "Projekte",
+        "label": "Projekte 💻",
         "url": "/projects"
       },
       {
@@ -15,7 +15,7 @@
         "url": "/blog"
       },
       {
-        "label": "Kontakt",
+        "label": "Kontakt 📫",
         "url": "/contact"
       },
       {
@@ -28,11 +28,11 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "About Me",
+        "label": "About Me 😎",
         "url": "/about"
       },
       {
-        "label": "Projects",
+        "label": "Projects 💻",
         "url": "/projects"
       },
       {
@@ -40,7 +40,7 @@
         "url": "/blog"
       },
       {
-        "label": "Contact",
+        "label": "Contact 📫",
         "url": "/contact"
       },
       {
@@ -53,11 +53,11 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "私について",
+        "label": "私について 😎",
         "url": "/about"
       },
       {
-        "label": "プロジェクト",
+        "label": "プロジェクト 💻",
         "url": "/projects"
       },
       {
@@ -65,7 +65,7 @@
         "url": "/blog"
       },
       {
-        "label": "連絡先",
+        "label": "連絡先 📫",
         "url": "/contact"
       },
       {
