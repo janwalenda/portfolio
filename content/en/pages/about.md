@@ -1,5 +1,5 @@
 ---
-title: About Me 😎
+title: About Me
 description: A brief introduction to myself and my background.
 ---
 
@@ -9,14 +9,14 @@ I have experience in developing web applications, mobile apps, and backend syste
 ## Education
 - **Application Development Specialist**: I did complete my apprenticeship in 2025.
 - **Vocational School**: I attended ITECH in Hamburg, where I acquired comprehensive knowledge in software development, databases, and web technologies.
-
+---
 ## Personal Focus Areas
 - **Web Development**: I enjoy working with modern web technologies such as React, Vue.js, and Node.js.
 - **Accessibility**: I place great importance on accessibility and ensure that my applications are usable by everyone.
 - **Mobile Development**: I have experience developing mobile applications with React Native.
 - **Tailwind CSS**: I use Tailwind CSS for designing user interfaces, as it allows me to quickly and efficiently create appealing designs.
 - **TypeScript**: I prefer TypeScript for developing JavaScript applications because it helps me structure code better and catch errors early.
-
+---
 ## Backend Development
 - **PostgreSQL**: I use PostgreSQL for relational databases and appreciate its robustness and flexibility.
 - **Node.js**: I like to use Node.js/TypeScript for server-side applications.

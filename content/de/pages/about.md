@@ -1,5 +1,5 @@
 ---
-title: Über mich 😎
+title: Über mich
 description: Eine kurze Einführung in meine Person und meinen Werdegang.
 ---
 

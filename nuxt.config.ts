@@ -1,6 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+  nitro: {
+    prerender: {
+      routes: [
+        "/de/",
+        "/de/about",
+        "/de/projects",
+        "/de/contact",
+        "/en/",
+        "/en/about",
+        "/en/projects",
+        "/en/contact",
+      ],
+      crawlLinks: true,
+    },
+  },
   sourcemap: true,
   srcDir: "src/",
   modules: [
@@ -39,9 +54,9 @@ export default defineNuxtConfig({
   },
   i18n: {
     baseUrl: "https://janwalenda.de",
-    strategy: "no_prefix",
     defaultLocale: "de",
     langDir: "translations/",
+    strategy: 'prefix',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",

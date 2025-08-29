@@ -1,5 +1,5 @@
 ---
-title: Kontakt 📫
+title: Kontakt
 description: Informationen, wie Sie mich erreichen können.
 ---
 

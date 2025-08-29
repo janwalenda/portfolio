@@ -3,11 +3,11 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "Über mich 😎",
+        "label": "Über mich",
         "url": "/about"
       },
       {
-        "label": "Projekte 💻",
+        "label": "Projekte",
         "url": "/projects"
       },
       {
@@ -15,7 +15,7 @@
         "url": "/blog"
       },
       {
-        "label": "Kontakt 📫",
+        "label": "Kontakt",
         "url": "/contact"
       },
       {
@@ -28,44 +28,19 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "😎 About Me",
+        "label": "About Me",
         "url": "/about"
       },
       {
-        "label": "💻 Projects",
+        "label": "Projects",
         "url": "/projects"
       },
       {
-        "label": "📝 Blog",
+        "label": "Blog",
         "url": "/blog"
       },
       {
-        "label": "📫 Contact",
-        "url": "/contact"
-      },
-      {
-        "icon": "cib:github",
-        "url": "https://github.com/janwalenda"
-      }
-    ]
-  },
-  "ja": {
-    "title": "_janWalenda",
-    "nav": [
-      {
-        "label": "私について 😎",
-        "url": "/about"
-      },
-      {
-        "label": "プロジェクト 💻",
-        "url": "/projects"
-      },
-      {
-        "label": "ブログ",
-        "url": "/blog"
-      },
-      {
-        "label": "連絡先 📫",
+        "label": "Contact",
         "url": "/contact"
       },
       {
