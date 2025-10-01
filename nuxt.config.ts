@@ -5,11 +5,9 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         "/de/",
-        "/de/about",
         "/de/projects",
         "/de/contact",
         "/en/",
-        "/en/about",
         "/en/projects",
         "/en/contact",
       ],
