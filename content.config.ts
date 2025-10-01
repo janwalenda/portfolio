@@ -19,6 +19,13 @@ const HeaderSchema = z.object({
   ),
 });
 
+const ExperienceSchema = z.object({
+  technology: z.string(),
+  skillLevel: z.number().min(0).max(100),
+  company: z.string(),
+  role: z.string(),
+});
+
 export default defineContentConfig({
   collections: {
     projects: defineCollection({
@@ -36,7 +43,13 @@ export default defineContentConfig({
       schema: z.object({
         de: HeaderSchema,
         en: HeaderSchema,
-        ja: HeaderSchema,
+      }),
+    }),
+    experiences: defineCollection({
+      source: "experiences.json",
+      type: "data",
+      schema: z.object({
+        experiences: z.array(ExperienceSchema),
       }),
     }),
     pages: defineCollection({

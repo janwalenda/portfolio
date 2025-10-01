@@ -3,10 +3,6 @@
     "title": "_janWalenda",
     "nav": [
       {
-        "label": "Über mich",
-        "url": "/about"
-      },
-      {
         "label": "Projekte",
         "url": "/projects"
       },
@@ -27,10 +23,6 @@
   "en": {
     "title": "_janWalenda",
     "nav": [
-      {
-        "label": "About Me",
-        "url": "/about"
-      },
       {
         "label": "Projects",
         "url": "/projects"
