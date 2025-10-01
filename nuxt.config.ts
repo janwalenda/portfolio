@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/icon",
     "@nuxtjs/tailwindcss",
+    "@nuxt/image",
   ],
   app: {
     head: {
@@ -33,7 +34,7 @@ export default defineNuxtConfig({
         { name: "description", content: "A Nuxt UI example project" },
       ],
       link: [
-        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        { rel: "icon", type: "image/png", href: "/images/favicon.png" },
         {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap",

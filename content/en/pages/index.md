@@ -3,9 +3,9 @@ title: About Me
 description: A brief introduction to myself and my background.
 ---
 
-I am Jan Walenda, a passionate software developer with a focus on web technologies. I have been working in the industry for over 3 years and have contributed to numerous projects during this time. During my apprenticeship as an application development specialist, I gained extensive knowledge in various programming languages and frameworks.
-I have experience in developing web applications, mobile apps, and backend systems. My strengths lie in problem-solving, teamwork, and continuous learning. I am always looking for new challenges and opportunities to further develop my skills.
+I'm Jan Walenda, a passionate software developer with a focus on front-end web technologies. I've been working as a Junior Software Engineer at AXS Germany for a year now, after completing a 2.5-year apprenticeship as an IT specialist in application development. During this time, I've worked on numerous projects and acquired extensive knowledge of various programming languages and frameworks during my training.
 
+I have experience in developing web applications, mobile apps, and back-end systems. My strengths lie in problem-solving, teamwork, and continuous learning. I'm always looking for new challenges and opportunities to further develop my skills.
 ## Education
 - **Application Development Specialist**: I did complete my apprenticeship in 2025.
 - **Vocational School**: I attended ITECH in Hamburg, where I acquired comprehensive knowledge in software development, databases, and web technologies.
