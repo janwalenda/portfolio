@@ -1,0 +1,52 @@
+{
+  "experiences": [
+    {
+      "technology": "react",
+      "skillLevel": 95,
+      "company": "The White Label eCommerce / AXS Germany",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "vitejs",
+      "skillLevel": 95,
+      "company": "The White Label eCommerce / AXS Germany",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "rollup",
+      "skillLevel": 95,
+      "company": "The White Label eCommerce / AXS Germany",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "sass",
+      "skillLevel": 95,
+      "company": "The White Label eCommerce / AXS Germany",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "nextjs",
+      "skillLevel": 90,
+      "company": "Self-employed",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "tailwindcss",
+      "skillLevel": 90,
+      "company": "The White Label eCommerce / AXS Germany",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "nuxt",
+      "skillLevel": 75,
+      "company": "Self-employed",
+      "role": "Software Developer"
+    },
+    {
+      "technology": "vue",
+      "skillLevel": 70,
+      "company": "Self-employed",
+      "role": "Software Developer"
+    }
+  ]
+}
