@@ -14,7 +14,7 @@ const props = defineProps<{
     </summary>
     <div class="p-2">
       <p>
-        <span>{{ props.company }}</span>
+        <span>{{ props.company }}</span> -
         <span>{{ props.role }}</span>
       </p>
     </div>
