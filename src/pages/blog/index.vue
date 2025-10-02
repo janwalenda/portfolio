@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { locale } = useI18n();
-const { data: blog } = await useAsyncData('blog', () => {
+const { data: blog } = await useAsyncData('blog:list', () => {
   return queryCollection('blog')
     .where('stem', 'LIKE', `${locale.value}/blog/%`)
     .order('date', 'DESC')
@@ -18,11 +18,14 @@ export default {
     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
       <BlogCard
         v-for="post in blog"
-        :key="post.description"
-        :description="post.description"
-        :image-url="post.thumbnail"
-        :image-alt="post.description"
-        :post="post"
+        :id="post.id"
+        :key="post.id"
+        :description="post.description!"
+        :thumbnail-url="post.thumbnailUrl"
+        :thumbnail-alt="post.thumbnailAlt"
+        :author="post.author"
+        :title="post.title"
+        :date="post.date"
       />
     </div>
   </div>

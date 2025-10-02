@@ -4,9 +4,9 @@ description: "Eine detaillierte Analyse der Vorteile von Nuxt.js für die Entwic
 date: 2024-06-20
 author: Jan Walenda
 tags: ["Nuxt", "Webentwicklung", "JavaScript", "Frameworks", "SSR", "SSG", "Vue.js"]
-thumbnail: "/images/blog/nuxt-cover.png"
+thumbnailUrl: "/images/blog/nuxt-cover.png"
+thumbnailAlt: "Nuxt.js Logo"
 ---
-![Eine detaillierte Analyse der Vorteile von Nuxt.js für die Entwicklung moderner Web-Anwendungen](/images/blog/nuxt-cover.png)
 ## Warum Nuxt sich hervorragend für moderne Web-Entwicklung eignet
 
 Nuxt.js hat sich zu einer der beliebtesten Lösungen für die Entwicklung moderner Web-Apps entwickelt. Warum das so ist? Hier sind die Kernpunkte, die mich persönlich pushen:
