@@ -4,9 +4,9 @@ description: "A detailed analysis of the benefits of Nuxt.js for developing mode
 date: 2024-06-20
 author: Jan Walenda
 tags: ["Nuxt", "Web Development", "JavaScript", "Frameworks", "SSR", "SSG", "Vue.js"]
-thumbnail: "/images/blog/nuxt-cover.png"
+thumbnailUrl: "/images/blog/nuxt-cover.png"
+thumbnailAlt: "Nuxt.js Logo"
 ---
-![A detailed analysis of the benefits of Nuxt.js for developing modern web applications](/images/blog/nuxt-cover.png)
 ## Why Nuxt is ideal for modern web development
 
 Nuxt.js has become one of the most popular solutions for developing modern web apps. Why is that? Here are the key points that motivate me personally:

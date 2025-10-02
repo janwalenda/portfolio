@@ -3,8 +3,9 @@ title: Über mich
 description: Eine kurze Einführung in meine Person und meinen Werdegang.
 ---
 
-Ich bin Jan Walenda, ein leidenschaftlicher Softwareentwickler mit einem Fokus auf Webtechnologien. Seit über 3 Jahren arbeite ich in der Branche und habe in dieser Zeit an zahlreichen Projekten mitgewirkt und habe während meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung umfangreiche Kenntnisse in verschiedenen Programmiersprachen und Frameworks erworben.
-Ich habe Erfahrung in der Entwicklung von Webanwendungen, mobilen Apps und Backend-Systemen. Meine Stärken liegen in der Problemlösung, der Teamarbeit und der kontinuierlichen Weiterbildung. Ich bin immer auf der Suche nach neuen Herausforderungen und Möglichkeiten, meine Fähigkeiten weiterzuentwickeln.
+Ich bin Jan Walenda, ein leidenschaftlicher Softwareentwickler mit einem Fokus auf Frontend-Webtechnologien. Seit einem Jahr arbeite ich als Junior Software Engineer bei AXS Germany, nachdem ich eine 2,5-jährige Ausbildung zum Fachinformatiker in Anwendungsentwicklung abgeschlossen habe. In dieser Zeit habe ich an zahlreichen Projekten mitgewirkt und während meiner Ausbildung umfangreiche Kenntnisse in verschiedenen Programmiersprachen und Frameworks erworben.
+
+Ich habe Erfahrung in der Entwicklung von Webanwendungen, mobilen Apps und Backend-Systemen. Meine Stärken liegen in der Problemlösung, der Teamarbeit und der kontinuierlichen Weiterbildung. Ich suche stets nach neuen Herausforderungen und Möglichkeiten, meine Fähigkeiten weiterzuentwickeln.
 
 ## Ausbildung
 - **Fachinformatiker für Anwendungsentwicklung**: Ich habe meine Ausbildung im Jahr 2025.

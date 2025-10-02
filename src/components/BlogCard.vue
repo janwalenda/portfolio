@@ -1,50 +1,49 @@
 <script lang="ts" setup>
-import type { BlogCollectionItem } from '@nuxt/content';
+import { getBlogName } from "~/helpers/getBlogName";
 
-  const { t, locale } = useI18n();
-  const props = defineProps<{
-    title?: string,
-    description?: string,
-    imageUrl?: string,
-    imageAlt?: string,
-    post?: BlogCollectionItem
-  }>()
+const { t, locale } = useI18n();
 
-  const blogNameRegex = /(?<=\/)(\w+)(?=.md)/;
-
-  function getName(id?: string): string {
-    if(id && blogNameRegex.test(id)) {
-      const match = blogNameRegex.exec(id);
-
-      return  match && match.length > 0 ? match[0] : '';
-    }
-
-    return '';
-  }
+defineProps<{
+  id: string;
+  thumbnailUrl: string;
+  thumbnailAlt: string;
+  title: string;
+  description: string;
+  author: string;
+  date: string;
+}>();
 </script>
+
 <template>
-<div class="card bg-base-100 w-96 shadow-sm">
-  <figure>
-    <NuxtImg :src="props.imageUrl" :alt="props.imageAlt" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ props.title }}</h2>
-    <p>{{ props.description }}</p>
-    <div class="card-actions justify-end">
-      <NuxtLink :to="`/${locale}/blog/${getName(props.post?.id)}`" class="btn btn-primary">
-        {{ t('button') }}
+  <Card
+    header-type="image"
+    :image-url="thumbnailUrl"
+    :title="title"
+    :alt="thumbnailAlt"
+  >
+    <p>{{ description }}</p>
+    <sub>{{ t('by') }} {{ author }} {{ t('on') }} {{ new Date(date).toLocaleDateString(locale) }}</sub>
+    <div class="card-actions justify-end mt-4">
+      <NuxtLink
+        :to="`/${locale}/blog/${getBlogName(id)}`"
+        class="btn btn-primary"
+      >
+        {{ t("button") }}
       </NuxtLink>
     </div>
-  </div>
-</div>
+  </Card>
 </template>
 <i18n>
   {
     "en": {
-      "button": "Learn More"
+      "button": "Learn More",
+      "by": "by",
+      "on": "on"
     },
     "de": {
-      "button": "Mehr Erfahren"
+      "button": "Mehr Erfahren",
+      "by": "von",
+      "on": "am"
     }
   }
 </i18n>
