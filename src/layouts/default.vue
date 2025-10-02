@@ -4,7 +4,7 @@ const { locale, t } = useI18n();
 const routeNameRegex = /^[a-z]{1,}(?=_)|^[a-z]{1,}$/;
 
 const { data: page } = await useAsyncData(
-  "page",
+  `page:${route}`,
   () => {
     if (!routeNameRegex.test(route.name as string)) {
       throw new Error("Invalid route name");
