@@ -1,0 +1,14 @@
+{
+  "de": {
+    "name": "Brieftaube",
+    "description": "Eine App um schicke HTML E-Mails zu bauen",
+    "url": "https://brieftaube.janwalenda.de",
+    "github": "https://github.com/janwalenda/brieftaube"
+  },
+  "en": {
+    "name": "Brieftaube",
+    "description": "An App to build handsome HTML E-Mails",
+    "url": "https://brieftaube.janwalenda.de",
+    "github": "https://github.com/janwalenda/brieftaube"
+  }
+}
