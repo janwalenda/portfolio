@@ -1,0 +1,14 @@
+{
+  "de": {
+    "name": "Geo",
+    "description": "Eine kleine Bibliothek zur Erstellung von 3 Grafiken durch mathematische Gleichungen im Canvas.",
+    "url": "https://codepen.io/juvar/embed/YzZVqmO?default-tab=js%2Cresult",
+    "github": "https://github.com/janwalenda/sine"
+  },
+  "en": {
+    "name": "Geo",
+    "description": "A small library for creating 3 graphics using mathematical equations in the canvas.",
+    "url": "https://codepen.io/juvar/embed/YzZVqmO?default-tab=js%2Cresult",
+    "github": "https://github.com/janwalenda/geo.js"
+  }
+}
