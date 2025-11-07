@@ -10,11 +10,5 @@
     "description": "A hypnotic animation that simulates a sine wave.",
     "url": "https://sine.janwalenda.de",
     "github": "https://github.com/janwalenda/sine"
-  },
-  "ja": {
-    "name": "Sine",
-    "description": "正弦波をシミュレートする催眠的なアニメーションです。",
-    "url": "https://sine.janwalenda.de",
-    "github": "https://github.com/janwalenda/sine"
   }
 }

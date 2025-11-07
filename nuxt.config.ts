@@ -26,12 +26,18 @@ export default defineNuxtConfig({
     "@nuxt/image",
   ],
   app: {
+    pageTransition: { 
+      name: 'page', 
+      mode: 'out-in' 
+    },
     head: {
       title: "Jan Walenda",
       meta: [
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { charset: "utf-8" },
         { name: "description", content: "A Nuxt UI example project" },
+        { name: "author", content: "Jan Walenda" },
+        { name: "keywords", content: "nuxt, nuxt3, ui, example, portfolio, janwalenda" },
       ],
       link: [
         { rel: "icon", type: "image/png", href: "/images/favicon.png" },

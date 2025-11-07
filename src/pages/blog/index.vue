@@ -15,7 +15,7 @@ export default {
 </script>
 <template>
   <div>
-    <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-4">
       <BlogCard
         v-for="post in blog"
         :id="post.id"

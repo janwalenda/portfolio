@@ -15,8 +15,14 @@
         "url": "/contact"
       },
       {
+        "label": "GitHub",
         "icon": "cib:github",
         "url": "https://github.com/janwalenda"
+      },
+      {
+        "label": "CodePen",
+        "icon": "cib:codepen",
+        "url": "https://codepen.io/juvar"
       }
     ]
   },
@@ -36,8 +42,14 @@
         "url": "/contact"
       },
       {
+        "label": "GitHub",
         "icon": "cib:github",
         "url": "https://github.com/janwalenda"
+      },
+      {
+        "label": "CodePen",
+        "icon": "cib:codepen",
+        "url": "https://codepen.io/juvar"
       }
     ]
   }

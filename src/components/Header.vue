@@ -22,6 +22,7 @@ export default {
       <div class="flex-1">
         <NuxtLink v-if="link && link[locale] && link[locale].title" class="btn btn-ghost text-xl" :to="`/${locale}/`">{{ link[locale].title }}</NuxtLink>
       </div>
+      <SkipLink />
       <HeaderLangSwitch />
       <HeaderThemeSwitch />
     </div>

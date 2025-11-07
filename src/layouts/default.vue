@@ -39,7 +39,7 @@ export default {
 <template>
   <div>
     <Header />
-    <main class="p-4 bg-base-100 font-mono flex flex-col items-center">
+    <main id="maincontent" class="p-4 bg-base-100 font-mono flex flex-col items-center">
       <section class="container lg:max-w-1/3">
         <article v-if="page" class="prose prose-h1:text-3xl">
           <h1>
@@ -70,13 +70,23 @@ export default {
           v-if="page"
           :value="page"
           tag="article"
-          class="prose"
+          class="prose max-w-full"
         />
       </section>
     </main>
     <Footer />
   </div>
 </template>
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: transform 200ms;
+}
+.page-enter-from,
+.page-leave-to {
+  transform: translate(-50rem, 0);
+}
+</style>
 <i18n lang="json">
 {
   "en": {

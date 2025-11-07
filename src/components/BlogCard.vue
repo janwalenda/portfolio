@@ -21,8 +21,13 @@ defineProps<{
     :title="title"
     :alt="thumbnailAlt"
   >
-    <p>{{ description }}</p>
-    <sub>{{ t('by') }} {{ author }} {{ t('on') }} {{ new Date(date).toLocaleDateString(locale) }}</sub>
+    <p>
+      {{ description }}
+    </p>
+    <p class="text-xs flex flex-col">
+      <span>{{ t('by') }} {{ author }} {{ t('on') }} </span> 
+      <span>{{ new Date(date).toLocaleDateString(locale) }}</span>
+    </p>
     <div class="card-actions justify-end mt-4">
       <NuxtLink
         :to="`/${locale}/blog/${getBlogName(id)}`"

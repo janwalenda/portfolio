@@ -28,7 +28,7 @@ const {
         v-if="headerType === 'iframe'"
         :src="imageUrl"
         width="100%"
-        height="200px"
+        height="400px"
         frameborder="0"
         allowfullscreen
         class="scale-105 group-hover:scale-100 transition-all"
