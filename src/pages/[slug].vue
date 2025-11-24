@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import type { PageAttributes, StrapiApiResponse } from '~/types/StrapiApiResponse';
-
 const config = useRuntimeConfig();
 const { locale } = useI18n();
+const { params } = useRoute();
+const slug = params.slug as string;
 
 const { value: strapiConfig } = computed(() => {
   return {
@@ -12,8 +13,8 @@ const { value: strapiConfig } = computed(() => {
   }
 });
 
-const { data: page } = await useAsyncData('page:index', () => 
-  $fetch<StrapiApiResponse<PageAttributes>>(`${strapiConfig.url}/api/page/index?locale=${locale}`, {
+const { data: page } = await useAsyncData(`page:${slug}`, () => 
+  $fetch<StrapiApiResponse<PageAttributes>>(`${strapiConfig.url}/api/page/${slug}?locale=${locale}`, {
     headers: {
       Authorization: `Bearer ${strapiConfig.token}`,
     }

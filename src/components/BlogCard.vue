@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { getBlogName } from "~/helpers/getBlogName";
-
 const { t, locale } = useI18n();
 
 defineProps<{
@@ -25,7 +23,7 @@ defineProps<{
     <sub>{{ t('by') }} {{ author }} {{ t('on') }} {{ new Date(date).toLocaleDateString(locale) }}</sub>
     <div class="card-actions justify-end mt-4">
       <NuxtLink
-        :to="`/${locale}/blog/${getBlogName(id)}`"
+        :to="`/${locale}/blog/${id}`"
         class="btn btn-primary"
       >
         {{ t("button") }}
