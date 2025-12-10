@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { Button } from "./ui/button"
 import { Icon } from "@iconify/react"
 import { useState } from "react"
@@ -11,6 +12,7 @@ export default function CodeBlock({
   }
 }) {
   const [copied, setCopied] = useState(false);
+
   const handleClick = () => {
     navigator.clipboard.writeText(value.code);
     setCopied(true);
@@ -18,14 +20,14 @@ export default function CodeBlock({
   };
 
   return (
-    <pre className="relative overflow-x-scroll flex flex-row">
-      <code>{value.code}</code>
-      <Button variant="secondary" className="sticky right-2 top-2 z-10 transition-all duration-300" onClick={handleClick}>
-        <Icon icon="heroicons:clipboard-document" className="size-6" />
-        <span className="sr-only">Copy</span>
-        {copied && (
-          <span className="animate-pulse">Copied!</span>
-        )}
+    <pre className="relative overflow-x-scroll flex flex-row ">
+      <code className="flex-1">{value.code}</code>
+      <Button variant="default"
+        className="sticky right-2 top-2 z-10 transition-all duration-300 swap swap-rotate"
+        onClick={handleClick}>
+        <input type="checkbox" checked={copied} onChange={() => { }} />
+        <Icon icon="heroicons:check" className="size-6 swap-on" />
+        <Icon icon="heroicons:clipboard-document" className="size-6 swap-off" />
       </Button>
     </pre>
   )

@@ -20,7 +20,7 @@ export default function ContentHero({ content }: { content: HeroType }) {
               width={1200}
               height={600}
               alt={content.title || "Hero image"}
-              className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="w-full h-auto object-cover"
             />
             {/* Gradient overlay for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-base-100/90" />

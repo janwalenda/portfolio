@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import style from "styled-jsx/style"
 
 const buttonVariants = cva(
   "btn",
@@ -18,7 +19,7 @@ const buttonVariants = cva(
         warning: "btn-warning",
         error: "btn-error",
       },
-      style: {
+      buttonStyle: {
         outline: "btn-outline",
         dash: "btn-dash",
         link: "btn-link",
@@ -66,7 +67,7 @@ function Button({
   className,
   variant,
   size,
-  style,
+  buttonStyle,
   behavior,
   modifier,
   asChild = false,
@@ -80,7 +81,7 @@ function Button({
     return (
       <Link
         href={href}
-        className={cn(buttonVariants({ variant, size, behavior, modifier, style, className }))}
+        className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
         {...linkProps}
       >
         {props.children}
@@ -91,7 +92,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, behavior, modifier, style, className }))}
+      className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
       {...(props as React.ComponentProps<"button">)}
     >
       {props.children}

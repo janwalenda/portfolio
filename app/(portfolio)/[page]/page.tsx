@@ -32,18 +32,21 @@ export default async function Page({ params }: { params: Promise<{ page: string 
 
   const page = await getPageBySlug(pageSlug);
 
+  console.log(page);
+
   if (!page) {
     return notFound();
   }
 
   return (
-    <div className="w-full flex flex-col gap-4 items-center justify-center relative">
+    <div className="w-full flex flex-col gap-4 items-center justify-center relative p-4">
       {page.mainImage && (
         <Image
           src={imageURL(page.mainImage).width(1200).height(600).url()}
           alt={page.title || ''}
           width={1200}
           height={600}
+          className=" object-cover h-auto"
         />
       )}
       {Array.isArray(page.content) && page.content.length > 0 && (

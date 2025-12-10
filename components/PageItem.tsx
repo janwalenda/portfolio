@@ -71,8 +71,6 @@ type PageItemProps = {
 import { BlockContent, Grid, Card, SanityImageCrop, SanityImageHotspot, internalGroqTypeReferenceTo, Page, PageBuilder } from "@/sanity.types"
 
 export default function PageItem({ content }: PageItemProps) {
-
-
   if (!content) {
     return null;
   }

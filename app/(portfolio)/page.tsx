@@ -157,7 +157,7 @@ export default async function Home() {
               <Icon icon="heroicons:envelope" className="size-6" />
               Get in Touch
             </Button>
-            <Button asLink href="/about-me" variant="accent" size="xl" style="outline" className="gap-2 text-base-100 border-base-100 hover:bg-base-100 hover:text-primary">
+            <Button asLink href="/about-me" variant="accent" size="xl" buttonStyle="outline" className="gap-2 text-base-100 border-base-100 hover:bg-base-100 hover:text-primary">
               <Icon icon="heroicons:document-text" className="size-6" />
               Read More
             </Button>

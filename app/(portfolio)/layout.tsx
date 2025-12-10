@@ -6,6 +6,7 @@ import { SanityLive } from '@/sanity/lib/live'
 import Header from '@/components/Header'
 import { getConfig } from '@/sanity/lib/config/getConfig'
 import Footer from '@/components/Footer'
+import { headers } from 'next/headers'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -57,13 +58,17 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const config = await getConfig();
+  const headerList = await headers();
+  const pathname = headerList.get("x-current-path");
 
   return (
-    <html lang="en">
-      <body className={`${roboto.className} antialiased relative`}>
+    <html lang="en" data-theme="light">
+      <body className={`${roboto.className} antialiased relative scroll-smooth`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
-        <main id="content" className="bg-base-100 elative shadow-xl">{children}</main>
+        <main id="content" className="bg-base-100 relative border-b border-b-base-content flex flex-col items-center justify-center min-h-screen">
+          <div className="w-full">{children}</div>
+        </main>
         {config && <Footer config={config} />}
         <SanityLive />
       </body>

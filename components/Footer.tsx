@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 
 export default function Footer({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> }) {
   return (
-    <FooterComponent className="p-10 bg-base-200 text-base-content">
+    <FooterComponent>
       {config.footerColumns && config.footerColumns.map((column, index) => (
         <FooterColumn key={column._key} title={column.title || ''}>
           {column.links && (column.links as unknown as LinkType[]).map((link) => (

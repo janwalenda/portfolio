@@ -2,16 +2,18 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 
-type FooterProps = React.ComponentProps<"footer"> & {
+type FooterProps = React.ComponentProps<"div"> & {
   asChild?: boolean
 }
 
 export function Footer({ asChild, children, className, ...props }: FooterProps) {
-  const Comp = asChild ? Slot : "footer"
+  const Comp = asChild ? Slot : "div"
   return (
-    <Comp className={cn("footer sm:footer-horizontal bg-neutral text-neutral-content p-10", className)} {...props}>
-      {children}
-    </Comp>
+    <footer className="w-full flex flex-col items-center justify-center bg-base-200 text-base-content">
+      <Comp className={cn("footer sm:footer-horizontal p-4", className)} {...props}>
+        {children}
+      </Comp>
+    </footer>
   )
 }
 

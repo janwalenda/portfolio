@@ -6,7 +6,7 @@ export default async function HeaderNavHorizontal({ links }: { links: Link[] }) 
 
   return (
     <nav
-      className="max-sm:hidden flex not-odd:flex-none max-sm:absolute right-4 z-1 max-sm:border-[1px] max-sm:border-neutral">
+      className="max-md:hidden flex not-odd:flex-none max-sm:absolute right-4 z-1 max-sm:border-[1px] max-sm:border-neutral">
       <ul className="menu menu-horizontal max-sm:menu-vertical">
         {links.map((link) => {
           return (

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
+import Prose from "@/components/Prose";
 
 export async function generateMetadata({ params }: { params: Promise<{ post: string }> }) {
   const { post: postSlug } = await params;
@@ -31,10 +32,11 @@ export default async function Post({ params }: { params: Promise<{ post: string 
     return notFound();
   }
 
+  console.log(post.body);
 
   return (
     <div className="flex flex-col items-center p-4">
-      <div className="flex flex-col gap-4 w-full md:w-1/2">
+      <div className="flex flex-col gap-4 max-w-5xl">
         <h1 className="text-4xl font-bold">{post.title}</h1>
         <div className="w-20 h-1 bg-primary rounded-box" />
         <p className="text-lg">{post.description}</p>
@@ -45,8 +47,8 @@ export default async function Post({ params }: { params: Promise<{ post: string 
               <Image
                 src={imageURL(post.mainImage).url()}
                 alt={post.mainImage.alt || ""}
-                width={post.mainImage.hotspot?.width || 500}
-                height={post.mainImage.hotspot?.height || 500}
+                width={1800}
+                height={1200}
                 className="w-full h-auto"
               />
             </figure>
@@ -62,17 +64,8 @@ export default async function Post({ params }: { params: Promise<{ post: string 
           </div>
 
         )}
-        <article className="prose max-w-full">
-          {Array.isArray(post.body) && post.body.length > 0 && (
-            <PortableText value={post.body} components={{
-              types: {
-                code: ({ value }) => {
-                  return <CodeBlock value={value} />
-                }
-              }
-            }} />
-          )}
-        </article>
+
+        <Prose body={post.body} />
       </div>
     </div>
   );

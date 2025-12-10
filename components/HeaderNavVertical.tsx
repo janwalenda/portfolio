@@ -5,7 +5,7 @@ import { Link } from "@/sanity.types"
 export default async function HeaderNavVertical({ links }: { links: Link[] }) {
 
   return (
-    <details className="sm:hidden">
+    <details className="md:hidden">
       <summary className="btn btn-ghost">
         <Icon icon="heroicons:bars-3-solid" className="size-5" />
       </summary>
