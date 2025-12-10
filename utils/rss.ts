@@ -7,10 +7,8 @@ import RSS from "rss";
 export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_ASCResult>) {
   console.log("Generating RSS feed...");
 
-  const site_url =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-      : "http://localhost:3000";
+  const site_url = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
 
   const feedOptions: RSS.FeedOptions = {
     title: "Blog posts | RSS Feed",
