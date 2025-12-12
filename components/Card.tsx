@@ -1,5 +1,5 @@
 import { Card as CardComponent, CardAction, CardBody } from "@/components/ui/card";
-import Image from "next/image";
+import Image from "@/components/Image";
 import Link from "next/link";
 import { imageURL } from "@/lib/imageURL";
 import type { Card } from "@/sanity.types";
@@ -16,11 +16,11 @@ export default function Card({ title, image, description, publishedAt, alt, url 
     <CardComponent cardStyle="border" className="bg-base-200 border-base-content">
       {image && (
         <figure className="h-72">
-          <Image src={imageURL(image!).width(600).height(600).url()!}
+          <Image src={image}
             alt={alt}
-            width={600}
-            height={600}
-            className="w-full"
+            width={1000}
+            height={1000}
+            className="h-full object-cover"
           />
         </figure>
       )}
