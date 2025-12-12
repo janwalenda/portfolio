@@ -67,7 +67,7 @@ export default async function RootLayout({
         {/* Animated gradient background */}
         {config && <Header config={config} />}
         <main id="content" className="bg-base-100 relative border-b border-b-base-content flex flex-col items-center justify-center min-h-screen">
-          <div className="w-full">{children}</div>
+          {children}
         </main>
         {config && <Footer config={config} />}
         <SanityLive />

@@ -3,14 +3,6 @@
 		{
 			"name": "Portfolio",
 			"path": "./"
-		},
-		{
-			"name": "Portfolio Old",
-			"path": "../portfolio-nuxt Kopie"
-		},
-		{
-			"name": "ecommerce App",
-			"path": "../ecommerce-app"
 		}
 	],
 	"settings": {
