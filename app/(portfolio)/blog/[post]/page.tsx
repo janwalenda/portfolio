@@ -33,7 +33,7 @@ export default async function Post({ params }: { params: Promise<{ post: string 
 
   return (
     <div className="flex flex-col items-center p-4 w-full">
-      <div className="flex flex-col gap-4 max-w-5xl">
+      <div className="flex flex-col gap-4 max-w-5xl w-full">
         <h1 className="text-4xl font-bold">{post.title}</h1>
         <div className="w-20 h-1 bg-primary rounded-box" />
         <p className="text-lg">{post.description}</p>

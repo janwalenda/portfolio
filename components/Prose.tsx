@@ -1,10 +1,10 @@
 import { PortableText, PortableTextBlock, toPlainText } from "next-sanity";
-import CodeBlock from "./CodeBock";
+import CodeBlock from "./CodeBlock";
 import { BlockContent } from "@/sanity.types";
 
 export default function Prose({ body }: { body?: BlockContent }) {
   return (
-    <article className="prose prose-sm md:prose-xl lg:prose-2xl prose-primary max-w-full">
+    <article className="prose prose-sm md:prose-xl lg:prose-2xl prose-primary max-w-full w-full">
 
       {Array.isArray(body) && body.length > 0 && (
         <>
