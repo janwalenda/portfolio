@@ -1,17 +1,25 @@
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
 import { notFound } from "next/navigation";
 import PageItem from "@/components/PageItem";
-import Image from "next/image";
-import { imageURL } from "@/lib/imageURL";
+import Image from "@/components/Image";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
 
 // Type guard to filter out unknown/invalid content types
-function hasRequiredProps(content: unknown): content is { _type: string; _key: string } {
-  return typeof content === 'object' && content !== null && '_type' in content && '_key' in content;
+function hasRequiredProps(content: unknown): content is {
+  _type: string; _key: string
+} {
+  return typeof content === 'object'
+    && content !== null
+    && '_type' in content
+    && '_key' in content;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ page: string }> }) {
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ page: string }>
+}) {
   const { page: pageSlug } = await params;
   const page = await getPageBySlug(pageSlug);
   const config = await getConfig();
@@ -24,38 +32,56 @@ export async function generateMetadata({ params }: { params: Promise<{ page: str
     return notFound();
   }
 
-  return generateSeoMetadata(page.seo, config.defaultSeo, page.title, page.title);
+  return generateSeoMetadata(
+    page.seo,
+    config.defaultSeo,
+    page.title,
+    page.title
+  );
 }
 
-export default async function Page({ params }: { params: Promise<{ page: string }> }) {
+export default async function Page({
+  params
+}: {
+  params: Promise<{ page: string }>
+}) {
   const { page: pageSlug } = await params;
-
   const page = await getPageBySlug(pageSlug);
-
-  console.log(page);
 
   if (!page) {
     return notFound();
   }
 
   return (
-    <div className="w-full flex flex-col gap-4 items-center justify-center relative p-4">
+    <div className="
+      w-full 
+      flex 
+      flex-col 
+      gap-4 
+      items-center 
+      justify-center 
+      relative p-4
+    ">
       {page.mainImage && (
         <Image
-          src={imageURL(page.mainImage).width(1200).height(600).url()}
+          src={page.mainImage}
           alt={page.title || ''}
           width={1200}
           height={600}
-          className=" object-cover h-auto"
+          className="object-cover h-auto"
         />
       )}
-      {Array.isArray(page.content) && page.content.length > 0 && (
-        page.content
-          .filter(hasRequiredProps)
-          .map(content =>
-            <PageItem key={content._key} content={content as any} />
-          )
-      )}
+      {Array.isArray(page.content)
+        && page.content.length > 0
+        && (
+          page.content
+            .filter(hasRequiredProps)
+            .map(content =>
+              <PageItem key={content._key}
+                content={content as any}
+              />
+            )
+        )}
     </div>
   );
 }

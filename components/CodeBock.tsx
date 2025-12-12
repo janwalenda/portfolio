@@ -20,7 +20,7 @@ export default function CodeBlock({
   };
 
   return (
-    <pre className="relative overflow-x-scroll flex flex-row ">
+    <pre className="relative flex flex-row">
       <code className="flex-1">{value.code}</code>
       <Button variant="default"
         className="sticky right-2 top-2 z-10 transition-all duration-300 swap swap-rotate"

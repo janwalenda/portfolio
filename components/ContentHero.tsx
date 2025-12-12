@@ -1,6 +1,6 @@
 import type { Hero as HeroType } from "@/sanity.types";
 import { Hero, HeroContent, HeroOverlay } from "@/components/ui/hero";
-import Image from "next/image";
+import Image from "@/components/Image";
 import { PortableText } from "next-sanity";
 import { imageURL } from "@/lib/imageURL";
 import { variant } from "@/lib/variant";
@@ -16,7 +16,7 @@ export default function ContentHero({ content }: { content: HeroType }) {
         {content.image && (
           <figure className="relative w-full overflow-hidden shadow-2xl group">
             <Image
-              src={imageURL(content.image!).width(1200).height(600).url()}
+              src={content.image}
               width={1200}
               height={600}
               alt={content.title || "Hero image"}

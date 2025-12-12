@@ -7,7 +7,7 @@ import RSS from "rss";
 export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_ASCResult>) {
   console.log("Generating RSS feed...");
 
-  const site_url = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 
 
   const feedOptions: RSS.FeedOptions = {
@@ -30,16 +30,22 @@ export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POST
       description: post.description || "",
       author: "Jan Walenda",
       url: `${site_url}/blog/${post.slug?.current}`,
-      date: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+      date: post.publishedAt 
+        ? new Date(post.publishedAt) 
+        : new Date(),
       guid: post._id,
       enclosure: post.mainImage ? {
         url: imageURL(post.mainImage).format("png").url(),
         type: "image/png",
       } : undefined,
-      categories: post.categories ? post.categories.map((category) => category.title!) : [],
+      categories: post.categories 
+        ? post.categories.map((category) => category.title!) 
+        : [],
       custom_elements: [
         {
-          "content:encoded": post.body ? toHTML(post.body) : "",
+          "content:encoded": post.body 
+          ? toHTML(post.body) 
+          : "",
         }
       ],
     });
