@@ -20,15 +20,17 @@ export default function CodeBlock({
   };
 
   return (
-    <pre className="relative flex flex-row">
-      <code className="flex-1">{value.code}</code>
+    <div className="relative group my-4">
+      <pre className="overflow-x-auto max-w-full p-4 rounded-lg">
+        <code>{value.code}</code>
+      </pre>
       <Button variant="default"
-        className="sticky right-2 top-2 z-10 transition-all duration-300 swap swap-rotate"
+        className="absolute right-2 top-2 z-10 transition-all duration-300 swap swap-rotate"
         onClick={handleClick}>
         <input type="checkbox" checked={copied} onChange={() => { }} />
         <Icon icon="heroicons:check" className="size-6 swap-on" />
         <Icon icon="heroicons:clipboard-document" className="size-6 swap-off" />
       </Button>
-    </pre>
+    </div>
   )
 }

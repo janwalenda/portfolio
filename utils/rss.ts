@@ -30,22 +30,30 @@ export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POST
       description: post.description || "",
       author: "Jan Walenda",
       url: `${site_url}/blog/${post.slug?.current}`,
-      date: post.publishedAt 
-        ? new Date(post.publishedAt) 
+      date: post.publishedAt
+        ? new Date(post.publishedAt)
         : new Date(),
       guid: post._id,
       enclosure: post.mainImage ? {
         url: imageURL(post.mainImage).format("png").url(),
         type: "image/png",
       } : undefined,
-      categories: post.categories 
-        ? post.categories.map((category) => category.title!) 
+      categories: post.categories
+        ? post.categories.map((category) => category.title!)
         : [],
       custom_elements: [
         {
-          "content:encoded": post.body 
-          ? toHTML(post.body) 
-          : "",
+          "content:encoded": post.body
+            ? toHTML(post.body, {
+              components: {
+                types: {
+                  code: ({ value }) => {
+                    return `<pre><code>${value.code}</code></pre>`
+                  },
+                },
+              }
+            })
+            : "",
         }
       ],
     });
