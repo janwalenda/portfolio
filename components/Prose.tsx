@@ -1,6 +1,7 @@
 import { PortableText, PortableTextBlock, toPlainText } from "next-sanity";
 import CodeBlock from "./CodeBlock";
 import { BlockContent } from "@/sanity.types";
+import Image from "@/components/Image";
 
 export default function Prose({ body }: { body?: BlockContent }) {
   return (
@@ -24,6 +25,13 @@ export default function Prose({ body }: { body?: BlockContent }) {
           <PortableText value={body}
             components={{
               types: {
+                image: ({ value }) => {
+                  return <Image src={value} 
+                    alt={value.alt || ' '} 
+                    width={2000}
+                    height={1600}
+                  />
+                },
                 code: ({ value }) => {
                   return <CodeBlock value={value} />
                 },

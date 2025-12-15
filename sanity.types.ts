@@ -529,7 +529,7 @@ export type AllSanitySchemaTypes = Seo | FooterColBuilder | Grid | TextBlock | C
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/blog/getAllPosts.ts
 // Variable: GET_ALL_POSTS_QUERY_ASC
-// Query: *[_type == "post"] | order(title asc) {    ...,    categories[]-> {      ...,    }  }
+// Query: *[_type == "post"] | order(publishedAt asc) {    ...,    categories[]-> {      ...,    }  }
 export type GET_ALL_POSTS_QUERY_ASCResult = Array<{
   _id: string;
   _type: "post";
@@ -573,7 +573,7 @@ export type GET_ALL_POSTS_QUERY_ASCResult = Array<{
   seo?: Seo;
 }>;
 // Variable: GET_ALL_POSTS_QUERY_DESC
-// Query: *[_type == "post"] | order(title desc) {    ...,    categories[]-> {      ...,    }  }
+// Query: *[_type == "post"] | order(publishedAt desc) {    ...,    categories[]-> {      ...,    }  }
 export type GET_ALL_POSTS_QUERY_DESCResult = Array<{
   _id: string;
   _type: "post";
@@ -866,8 +866,8 @@ export type GET_PAGE_DATA_BY_SLUG_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"post\"] | order(title asc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_ASCResult;
-    "\n  *[_type == \"post\"] | order(title desc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_DESCResult;
+    "\n  *[_type == \"post\"] | order(publishedAt asc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_ASCResult;
+    "\n  *[_type == \"post\"] | order(publishedAt desc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_DESCResult;
     "\n    *[\n      _type == \"post\" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ": POST_BY_SLUG_QUERYResult;
     "\n  *[\n    _type == \"siteSettings\"\n    && _id == \"siteSettings\"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n": GET_CONFIG_QUERYResult;
     "\n    *[\n      _type == \"link\"\n    ] | order(name asc)\n  ": GET_LINKS_QUERYResult;

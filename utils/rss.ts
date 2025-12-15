@@ -1,10 +1,10 @@
 
 import { imageURL } from "@/lib/imageURL";
-import { GET_ALL_POSTS_QUERY_ASCResult, Post } from "@/sanity.types";
-import { toHTML } from "@portabletext/to-html";
+import { GET_ALL_POSTS_QUERY_DESCResult } from "@/sanity.types";
 import RSS from "rss";
+import {toHTML} from '@portabletext/to-html'
 
-export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_ASCResult>) {
+export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESCResult>) {
   console.log("Generating RSS feed...");
 
   const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
@@ -47,10 +47,14 @@ export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POST
             ? toHTML(post.body, {
               components: {
                 types: {
+                  image: ({ value }) => {
+                    return `<img src="${imageURL(value).format("png").url()}" alt="${value.alt}"/>`;
+                  },
                   code: ({ value }) => {
                     return `<pre><code>${value.code}</code></pre>`
                   },
                 },
+
               }
             })
             : "",

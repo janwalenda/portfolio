@@ -2,7 +2,7 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 
 const GET_ALL_POSTS_QUERY_ASC = defineQuery(`
-  *[_type == "post"] | order(title asc) {
+  *[_type == "post"] | order(publishedAt asc) {
     ...,
     categories[]-> {
       ...,
@@ -11,7 +11,7 @@ const GET_ALL_POSTS_QUERY_ASC = defineQuery(`
 `);
 
 const GET_ALL_POSTS_QUERY_DESC = defineQuery(`
-  *[_type == "post"] | order(title desc) {
+  *[_type == "post"] | order(publishedAt desc) {
     ...,
     categories[]-> {
       ...,
