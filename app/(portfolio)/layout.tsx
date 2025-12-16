@@ -7,6 +7,9 @@ import Header from '@/components/Header'
 import { getConfig } from '@/sanity/lib/config/getConfig'
 import Footer from '@/components/Footer'
 import { headers } from 'next/headers'
+import CommandMenu from '@/components/CommandMenu'
+import { getAllPosts } from '@/sanity/lib/blog/getAllPosts'
+import { getAllPages } from '@/sanity/lib/page/getAllPages'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -59,13 +62,15 @@ export default async function RootLayout({
 }>) {
   const config = await getConfig();
   const headerList = await headers();
-  const pathname = headerList.get("x-current-path");
+  const posts = await getAllPosts();
+  const pages = await getAllPages();
 
   return (
     <html lang="en" data-theme="light">
       <body className={`${roboto.className} antialiased relative scroll-smooth`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
+        <CommandMenu pages={pages} posts={posts} />
         <main id="content" className="bg-base-100 relative border-b border-b-base-content flex flex-col items-center justify-center min-h-screen">
           {children}
         </main>

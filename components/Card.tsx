@@ -1,7 +1,6 @@
 import { Card as CardComponent, CardAction, CardBody } from "@/components/ui/card";
 import Image from "@/components/Image";
 import Link from "next/link";
-import { imageURL } from "@/lib/imageURL";
 import type { Card } from "@/sanity.types";
 
 export default function Card({ title, image, description, publishedAt, alt, url }: {

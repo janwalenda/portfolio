@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
-import { notFound } from "next/navigation";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 
 export async function generateMetadata() {
@@ -46,7 +45,7 @@ export default async function Home() {
     <div className="w-full flex flex-col">
       {/* Hero Section */}
       <Hero className="min-h-screen w-full relative">
-        <HeroOverlay className="bg-gradient-to-br from-primary via-secondary to-accent opacity-90" />
+        <HeroOverlay className="bg-linear-to-br from-primary via-secondary to-accent opacity-90" />
         <HeroContent className="flex-col text-center z-10 max-w-4xl px-6">
           <div className="flex flex-col items-center gap-6">
             {config?.headerLogo && (
@@ -144,10 +143,10 @@ export default async function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="w-full py-20 px-6 bg-gradient-to-r from-primary to-secondary">
+      <section className="w-full py-20 px-6 bg-linear-to-r from-primary to-secondary">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-base-100 mb-6">
-            Let's Build Something Amazing
+            Let&apos;s Build Something Amazing
           </h2>
           <p className="text-xl text-base-100/90 mb-8">
             Interested in working together or have a question? Feel free to reach out!

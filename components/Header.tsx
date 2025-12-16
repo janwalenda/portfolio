@@ -5,6 +5,7 @@ import HeaderNavHorizontal from "./HeaderNavHorizontal";
 import { imageURL } from "@/lib/imageURL";
 import Image from "next/image";
 import HeaderNavVertical from "./HeaderNavVertical";
+import Search from "./Search";
 
 async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> }) {
   // Transform headerLinks to convert null icons to undefined
@@ -14,7 +15,7 @@ async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> 
   }));
 
   return (
-    <header className="navbar bg-base-100/30 backdrop-blur-lg font-mono border-b-base-content border-b-[1px] sticky top-0 z-50">
+    <header className="navbar bg-base-100/30 backdrop-blur-lg font-mono border-b-base-content border-b sticky top-0 z-50">
       <a href="#content" className="sr-only focus:not-sr-only">Skip to main content</a>
       <div className="flex flex-row items-center flex-1">
         <div className="flex-1">
@@ -27,6 +28,7 @@ async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> 
         </div>
         {/* <HeaderLangSwitch /> */}
         <HeaderThemeSwitch />
+        <Search />
         <HeaderNavVertical links={headerLinks} />
         <HeaderNavHorizontal links={headerLinks} />
       </div>

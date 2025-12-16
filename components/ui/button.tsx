@@ -18,6 +18,7 @@ const buttonVariants = cva(
         success: "btn-success",
         warning: "btn-warning",
         error: "btn-error",
+        ghost: "btn-ghost",
       },
       buttonStyle: {
         outline: "btn-outline",
@@ -36,6 +37,7 @@ const buttonVariants = cva(
         sm: "btn-sm",
         lg: "btn-lg",
         xl: "btn-xl",
+        icon: "btn-square",
       },
       modifier: {
         wide: "btn-wide",

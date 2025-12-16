@@ -2,7 +2,7 @@
 import { imageURL } from "@/lib/imageURL";
 import { GET_ALL_POSTS_QUERY_DESCResult } from "@/sanity.types";
 import RSS from "rss";
-import {toHTML} from '@portabletext/to-html'
+import { toHTML } from '@portabletext/to-html'
 
 export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESCResult>) {
   console.log("Generating RSS feed...");
@@ -38,9 +38,7 @@ export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POST
         url: imageURL(post.mainImage).format("png").url(),
         type: "image/png",
       } : undefined,
-      categories: post.categories
-        ? post.categories.map((category) => category.title!)
-        : [],
+      categories: post.seo?.metaKeywords,
       custom_elements: [
         {
           "content:encoded": post.body

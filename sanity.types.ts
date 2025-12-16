@@ -529,7 +529,7 @@ export type AllSanitySchemaTypes = Seo | FooterColBuilder | Grid | TextBlock | C
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/blog/getAllPosts.ts
 // Variable: GET_ALL_POSTS_QUERY_ASC
-// Query: *[_type == "post"] | order(publishedAt asc) {    ...,    categories[]-> {      ...,    }  }
+// Query: *[_type == "post"] | order(publishedAt asc)
 export type GET_ALL_POSTS_QUERY_ASCResult = Array<{
   _id: string;
   _type: "post";
@@ -558,22 +558,19 @@ export type GET_ALL_POSTS_QUERY_ASCResult = Array<{
     alt?: string;
     _type: "image";
   };
-  categories: Array<{
-    _id: string;
-    _type: "category";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    description?: string;
-    slug?: Slug;
-  }> | null;
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
 }>;
 // Variable: GET_ALL_POSTS_QUERY_DESC
-// Query: *[_type == "post"] | order(publishedAt desc) {    ...,    categories[]-> {      ...,    }  }
+// Query: *[_type == "post"] | order(publishedAt desc)
 export type GET_ALL_POSTS_QUERY_DESCResult = Array<{
   _id: string;
   _type: "post";
@@ -602,16 +599,13 @@ export type GET_ALL_POSTS_QUERY_DESCResult = Array<{
     alt?: string;
     _type: "image";
   };
-  categories: Array<{
-    _id: string;
-    _type: "category";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    description?: string;
-    slug?: Slug;
-  }> | null;
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
@@ -733,6 +727,33 @@ export type GET_LINKS_QUERYResult = Array<{
   slug?: Slug;
   url?: string;
   icon?: Icon;
+}>;
+
+// Source: ./sanity/lib/page/getAllPages.ts
+// Variable: GET_ALL_PAGES_QUERY
+// Query: *[_type == "page"]
+export type GET_ALL_PAGES_QUERYResult = Array<{
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  content?: PageBuilder;
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  seo?: Seo;
 }>;
 
 // Source: ./sanity/lib/page/getPageBySlug.ts
@@ -866,11 +887,12 @@ export type GET_PAGE_DATA_BY_SLUG_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"post\"] | order(publishedAt asc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_ASCResult;
-    "\n  *[_type == \"post\"] | order(publishedAt desc) {\n    ...,\n    categories[]-> {\n      ...,\n    }\n  }\n": GET_ALL_POSTS_QUERY_DESCResult;
+    "\n  *[_type == \"post\"] | order(publishedAt asc)\n": GET_ALL_POSTS_QUERY_ASCResult;
+    "\n  *[_type == \"post\"] | order(publishedAt desc)\n": GET_ALL_POSTS_QUERY_DESCResult;
     "\n    *[\n      _type == \"post\" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ": POST_BY_SLUG_QUERYResult;
     "\n  *[\n    _type == \"siteSettings\"\n    && _id == \"siteSettings\"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n": GET_CONFIG_QUERYResult;
     "\n    *[\n      _type == \"link\"\n    ] | order(name asc)\n  ": GET_LINKS_QUERYResult;
+    "\n    *[_type == \"page\"]\n": GET_ALL_PAGES_QUERYResult;
     "\n    *[_type == \"page\" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == \"hero\" => {\n          ...,\n        },\n        _type == \"splitImage\" => {\n          ...,\n        },\n        _type == \"features\" => {\n          ...,\n        },\n        _type == \"faqs\" => {\n          ...,\n          faqs[]->\n        },\n        _type == \"grid\" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == \"textBlock\" => {\n          ...,\n        }\n      }\n    }\n": GET_PAGE_DATA_BY_SLUG_QUERYResult;
   }
 }
