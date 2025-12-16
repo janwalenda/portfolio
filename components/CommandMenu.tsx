@@ -15,16 +15,32 @@ export default function CommandMenu({ pages, posts }: { pages: Page[], posts: Po
     const newTheme = theme === "dark" ? "light" : "dark";
 
     setTheme(newTheme);
+    setOpen(false);
   };
 
+  const handlePageSelect = (page: Page) => {
+    return () => {
+      setOpen(false);
+      router.replace(`/${page.slug?.current}`)
+    };
+  }
+
+  const handlePostSelect = (post: Post) => {
+    return () => {
+      setOpen(false);
+      router.replace(`/blog/${post.slug?.current}`);
+    };
+  }
+
+
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} className="bg-base-200/60 backdrop-blur-lg rounded-box">
+    <CommandDialog open={open} onOpenChange={setOpen} className="bg-base-200 rounded-box">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Pages">
           {pages.map((page) => (
-            <CommandItem key={page._id} onSelect={() => router.replace(`/${page.slug?.current}`)}>
+            <CommandItem key={page._id} onSelect={handlePageSelect(page)}>
               <span>{page.title}</span>
             </CommandItem>
           ))}
@@ -32,7 +48,7 @@ export default function CommandMenu({ pages, posts }: { pages: Page[], posts: Po
         <CommandSeparator />
         <CommandGroup heading="Posts">
           {posts.map((post) => (
-            <CommandItem key={post._id} onSelect={() => router.replace(`/blog/${post.slug?.current}`)}>
+            <CommandItem key={post._id} onSelect={handlePostSelect(post)}>
               <span>{post.title}</span>
             </CommandItem>
           ))}
