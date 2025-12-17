@@ -28,7 +28,7 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const config = await getConfig();
-  const posts = await getAllPosts("asc");
+  const posts = await getAllPosts("desc");
   const latestPosts = posts.slice(0, 6);
 
   // Tech stack for the developer
