@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
+import AnimatedArea from "@/components/AnimatedArea";
 
 export async function generateMetadata() {
   const page = await getPageBySlug('home');
@@ -30,16 +31,6 @@ export default async function Home() {
   const config = await getConfig();
   const posts = await getAllPosts("desc");
   const latestPosts = posts.slice(0, 6);
-
-  // Tech stack for the developer
-  const technologies = [
-    { name: "React", icon: "logos:react" },
-    { name: "Next.js", icon: "logos:nextjs-icon" },
-    { name: "TypeScript", icon: "logos:typescript-icon" },
-    { name: "Node.js", icon: "logos:nodejs-icon" },
-    { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
-    { name: "Sanity CMS", icon: "simple-icons:sanity" },
-  ];
 
   return (
     <div className="w-full flex flex-col">
@@ -85,29 +76,7 @@ export default async function Home() {
       </Hero>
 
       {/* Skills & Technologies Section */}
-      <section className="w-full py-20 px-6 bg-base-200">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Skills & Technologies</h2>
-            <p className="text-lg text-base-content/70">
-              Tools and frameworks I work with
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-4 justify-center">
-            {technologies.map((tech) => (
-              <Badge
-                key={tech.name}
-                size="lg"
-                className="gap-2 px-6 py-4 bg-base-200 border-base-content text-base-content"
-              >
-                <Icon icon={tech.icon} className="size-6" />
-                {tech.name}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AnimatedArea />
 
       {/* Latest Blog Posts Section */}
       <section id="latest-posts" className="w-full py-20 px-6">
