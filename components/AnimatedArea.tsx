@@ -1,6 +1,6 @@
 "use client";
+
 import { Icon } from "@iconify/react";
-import { Badge } from "./ui/badge";
 import {
   motion,
   MotionValue,
@@ -9,7 +9,7 @@ import {
   useReducedMotion,
 } from "motion/react"
 import { useRef } from "react"
-import { Button } from "./ui/button";
+import { StartCard } from "./StartCard";
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance])
@@ -31,56 +31,56 @@ export default function AnimatedArea() {
       name: "React",
       icon: "logos:react",
       level: "Expert",
-      experience: "4+ Jahre",
+      experience: "4+ Years",
       projects: ["Portfolio", "E-Commerce Platform", "Dashboard Apps"],
     },
     {
       name: "Next.js",
       icon: "logos:nextjs-icon",
       level: "Expert",
-      experience: "3+ Jahre",
+      experience: "3+ Years",
       projects: ["Portfolio", "Blog Platform", "SaaS Applications"],
     },
     {
       name: "TypeScript",
       icon: "logos:typescript-icon",
       level: "Advanced",
-      experience: "3+ Jahre",
-      projects: ["Alle aktuellen Projekte"],
+      experience: "3+ Years",
+      projects: ["All current projects"],
     },
     {
       name: "Vue.js",
       icon: "logos:vue",
       level: "Advanced",
-      experience: "3+ Jahre",
+      experience: "3+ Years",
       projects: ["Admin Dashboards", "Interactive Tools"],
     },
     {
       name: "Nuxt.js",
       icon: "logos:nuxt",
       level: "Intermediate",
-      experience: "2+ Jahre",
+      experience: "2+ Years",
       projects: ["Marketing Websites", "Portfolio"],
     },
     {
       name: "Node.js",
       icon: "logos:nodejs-icon",
       level: "Advanced",
-      experience: "4+ Jahre",
+      experience: "4+ Years",
       projects: ["REST APIs", "Backend Services"],
     },
     {
       name: "Tailwind CSS",
       icon: "logos:tailwindcss-icon",
       level: "Expert",
-      experience: "3+ Jahre",
-      projects: ["Alle Frontend Projekte"],
+      experience: "3+ Years",
+      projects: ["Most of the projects"],
     },
     {
       name: "Sanity CMS",
       icon: "simple-icons:sanity",
       level: "Advanced",
-      experience: "2+ Jahre",
+      experience: "2+ Years",
       projects: ["Portfolio", "Blog", "Content Platforms"],
     },
   ]
@@ -132,7 +132,7 @@ function TechCard({ tech }: { tech: Technology }) {
   const opacity = shouldReduceMotion ? 1 : opacityRaw
 
   // Parallax effect for the info panel (moves slower than scroll)
-  const yRaw = useParallax(scrollYProgress, 200)
+  const yRaw = useParallax(scrollYProgress, 100)
   const y = shouldReduceMotion ? 0 : yRaw
 
   return (
@@ -147,7 +147,6 @@ function TechCard({ tech }: { tech: Technology }) {
         items-center 
         justify-center 
         relative 
-        snap-center
       "
       style={{ perspective: "1200px" }}
       id={tech.name}
@@ -180,14 +179,13 @@ function TechCard({ tech }: { tech: Technology }) {
             bg-base-200/50 
             backdrop-blur-sm 
             p-4 
-            rounded-xl 
+            rounded-box 
             md:bg-transparent 
             md:backdrop-blur-none 
             md:p-0 
             border 
-            border-base-content/5 
+            border-base-content
             md:border-none 
-            shadow-sm 
             md:shadow-none
           ">
             {/* Experience Level */}
@@ -228,32 +226,6 @@ function TechCard({ tech }: { tech: Technology }) {
           </div>
         </motion.div>
       </div>
-    </div>
-  )
-}
-
-function StartCard() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  return (
-    <div
-      ref={ref}
-      className="
-        text-center
-        mb-12
-        h-screen
-        flex
-        flex-col
-        items-center
-        justify-center
-        snap-center
-      ">
-      <h2 className="text-4xl font-bold mb-4">
-        <span>Skills</span> & <span>Technologies</span>
-      </h2>
-      <p className="text-lg text-base-content/70">
-        Tools and frameworks I work with
-      </p>
     </div>
   )
 }

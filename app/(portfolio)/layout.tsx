@@ -66,7 +66,7 @@ export default async function RootLayout({
   const pages = await getAllPages();
 
   return (
-    <html lang="en" data-theme="light" className="snap-y snap-mandatory scroll-smooth">
+    <html lang="en">
       <body className={`${roboto.className} antialiased relative`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
