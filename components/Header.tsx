@@ -1,13 +1,13 @@
 import Link from "next/link";
 import HeaderThemeSwitch from "./HeaderThemeSwitch";
-import { GET_CONFIG_QUERYResult } from "@/sanity.types";
+import { GET_CONFIG_QUERY_RESULT } from "@/sanity.types";
 import HeaderNavHorizontal from "./HeaderNavHorizontal";
 import { imageURL } from "@/lib/imageURL";
 import Image from "next/image";
 import HeaderNavVertical from "./HeaderNavVertical";
 import Search from "./Search";
 
-async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> }) {
+async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT> }) {
   // Transform headerLinks to convert null icons to undefined
   const headerLinks = (config?.headerLinks || []).map(link => ({
     ...link,

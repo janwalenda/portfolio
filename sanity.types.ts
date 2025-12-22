@@ -13,6 +13,19 @@
  */
 
 // Source: schema.json
+export type SeasonEvent = {
+  _id: string;
+  _type: "seasonEvent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  message?: string;
+  id?: string;
+  startDate?: string;
+  endDate?: string;
+};
+
 export type Seo = {
   _type: "seo";
   metaTitle?: string;
@@ -169,39 +182,43 @@ export type Post = {
   seo?: Seo;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  _key: string;
-} & Code | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & Code)
+  | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+>;
 
 export type Slug = {
   _type: "slug";
@@ -285,19 +302,26 @@ export type Page = {
   seo?: Seo;
 };
 
-export type PageBuilder = Array<{
-  _key: string;
-} & Hero | {
-  _key: string;
-} & SplitImage | {
-  _key: string;
-} & Features | {
-  _key: string;
-} & Faqs | {
-  _key: string;
-} & Grid | {
-  _key: string;
-} & TextBlock>;
+export type PageBuilder = Array<
+  | ({
+      _key: string;
+    } & Hero)
+  | ({
+      _key: string;
+    } & SplitImage)
+  | ({
+      _key: string;
+    } & Features)
+  | ({
+      _key: string;
+    } & Faqs)
+  | ({
+      _key: string;
+    } & Grid)
+  | ({
+      _key: string;
+    } & TextBlock)
+>;
 
 export type Features = {
   _type: "features";
@@ -335,7 +359,16 @@ export type Faq = {
 export type Hero = {
   _type: "hero";
   title?: string;
-  variant?: "primary" | "secondary" | "neutral" | "accent" | "info" | "success" | "warning" | "error" | "base";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "neutral"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning"
+    | "error"
+    | "base";
   text?: BlockContent;
   image?: {
     asset?: {
@@ -371,7 +404,16 @@ export type Icon = {
 export type SplitImage = {
   _type: "splitImage";
   orientation?: "imageLeft" | "imageRight";
-  variant?: "primary" | "secondary" | "neutral" | "accent" | "info" | "success" | "warning" | "error" | "base";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "neutral"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning"
+    | "error"
+    | "base";
   title?: string;
   image?: {
     asset?: {
@@ -416,9 +458,11 @@ export type SiteSettings = {
     _type: "image";
   };
   headerLogoAlt?: string;
-  footerColumns?: Array<{
-    _key: string;
-  } & FooterColBuilder>;
+  footerColumns?: Array<
+    {
+      _key: string;
+    } & FooterColBuilder
+  >;
 };
 
 export type Code = {
@@ -525,53 +569,46 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Seo | FooterColBuilder | Grid | TextBlock | Card | SanityImageCrop | SanityImageHotspot | Post | BlockContent | Slug | Author | Category | Page | PageBuilder | Features | Faqs | Faq | Hero | Link | Icon | SplitImage | SiteSettings | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes =
+  | SeasonEvent
+  | Seo
+  | FooterColBuilder
+  | Grid
+  | TextBlock
+  | Card
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Post
+  | BlockContent
+  | Slug
+  | Author
+  | Category
+  | Page
+  | PageBuilder
+  | Features
+  | Faqs
+  | Faq
+  | Hero
+  | Link
+  | Icon
+  | SplitImage
+  | SiteSettings
+  | Code
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/blog/getAllPosts.ts
+
+// Source: sanity/lib/blog/getAllPosts.ts
 // Variable: GET_ALL_POSTS_QUERY_ASC
 // Query: *[_type == "post"] | order(publishedAt asc)
-export type GET_ALL_POSTS_QUERY_ASCResult = Array<{
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-  slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  body?: BlockContent;
-  seo?: Seo;
-}>;
-// Variable: GET_ALL_POSTS_QUERY_DESC
-// Query: *[_type == "post"] | order(publishedAt desc)
-export type GET_ALL_POSTS_QUERY_DESCResult = Array<{
+export type GET_ALL_POSTS_QUERY_ASC_RESULT = Array<{
   _id: string;
   _type: "post";
   _createdAt: string;
@@ -611,10 +648,53 @@ export type GET_ALL_POSTS_QUERY_DESCResult = Array<{
   seo?: Seo;
 }>;
 
-// Source: ./sanity/lib/blog/getPostBySlug.ts
+// Source: sanity/lib/blog/getAllPosts.ts
+// Variable: GET_ALL_POSTS_QUERY_DESC
+// Query: *[_type == "post"] | order(publishedAt desc)
+export type GET_ALL_POSTS_QUERY_DESC_RESULT = Array<{
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  slug?: Slug;
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  mainImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  categories?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  publishedAt?: string;
+  body?: BlockContent;
+  seo?: Seo;
+}>;
+
+// Source: sanity/lib/blog/getPostBySlug.ts
 // Variable: POST_BY_SLUG_QUERY
 // Query: *[      _type == "post" && slug.current == $slug    ] | order(publishedAt asc)[0]
-export type POST_BY_SLUG_QUERYResult = {
+export type POST_BY_SLUG_QUERY_RESULT = {
   _id: string;
   _type: "post";
   _createdAt: string;
@@ -654,10 +734,10 @@ export type POST_BY_SLUG_QUERYResult = {
   seo?: Seo;
 } | null;
 
-// Source: ./sanity/lib/config/getConfig.ts
+// Source: sanity/lib/config/getConfig.ts
 // Variable: GET_CONFIG_QUERY
 // Query: *[    _type == "siteSettings"    && _id == "siteSettings"  ][0] {    ...,    headerLinks[]-> {      ...,      icon {        ...      }    },    footerColumns[] {      ...,      links[]-> {        ...,        icon {          ...        }      }    }  }
-export type GET_CONFIG_QUERYResult = {
+export type GET_CONFIG_QUERY_RESULT = {
   _id: string;
   _type: "siteSettings";
   _createdAt: string;
@@ -714,10 +794,10 @@ export type GET_CONFIG_QUERYResult = {
   }> | null;
 } | null;
 
-// Source: ./sanity/lib/config/getLinks.ts
+// Source: sanity/lib/config/getLinks.ts
 // Variable: GET_LINKS_QUERY
 // Query: *[      _type == "link"    ] | order(name asc)
-export type GET_LINKS_QUERYResult = Array<{
+export type GET_LINKS_QUERY_RESULT = Array<{
   _id: string;
   _type: "link";
   _createdAt: string;
@@ -729,10 +809,10 @@ export type GET_LINKS_QUERYResult = Array<{
   icon?: Icon;
 }>;
 
-// Source: ./sanity/lib/page/getAllPages.ts
+// Source: sanity/lib/page/getAllPages.ts
 // Variable: GET_ALL_PAGES_QUERY
 // Query: *[_type == "page"]
-export type GET_ALL_PAGES_QUERYResult = Array<{
+export type GET_ALL_PAGES_QUERY_RESULT = Array<{
   _id: string;
   _type: "page";
   _createdAt: string;
@@ -756,10 +836,10 @@ export type GET_ALL_PAGES_QUERYResult = Array<{
   seo?: Seo;
 }>;
 
-// Source: ./sanity/lib/page/getPageBySlug.ts
+// Source: sanity/lib/page/getPageBySlug.ts
 // Variable: GET_PAGE_DATA_BY_SLUG_QUERY
 // Query: *[_type == "page" && slug.current == $slug][0]{      ...,      content[] {        _key,        _type,        _type == "hero" => {          ...,        },        _type == "splitImage" => {          ...,        },        _type == "features" => {          ...,        },        _type == "faqs" => {          ...,          faqs[]->        },        _type == "grid" => {          ...,          components[]-> {            ...,            action[]->,          }        },        _type == "textBlock" => {          ...,        }      }    }
-export type GET_PAGE_DATA_BY_SLUG_QUERYResult = {
+export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
   _id: string;
   _type: "page";
   _createdAt: string;
@@ -767,107 +847,132 @@ export type GET_PAGE_DATA_BY_SLUG_QUERYResult = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  content: Array<{
-    _key: string;
-    _type: "faqs";
-    title?: string;
-    faqs: Array<{
-      _id: string;
-      _type: "faq";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      body?: BlockContent;
-    }> | null;
-  } | {
-    _key: string;
-    _type: "features";
-    title?: string;
-    features?: Array<{
-      title?: string;
-      text?: string;
-      _type: "feature";
-      _key: string;
-    }>;
-  } | {
-    _key: string;
-    _type: "grid";
-    title?: string;
-    components: Array<{
-      _id: string;
-      _type: "card";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      description?: string;
-      mainImage?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-      };
-      action: Array<{
-        _id: string;
-        _type: "link";
-        _createdAt: string;
-        _updatedAt: string;
-        _rev: string;
+  content: Array<
+    | {
+        _key: string;
+        _type: "faqs";
         title?: string;
-        slug?: Slug;
-        url?: string;
-        icon?: Icon;
-      }> | null;
-    }> | null;
-  } | {
-    _key: string;
-    _type: "hero";
-    title?: string;
-    variant?: "accent" | "base" | "error" | "info" | "neutral" | "primary" | "secondary" | "success" | "warning";
-    text?: BlockContent;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | {
-    _key: string;
-    _type: "splitImage";
-    orientation?: "imageLeft" | "imageRight";
-    variant?: "accent" | "base" | "error" | "info" | "neutral" | "primary" | "secondary" | "success" | "warning";
-    title?: string;
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
-  } | {
-    _key: string;
-    _type: "textBlock";
-    title?: string;
-    text?: BlockContent;
-  }> | null;
+        faqs: Array<{
+          _id: string;
+          _type: "faq";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          body?: BlockContent;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "features";
+        title?: string;
+        features?: Array<{
+          title?: string;
+          text?: string;
+          _type: "feature";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "grid";
+        title?: string;
+        components: Array<{
+          _id: string;
+          _type: "card";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          description?: string;
+          mainImage?: {
+            asset?: {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            media?: unknown;
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            _type: "image";
+          };
+          action: Array<{
+            _id: string;
+            _type: "link";
+            _createdAt: string;
+            _updatedAt: string;
+            _rev: string;
+            title?: string;
+            slug?: Slug;
+            url?: string;
+            icon?: Icon;
+          }> | null;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        title?: string;
+        variant?:
+          | "accent"
+          | "base"
+          | "error"
+          | "info"
+          | "neutral"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning";
+        text?: BlockContent;
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+      }
+    | {
+        _key: string;
+        _type: "splitImage";
+        orientation?: "imageLeft" | "imageRight";
+        variant?:
+          | "accent"
+          | "base"
+          | "error"
+          | "info"
+          | "neutral"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning";
+        title?: string;
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+      }
+    | {
+        _key: string;
+        _type: "textBlock";
+        title?: string;
+        text?: BlockContent;
+      }
+  > | null;
   mainImage?: {
     asset?: {
       _ref: string;
@@ -883,16 +988,33 @@ export type GET_PAGE_DATA_BY_SLUG_QUERYResult = {
   seo?: Seo;
 } | null;
 
+// Source: sanity/lib/seasonEvent/getActiveSeasonEvent.ts
+// Variable: GET_ACTIVE_SEASON_EVENT_BY_ID
+// Query: *[_type == "seasonEvent" && defined(_id) && id == $id][0]
+export type GET_ACTIVE_SEASON_EVENT_BY_ID_RESULT = {
+  _id: string;
+  _type: "seasonEvent";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  message?: string;
+  id?: string;
+  startDate?: string;
+  endDate?: string;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == \"post\"] | order(publishedAt asc)\n": GET_ALL_POSTS_QUERY_ASCResult;
-    "\n  *[_type == \"post\"] | order(publishedAt desc)\n": GET_ALL_POSTS_QUERY_DESCResult;
-    "\n    *[\n      _type == \"post\" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ": POST_BY_SLUG_QUERYResult;
-    "\n  *[\n    _type == \"siteSettings\"\n    && _id == \"siteSettings\"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n": GET_CONFIG_QUERYResult;
-    "\n    *[\n      _type == \"link\"\n    ] | order(name asc)\n  ": GET_LINKS_QUERYResult;
-    "\n    *[_type == \"page\"]\n": GET_ALL_PAGES_QUERYResult;
-    "\n    *[_type == \"page\" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == \"hero\" => {\n          ...,\n        },\n        _type == \"splitImage\" => {\n          ...,\n        },\n        _type == \"features\" => {\n          ...,\n        },\n        _type == \"faqs\" => {\n          ...,\n          faqs[]->\n        },\n        _type == \"grid\" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == \"textBlock\" => {\n          ...,\n        }\n      }\n    }\n": GET_PAGE_DATA_BY_SLUG_QUERYResult;
+    '\n  *[_type == "post"] | order(publishedAt asc)\n': GET_ALL_POSTS_QUERY_ASC_RESULT;
+    '\n  *[_type == "post"] | order(publishedAt desc)\n': GET_ALL_POSTS_QUERY_DESC_RESULT;
+    '\n    *[\n      _type == "post" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ': POST_BY_SLUG_QUERY_RESULT;
+    '\n  *[\n    _type == "siteSettings"\n    && _id == "siteSettings"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n': GET_CONFIG_QUERY_RESULT;
+    '\n    *[\n      _type == "link"\n    ] | order(name asc)\n  ': GET_LINKS_QUERY_RESULT;
+    '\n    *[_type == "page"]\n': GET_ALL_PAGES_QUERY_RESULT;
+    '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == "hero" => {\n          ...,\n        },\n        _type == "splitImage" => {\n          ...,\n        },\n        _type == "features" => {\n          ...,\n        },\n        _type == "faqs" => {\n          ...,\n          faqs[]->\n        },\n        _type == "grid" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == "textBlock" => {\n          ...,\n        }\n      }\n    }\n': GET_PAGE_DATA_BY_SLUG_QUERY_RESULT;
+    '\n  *[_type == "seasonEvent" && defined(_id) && id == $id][0]\n': GET_ACTIVE_SEASON_EVENT_BY_ID_RESULT;
   }
 }

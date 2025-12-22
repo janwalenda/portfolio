@@ -10,6 +10,7 @@ import { headers } from 'next/headers'
 import CommandMenu from '@/components/CommandMenu'
 import { getAllPosts } from '@/sanity/lib/blog/getAllPosts'
 import { getAllPages } from '@/sanity/lib/page/getAllPages'
+import WinterSeasonEvent from '@/components/WinterSeasonEvent'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -61,7 +62,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const config = await getConfig();
-  const headerList = await headers();
   const posts = await getAllPosts();
   const pages = await getAllPages();
 
@@ -70,6 +70,7 @@ export default async function RootLayout({
       <body className={`${roboto.className} antialiased relative scroll-smooth`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
+        <WinterSeasonEvent />
         <CommandMenu pages={pages} posts={posts} />
         <main id="content" className="bg-base-100 relative border-b border-b-base-content flex flex-col items-center justify-center min-h-screen">
           {children}

@@ -17,6 +17,7 @@ import { gridType } from './gridType'
 import { footerColBuilderType } from './footerColBuilderType'
 import { textBlockType } from './textBlockType'
 import { seoType } from './seoType'
+import { seasonEventType } from './seasonEventType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -38,5 +39,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     gridType,
     footerColBuilderType,
     seoType,
+    seasonEventType,
   ],
 }
