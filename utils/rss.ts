@@ -1,10 +1,10 @@
 
 import { imageURL } from "@/lib/imageURL";
-import { GET_ALL_POSTS_QUERY_DESCResult } from "@/sanity.types";
+import { GET_ALL_POSTS_QUERY_DESC_RESULT } from "@/sanity.types";
 import RSS from "rss";
 import { toHTML } from '@portabletext/to-html'
 
-export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESCResult>) {
+export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESC_RESULT>) {
   console.log("Generating RSS feed...");
 
   const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"

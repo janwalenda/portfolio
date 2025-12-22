@@ -1,9 +1,9 @@
-import { GET_CONFIG_QUERYResult, Link as LinkType } from "@/sanity.types";
+import { GET_CONFIG_QUERY_RESULT, Link as LinkType } from "@/sanity.types";
 import { FooterColumn, Footer as FooterComponent } from "./ui/footer";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-export default function Footer({ config }: { config: NonNullable<GET_CONFIG_QUERYResult> }) {
+export default function Footer({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT> }) {
   return (
     <FooterComponent>
       {config.footerColumns && config.footerColumns.map((column, index) => (

@@ -1,7 +1,7 @@
-import { GET_ALL_POSTS_QUERY_ASCResult } from "@/sanity.types";
+import { GET_ALL_POSTS_QUERY_ASC_RESULT } from "@/sanity.types";
 import Card from "./Card";
 
-export default function BlogCard({ post }: { post: GET_ALL_POSTS_QUERY_ASCResult[number] }) {
+export default function BlogCard({ post }: { post: GET_ALL_POSTS_QUERY_ASC_RESULT[number] }) {
   return (
     <Card
       key={post._id}
