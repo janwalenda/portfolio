@@ -27,9 +27,11 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
     if (!ctx) return;
 
     function resizeCanvas() {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (!canvas || !ctx) return;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -38,7 +40,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
     // Schneeflocken erstellen
     const snowflakes: Snowflake[] = [];
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 80; i++) {
       snowflakes.push(new Snowflake(canvas, ctx));
     }
 
@@ -47,7 +49,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
 
     function animate() {
       if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       snowflakes.forEach(snowflake => {
         snowflake.fall();
@@ -69,7 +71,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
 
   return (
     <>
-      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full pointer-events-none z-10" />
+      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-10" />
       <Modal backdrop open={!messageDisplayed} onClose={() => setMessageDisplayed(true)}>
         <form method="dialog" className="flex items-center justify-end">
           <Button type="submit" size={"sm"}>
