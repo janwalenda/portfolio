@@ -5,7 +5,6 @@ import { getAllPosts } from "@/sanity/lib/blog/getAllPosts";
 import CardGrid from "@/components/CardGrid";
 import BlogCard from "@/components/BlogCard";
 import { Hero, HeroContent, HeroOverlay } from "@/components/ui/hero";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
@@ -24,7 +23,12 @@ export async function generateMetadata() {
     return null;
   }
 
-  return generateSeoMetadata(page.seo, config.defaultSeo, page.title, page.title);
+  return generateSeoMetadata(
+    page.seo,
+    config.defaultSeo,
+    page.title,
+    page.title
+  );
 }
 
 export default async function Home() {

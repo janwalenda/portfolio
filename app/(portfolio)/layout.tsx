@@ -66,13 +66,24 @@ export default async function RootLayout({
   const pages = await getAllPages();
 
   return (
-    <html lang="en" data-theme="light">
-      <body className={`${roboto.className} antialiased relative scroll-smooth`}>
+    <html lang="en" data-theme="light" className="snap-y snap-mandatory scroll-smooth">
+      <body className={`${roboto.className} antialiased relative`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
         <WinterSeasonEvent />
         <CommandMenu pages={pages} posts={posts} />
-        <main id="content" className="bg-base-100 relative border-b border-b-base-content flex flex-col items-center justify-center min-h-screen">
+        <main id="content"
+          className="
+            bg-base-100 
+            relative 
+            border-b 
+            border-b-base-content 
+            flex 
+            flex-col 
+            items-center 
+            justify-center 
+            min-h-screen
+          ">
           {children}
         </main>
         {config && <Footer config={config} />}
