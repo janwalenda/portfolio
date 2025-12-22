@@ -76,8 +76,8 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
             <Icon icon="mdi:close" />
           </Button>
         </form>
-        <h3>{seasonEvent?.title}</h3>
-        <p>{seasonEvent?.message}</p>
+        <h3 className="text-2xl font-bold">{seasonEvent?.title}</h3>
+        <p className="text-lg">{seasonEvent?.message}</p>
       </Modal>
     </>
   )
