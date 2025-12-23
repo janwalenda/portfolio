@@ -14,6 +14,9 @@ import { schema } from './sanity/schemaTypes'
 import { structure } from './sanity/structure'
 import { iconify } from 'sanity-plugin-iconify'
 import { codeInput } from '@sanity/code-input'
+import { presentationTool } from 'sanity/presentation'
+import { resolve } from '@/sanity/presentation/resolve'
+import { PenIcon } from 'lucide-react'
 
 export default defineConfig({
   basePath: '/studio',
@@ -31,5 +34,14 @@ export default defineConfig({
       showName: true,
     }),
     codeInput(),
+    presentationTool({
+      resolve,
+      icon: PenIcon,
+      previewUrl: {
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+        },
+      },
+    }),
   ],
 })

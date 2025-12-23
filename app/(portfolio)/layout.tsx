@@ -1,16 +1,17 @@
 import { Viewport, type Metadata } from 'next'
 import { Roboto_Mono } from 'next/font/google'
 import '../globals.css'
-
 import { SanityLive } from '@/sanity/lib/live'
 import Header from '@/components/Header'
 import { getConfig } from '@/sanity/lib/config/getConfig'
 import Footer from '@/components/Footer'
-import { headers } from 'next/headers'
 import CommandMenu from '@/components/CommandMenu'
 import { getAllPosts } from '@/sanity/lib/blog/getAllPosts'
 import { getAllPages } from '@/sanity/lib/page/getAllPages'
 import WinterSeasonEvent from '@/components/WinterSeasonEvent'
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity/visual-editing'
+import { DisableDraftMode } from '@/components/DisableDraftMode'
 
 const roboto = Roboto_Mono({
   subsets: ['latin'],
@@ -88,6 +89,12 @@ export default async function RootLayout({
         </main>
         {config && <Footer config={config} />}
         <SanityLive />
+        {(await draftMode()).isEnabled && (
+          <>
+            <DisableDraftMode />
+            <VisualEditing />
+          </>
+        )}
       </body>
     </html>
   )
