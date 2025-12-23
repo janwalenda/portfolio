@@ -61,7 +61,7 @@ export default function AnimatedArea() {
       icon: "logos:nuxt",
       level: "Intermediate",
       experience: "2+ Years",
-      projects: ["Marketing Websites", "Portfolio"],
+      projects: ["Portfolio"],
     },
     {
       name: "Node.js",
@@ -74,15 +74,22 @@ export default function AnimatedArea() {
       name: "Tailwind CSS",
       icon: "logos:tailwindcss-icon",
       level: "Expert",
-      experience: "3+ Years",
+      experience: "4+ Years",
       projects: ["Most of the projects"],
     },
     {
       name: "Sanity CMS",
       icon: "simple-icons:sanity",
       level: "Advanced",
-      experience: "2+ Years",
+      experience: "1+ Years",
       projects: ["Portfolio", "Blog", "Content Platforms"],
+    },
+    {
+      name: "PHP",
+      icon: "logos:php",
+      level: "Advanced",
+      experience: "4+ Years",
+      projects: ["E-Commerce Platform", "Dashboard Apps", "REST APIs", "Backend Services"],
     },
   ]
 
@@ -211,7 +218,7 @@ function TechCard({ tech }: { tech: Technology }) {
             {/* Years of Experience */}
             <div>
               <span className="text-base-content/50 text-sm uppercase tracking-wider">
-                Erfahrung
+                Experience
               </span>
               <p className="text-xl font-semibold">{tech.experience}</p>
             </div>
@@ -219,7 +226,7 @@ function TechCard({ tech }: { tech: Technology }) {
             {/* Projects */}
             <div>
               <span className="text-base-content/50 text-sm uppercase tracking-wider">
-                Projekte
+                Projects
               </span>
               <ul className="mt-1 space-y-1">
                 {tech.projects.map((project) => (
