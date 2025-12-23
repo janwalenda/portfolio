@@ -7,6 +7,7 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useSpring,
 } from "motion/react"
 import { useRef } from "react"
 import { StartCard } from "./StartCard";
@@ -124,6 +125,12 @@ function TechCard({ tech }: { tech: Technology }) {
     offset: ["start end", "center center"],
   })
 
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
+
   // Z-axis fly-in for badge
   const translateZRaw = useTransform(scrollYProgress, [0, 1], [500, 0])
   const opacityRaw = useTransform(scrollYProgress, [0, 0.5], [0, 1])
@@ -159,9 +166,12 @@ function TechCard({ tech }: { tech: Technology }) {
         }}
         className="flex items-center justify-center z-10"
       >
-        <h2 className="gap-2 px-6 py-4 bg-base-200 shadow-xl text-2xl font-bold flex items-center flex-row">
-          <Icon icon={tech.icon} className="size-6 hover:animate-spin" />
-          {tech.name}
+        <h2 className="gap-2 px-6 py-4 bg-base-200 text-2xl font-bold flex items-center flex-col">
+          <span className="flex items-center gap-2">
+            <Icon icon={tech.icon} className="size-6 hover:animate-spin" />
+            {tech.name}
+          </span>
+          <motion.div className="h-1 bg-primary rounded-box w-full" style={{ scaleX }} />
         </h2>
       </motion.div>
 
