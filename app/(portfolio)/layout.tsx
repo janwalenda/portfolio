@@ -67,7 +67,7 @@ export default async function RootLayout({
   const pages = await getAllPages();
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body className={`${roboto.className} antialiased relative`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}

@@ -173,7 +173,7 @@ function TechCard({ tech }: { tech: Technology }) {
         }}
         className="flex items-center justify-center z-10"
       >
-        <h2 className="gap-2 px-6 py-4 bg-base-200 text-2xl font-bold flex items-center flex-col">
+        <h2 className="gap-2 px-6 py-4 text-2xl font-bold flex items-center flex-col">
           <span className="flex items-center gap-2">
             <Icon icon={tech.icon} className="size-6 hover:animate-spin" />
             {tech.name}
