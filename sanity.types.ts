@@ -13,6 +13,140 @@
  */
 
 // Source: schema.json
+export type CtaSection = {
+  _type: "ctaSection";
+  title?: string;
+  subtitle?: string;
+  primaryCta?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "link";
+  };
+  secondaryCta?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "link";
+  };
+};
+
+export type Technology = {
+  _type: "technology";
+  name?: string;
+  icon?: Icon;
+  level?: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+  experience?: string;
+  projects?: Array<string>;
+};
+
+export type Service = {
+  _type: "service";
+  title?: string;
+  description?: string;
+  icon?: Icon;
+};
+
+export type HomepageHero = {
+  _type: "homepageHero";
+  badgeEnabled?: boolean;
+  badgeText?: string;
+  title?: string;
+  subtitle?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  primaryCta?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "link";
+  };
+  secondaryCta?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "link";
+  };
+};
+
+export type Homepage = {
+  _id: string;
+  _type: "homepage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroSection?: HomepageHero;
+  servicesTitle?: string;
+  servicesSubtitle?: string;
+  services?: Array<
+    {
+      _key: string;
+    } & Service
+  >;
+  techStackTitle?: string;
+  techStackSubtitle?: string;
+  techStack?: Array<
+    {
+      _key: string;
+    } & Technology
+  >;
+  selectedWorkTitle?: string;
+  selectedWorkSubtitle?: string;
+  selectedWorkCount?: number;
+  ctaSection?: CtaSection;
+  pageBuilder?: PageBuilder;
+};
+
+export type PageBuilder = Array<
+  | ({
+      _key: string;
+    } & Hero)
+  | ({
+      _key: string;
+    } & SplitImage)
+  | ({
+      _key: string;
+    } & Features)
+  | ({
+      _key: string;
+    } & Faqs)
+  | ({
+      _key: string;
+    } & Grid)
+  | unknown // Unable to locate the referenced type "textBlocks" in schema
+>;
+
+export type Icon = {
+  _type: "icon";
+  name?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
 export type SeasonEvent = {
   _id: string;
   _type: "seasonEvent";
@@ -124,22 +258,6 @@ export type Card = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "link";
   }>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type Post = {
@@ -302,27 +420,6 @@ export type Page = {
   seo?: Seo;
 };
 
-export type PageBuilder = Array<
-  | ({
-      _key: string;
-    } & Hero)
-  | ({
-      _key: string;
-    } & SplitImage)
-  | ({
-      _key: string;
-    } & Features)
-  | ({
-      _key: string;
-    } & Faqs)
-  | ({
-      _key: string;
-    } & Grid)
-  | ({
-      _key: string;
-    } & TextBlock)
->;
-
 export type Features = {
   _type: "features";
   title?: string;
@@ -394,11 +491,6 @@ export type Link = {
   slug?: Slug;
   url?: string;
   icon?: Icon;
-};
-
-export type Icon = {
-  _type: "icon";
-  name?: string;
 };
 
 export type SplitImage = {
@@ -570,27 +662,32 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | CtaSection
+  | Technology
+  | Service
+  | HomepageHero
+  | Homepage
+  | PageBuilder
+  | Icon
+  | SanityImageCrop
+  | SanityImageHotspot
   | SeasonEvent
   | Seo
   | FooterColBuilder
   | Grid
   | TextBlock
   | Card
-  | SanityImageCrop
-  | SanityImageHotspot
   | Post
   | BlockContent
   | Slug
   | Author
   | Category
   | Page
-  | PageBuilder
   | Features
   | Faqs
   | Faq
   | Hero
   | Link
-  | Icon
   | SplitImage
   | SiteSettings
   | Code
@@ -604,6 +701,12 @@ export type AllSanitySchemaTypes =
   | Geopoint;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
+
+type ArrayOf<T> = Array<
+  T & {
+    _key: string;
+  }
+>;
 
 // Source: sanity/lib/blog/getAllPosts.ts
 // Variable: GET_ALL_POSTS_QUERY_ASC
@@ -738,7 +841,7 @@ export type POST_BY_SLUG_QUERY_RESULT = {
 // Variable: GET_CONFIG_QUERY
 // Query: *[    _type == "siteSettings"    && _id == "siteSettings"  ][0] {    ...,    headerLinks[]-> {      ...,      icon {        ...      }    },    footerColumns[] {      ...,      links[]-> {        ...,        icon {          ...        }      }    }  }
 export type GET_CONFIG_QUERY_RESULT = {
-  _id: string;
+  _id: "siteSettings";
   _type: "siteSettings";
   _createdAt: string;
   _updatedAt: string;
@@ -809,6 +912,171 @@ export type GET_LINKS_QUERY_RESULT = Array<{
   icon?: Icon;
 }>;
 
+// Source: sanity/lib/homepage/getHomepage.ts
+// Variable: homepageQuery
+// Query: *[_type == "homepage" && _id == "homepage"][0] {    heroSection {      badgeEnabled,      badgeText,      title,      subtitle,      image,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    servicesTitle,    servicesSubtitle,    services[] {      title,      description,      icon    },    techStackTitle,    techStackSubtitle,    techStack[] {      name,      icon,      level,      experience,      projects    },    selectedWorkTitle,    selectedWorkSubtitle,    selectedWorkCount,    ctaSection {      title,      subtitle,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    pageBuilder[] {      _type,      _key,      ...    }  }
+export type HomepageQueryResult = {
+  heroSection: {
+    badgeEnabled: boolean | null;
+    badgeText: string | null;
+    title: string | null;
+    subtitle: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    primaryCta: {
+      title: string | null;
+      slug: Slug | null;
+      url: string | null;
+      icon: Icon | null;
+    } | null;
+    secondaryCta: {
+      title: string | null;
+      slug: Slug | null;
+      url: string | null;
+      icon: Icon | null;
+    } | null;
+  } | null;
+  servicesTitle: string | null;
+  servicesSubtitle: string | null;
+  services: Array<{
+    title: string | null;
+    description: string | null;
+    icon: Icon | null;
+  }> | null;
+  techStackTitle: string | null;
+  techStackSubtitle: string | null;
+  techStack: Array<{
+    name: string | null;
+    icon: Icon | null;
+    level: "Advanced" | "Beginner" | "Expert" | "Intermediate" | null;
+    experience: string | null;
+    projects: Array<string> | null;
+  }> | null;
+  selectedWorkTitle: string | null;
+  selectedWorkSubtitle: string | null;
+  selectedWorkCount: number | null;
+  ctaSection: {
+    title: string | null;
+    subtitle: string | null;
+    primaryCta: {
+      title: string | null;
+      slug: Slug | null;
+      url: string | null;
+      icon: Icon | null;
+    } | null;
+    secondaryCta: {
+      title: string | null;
+      slug: Slug | null;
+      url: string | null;
+      icon: Icon | null;
+    } | null;
+  } | null;
+  pageBuilder: Array<
+    | {
+        _type: "faqs";
+        _key: string;
+        title?: string;
+        faqs?: Array<{
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          _key: string;
+          [internalGroqTypeReferenceTo]?: "faq";
+        }>;
+      }
+    | {
+        _type: "features";
+        _key: string;
+        title?: string;
+        features?: Array<{
+          title?: string;
+          text?: string;
+          _type: "feature";
+          _key: string;
+        }>;
+      }
+    | {
+        _type: "grid";
+        _key: string;
+        title?: string;
+        components?: Array<{
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          _key: string;
+          [internalGroqTypeReferenceTo]?: "card";
+        }>;
+      }
+    | {
+        _type: "hero";
+        _key: string;
+        title?: string;
+        variant?:
+          | "accent"
+          | "base"
+          | "error"
+          | "info"
+          | "neutral"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning";
+        text?: BlockContent;
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+      }
+    | {
+        _type: "splitImage";
+        _key: string;
+        orientation?: "imageLeft" | "imageRight";
+        variant?:
+          | "accent"
+          | "base"
+          | "error"
+          | "info"
+          | "neutral"
+          | "primary"
+          | "secondary"
+          | "success"
+          | "warning";
+        title?: string;
+        image?: {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        };
+      }
+    | unknown
+  > | null;
+} | null;
+
 // Source: sanity/lib/page/getAllPages.ts
 // Variable: GET_ALL_PAGES_QUERY
 // Query: *[_type == "page"]
@@ -848,6 +1116,10 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
   title?: string;
   slug?: Slug;
   content: Array<
+    | {
+        _key: string;
+        _type: null;
+      }
     | {
         _key: string;
         _type: "faqs";
@@ -966,12 +1238,6 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
           _type: "image";
         };
       }
-    | {
-        _key: string;
-        _type: "textBlock";
-        title?: string;
-        text?: BlockContent;
-      }
   > | null;
   mainImage?: {
     asset?: {
@@ -1013,6 +1279,7 @@ declare module "@sanity/client" {
     '\n    *[\n      _type == "post" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ': POST_BY_SLUG_QUERY_RESULT;
     '\n  *[\n    _type == "siteSettings"\n    && _id == "siteSettings"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n': GET_CONFIG_QUERY_RESULT;
     '\n    *[\n      _type == "link"\n    ] | order(name asc)\n  ': GET_LINKS_QUERY_RESULT;
+    '\n  *[_type == "homepage" && _id == "homepage"][0] {\n    heroSection {\n      badgeEnabled,\n      badgeText,\n      title,\n      subtitle,\n      image,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    servicesTitle,\n    servicesSubtitle,\n    services[] {\n      title,\n      description,\n      icon\n    },\n    techStackTitle,\n    techStackSubtitle,\n    techStack[] {\n      name,\n      icon,\n      level,\n      experience,\n      projects\n    },\n    selectedWorkTitle,\n    selectedWorkSubtitle,\n    selectedWorkCount,\n    ctaSection {\n      title,\n      subtitle,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    pageBuilder[] {\n      _type,\n      _key,\n      ...\n    }\n  }\n': HomepageQueryResult;
     '\n    *[_type == "page"]\n': GET_ALL_PAGES_QUERY_RESULT;
     '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == "hero" => {\n          ...,\n        },\n        _type == "splitImage" => {\n          ...,\n        },\n        _type == "features" => {\n          ...,\n        },\n        _type == "faqs" => {\n          ...,\n          faqs[]->\n        },\n        _type == "grid" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == "textBlock" => {\n          ...,\n        }\n      }\n    }\n': GET_PAGE_DATA_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "seasonEvent" && defined(_id) && id == $id][0]\n': GET_ACTIVE_SEASON_EVENT_BY_ID_RESULT;

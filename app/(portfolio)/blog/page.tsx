@@ -4,6 +4,7 @@ import BlogCard from "@/components/BlogCard";
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
 import { getConfig } from "@/sanity/lib/config/getConfig";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
+import { H1 } from "@/components/ui/heading";
 
 export async function generateMetadata() {
   const page = await getPageBySlug('blog');
@@ -39,7 +40,7 @@ export default async function Blog() {
         items-start 
         justify-center
       ">
-        <h1 className="text-4xl font-bold">Blog</h1>
+        <H1 className="text-4xl font-bold">Blog</H1>
         <BlogGrid>
           {posts.map(post => (
             <BlogCard key={post._id} post={post} />

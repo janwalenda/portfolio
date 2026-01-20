@@ -1,6 +1,6 @@
 "use client";
 import { SeasonEvent } from "@/sanity.types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Modal } from "./ui/modal";
 import { Button } from "./ui/button";
 import { Icon } from "@iconify/react";
@@ -8,17 +8,12 @@ import { useMessageDisplayedStore } from "@/store/messageDisplayed";
 import { Snowflake } from "../lib/Snowflake";
 
 export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEvent }) {
-  const [isMounted, setIsMounted] = useState(false);
   const { messageDisplayed, setMessageDisplayed } = useMessageDisplayedStore();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -65,9 +60,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isMounted]);
-
-  if (!isMounted) return null;
+  }, []);
 
   return (
     <>
@@ -78,7 +71,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
             <Icon icon="mdi:close" />
           </Button>
         </form>
-        <h3 className="text-2xl font-bold">{seasonEvent?.title}</h3>
+        <H3 className="text-2xl font-bold">{seasonEvent?.title}</H3>
         <p className="text-lg">{seasonEvent?.message}</p>
       </Modal>
     </>

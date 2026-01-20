@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Card, CardBody } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { variant } from "@/lib/variant";
+import { H3 } from "./ui/heading";
 
 export default function ContentSplitImage({ content }: { content: SplitImage }) {
   return (
@@ -18,13 +19,13 @@ export default function ContentSplitImage({ content }: { content: SplitImage }) 
             />
           </figure>
           <CardBody className="p-4 flex items-center justify-center">
-            <h3 className="text-2xl font-bold">{content.title}</h3>
+            <H3 className="text-2xl font-bold">{content.title}</H3>
           </CardBody>
         </>
       ) : (
         <>
           <CardBody className="p-4 flex items-center justify-center">
-            <h3 className="text-2xl font-bold">{content.title}</h3>
+            <H3 className="text-2xl font-bold">{content.title}</H3>
           </CardBody>
           <figure>
             <Image src={imageURL(content.image!).width(1200).height(600).url()}

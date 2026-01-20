@@ -25,8 +25,8 @@ export default function Search() {
 
   return (
     <Button variant="ghost" size="sm" onClick={() => setOpen(!open)}>
+      <Icon icon="heroicons:magnifying-glass" className="size-5" />
       <kbd className="hidden md:inline kbd kbd-primary">Cmd + K</kbd>
-      <Icon icon="heroicons:magnifying-glass" className="size-5 md:hidden" />
     </Button>
   )
 }

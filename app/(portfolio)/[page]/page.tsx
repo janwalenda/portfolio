@@ -78,7 +78,7 @@ export default async function Page({
             .filter(hasRequiredProps)
             .map(content =>
               <PageItem key={content._key}
-                content={content as any}
+                content={content}
               />
             )
         )}

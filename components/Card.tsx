@@ -2,6 +2,7 @@ import { Card as CardComponent, CardAction, CardBody } from "@/components/ui/car
 import Image from "@/components/Image";
 import Link from "next/link";
 import type { Card } from "@/sanity.types";
+import { H2 } from "./ui/heading";
 
 export default function Card({ title, image, description, publishedAt, alt, url }: {
   title: string,
@@ -24,7 +25,7 @@ export default function Card({ title, image, description, publishedAt, alt, url 
         </figure>
       )}
       <CardBody>
-        <h2 className="text-xl font-bold">{title}</h2>
+        <H2 className="text-xl font-bold">{title}</H2>
         <div className="w-20 h-1 bg-primary rounded-box" />
         <p>{description}</p>
         <small className="flex flex-col text-xs">
