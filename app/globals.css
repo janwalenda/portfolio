@@ -2,11 +2,6 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-@theme {
-  --font-lora: "Lora", serif;
-  --font-roboto: "Roboto", sans-serif;
-}
-
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
@@ -82,6 +77,9 @@
 
 
 @theme {
+  --font-lora: var(--lora), serif;
+  --font-roboto: var(--roboto), sans-serif;
+
   --color-reseda-green: #6a8d73ff;
   --color-light-yellow: #f4fdd9ff;
   --color-nyanza: #e4ffe1ff;

@@ -44,6 +44,7 @@ export const linkType = defineType({
     },
     prepare(select) {
       const { title, slug, icon } = select;
+
       return {
         title: title,
         subtitle: slug?.current,

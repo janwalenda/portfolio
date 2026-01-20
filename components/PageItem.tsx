@@ -80,16 +80,19 @@ export default function PageItem({ content }: PageItemProps) {
         <ContentHero key={content._key} content={content} />
       )
     }
+
     case "splitImage": {
       return (
         <ContentSplitImage key={content._key} content={content} />
       )
     }
+
     case "grid": {
       return (
         <GridItem key={content._key} cards={(content.components || []) as CardWithExpandedAction[]} />
       )
     }
+
     default: {
       return null;
     }

@@ -17,18 +17,22 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
   useEffect(() => {
 
     const canvas = canvasRef.current;
+
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
+
     if (!ctx) return;
 
     function resizeCanvas() {
       if (!canvas || !ctx) return;
       const dpr = window.devicePixelRatio || 1;
+
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       ctx.scale(dpr, dpr);
     }
+
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 

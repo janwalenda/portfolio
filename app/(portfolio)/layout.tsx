@@ -12,17 +12,18 @@ import WinterSeasonEvent from "@/components/WinterSeasonEvent"
 import { draftMode } from "next/headers"
 import { VisualEditing } from "next-sanity/visual-editing"
 import { DisableDraftMode } from "@/components/DisableDraftMode"
+import { cn } from "@/lib/utils"
 
 const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-lora",
+  variable: "--lora",
 });
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-roboto",
+  variable: "--roboto",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -75,8 +76,11 @@ export default async function RootLayout({
   const pages = await getAllPages();
 
   return (
-    <html lang="en" data-theme="light">
-      <body className={`${lora.variable} ${roboto.variable} font-lora antialiased relative`}>
+    <html lang="en" data-theme="light" className={cn(lora.variable, roboto.variable)}>
+      <body className={cn(
+        "font-lora",
+        "antialiased relative"
+      )}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
         <WinterSeasonEvent />

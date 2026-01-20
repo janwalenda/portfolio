@@ -31,6 +31,17 @@ const eslintConfig = defineConfig([
       "indent": ["error", 2, { "SwitchCase": 1 }],
       // Enforce final newline
       "eol-last": ["error", "always"],
+      // Require blank lines after blocks and before returns
+      "padding-line-between-statements": [
+        "error",
+        // Blank line after block statements (if, for, while, switch, try, etc.)
+        { "blankLine": "always", "prev": "block-like", "next": "*" },
+        // Blank line after variable declarations (const, let, var)
+        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+        // Blank line before return statements
+        { "blankLine": "always", "prev": "*", "next": "return" },
+      ],
 
       // ===== Import Organization =====
       // Temporarily disabled due to unrs-resolver native binding issues

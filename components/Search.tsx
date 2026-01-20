@@ -19,6 +19,7 @@ export default function Search() {
     }
 
     document.addEventListener("keydown", down)
+
     return () => document.removeEventListener("keydown", down)
   }, [open, setOpen])
 

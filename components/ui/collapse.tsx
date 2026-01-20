@@ -30,6 +30,7 @@ export function Collapse({
   }) {
 
   const Comp = asChild ? Slot : "details"
+
   return (
     <Comp
       data-slot="details"

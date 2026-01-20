@@ -71,5 +71,6 @@ export async function getHomepage() {
   const { data } = await sanityFetch({
     query: homepageQuery,
   });
+
   return data;
 }

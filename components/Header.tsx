@@ -17,7 +17,7 @@ async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT>
   }));
 
   return (
-    <header className="navbar bg-base-100/30 backdrop-blur-lg font-mono border-b-base-content border-b sticky top-0 z-50">
+    <header className="navbar bg-base-100/30 backdrop-blur-lg border-b-base-content border-b sticky top-0 z-50">
       <a href="#content" className="sr-only focus:not-sr-only">Skip to main content</a>
       <div className="flex flex-row items-center flex-1">
         <div className="flex-1">
