@@ -14,7 +14,7 @@ export default function HeaderLink({ url, slug, children }: HeaderLinkProps) {
     )
   }
 
-  if(url && url.startsWith('https')) {
+  if(url && url.startsWith("https")) {
     return (
       <li>
         <Link href={url} className="link no-underline">

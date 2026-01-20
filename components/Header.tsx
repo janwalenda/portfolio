@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HeaderThemeSwitch from "./HeaderThemeSwitch";
-import { GET_CONFIG_QUERY_RESULT } from "@/sanity.types";
+import { type GET_CONFIG_QUERY_RESULT } from "@/sanity.types";
 import HeaderNavHorizontal from "./HeaderNavHorizontal";
 import { imageURL } from "@/lib/imageURL";
 import Image from "next/image";
@@ -36,7 +36,7 @@ async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT>
         <HeaderNavVertical links={headerLinks} />
         <HeaderNavHorizontal links={headerLinks} />
       </div>
-    </header >
+    </header>
   )
 }
 

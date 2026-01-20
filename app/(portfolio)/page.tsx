@@ -16,7 +16,7 @@ import { H1, H2 } from "@/components/ui/heading";
 import Link from "next/link";
 
 export async function generateMetadata() {
-  const page = await getPageBySlug('home');
+  const page = await getPageBySlug("home");
   const config = await getConfig();
 
   if (!page) {

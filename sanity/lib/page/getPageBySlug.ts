@@ -48,7 +48,7 @@ export async function getPageBySlug(slug: string) {
 
     return page.data || null;
   } catch (error) {
-    console.log("Error fetching page by slug:", error);
+    console.error("Error fetching page by slug:", error);
 
     return null;
   }

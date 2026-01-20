@@ -1,5 +1,5 @@
 import { imageURL } from "@/lib/imageURL";
-import { SplitImage } from "@/sanity.types";
+import { type SplitImage } from "@/sanity.types";
 import Image from "next/image";
 import { Card, CardBody } from "./ui/card";
 import { cn } from "@/lib/utils";

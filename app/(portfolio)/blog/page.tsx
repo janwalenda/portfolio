@@ -7,7 +7,7 @@ import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { H1 } from "@/components/ui/heading";
 
 export async function generateMetadata() {
-  const page = await getPageBySlug('blog');
+  const page = await getPageBySlug("blog");
   const config = await getConfig();
 
   if (!page) {

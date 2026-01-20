@@ -30,8 +30,6 @@ export default async function Post({ params }: { params: Promise<{ post: string 
     return notFound();
   }
 
-  console.log(post.body);
-
   return (
     <div className="flex flex-col items-center p-4 w-full">
       <div className="flex flex-col gap-4 max-w-5xl w-full">
@@ -50,14 +48,14 @@ export default async function Post({ params }: { params: Promise<{ post: string 
                 className="w-full h-auto"
               />
             </figure>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
           </div>
         )}
 

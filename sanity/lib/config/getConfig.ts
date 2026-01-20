@@ -33,7 +33,7 @@ export async function getConfig() {
 
     return config.data || null;
   } catch (error) {
-    console.log("Error fetching config:", error);
+    console.error("Error fetching config:", error);
 
     return null;
   }

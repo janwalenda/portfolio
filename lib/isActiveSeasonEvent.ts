@@ -1,4 +1,4 @@
-import { SeasonEvent } from "@/sanity.types";
+import { type SeasonEvent } from "@/sanity.types";
 
 export function isActiveSeasonEvent(seasonEvent: SeasonEvent) {
   const today = new Date();

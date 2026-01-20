@@ -29,7 +29,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
       canvas.height = window.innerHeight * dpr;
       ctx.scale(dpr, dpr);
     }
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
 
@@ -58,7 +58,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

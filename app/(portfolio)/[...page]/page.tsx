@@ -19,10 +19,10 @@ function hasRequiredProps(content: unknown): content is {
 export async function generateMetadata({
   params
 }: {
-  params: Promise<{ page: string }>
+  params: Promise<{ page: string[] }>
 }) {
   const { page: pageSlug } = await params;
-  const page = await getPageBySlug(pageSlug);
+  const page = await getPageBySlug(pageSlug.join("/"));
   const config = await getConfig();
 
   if (!page) {
@@ -44,10 +44,10 @@ export async function generateMetadata({
 export default async function Page({
   params
 }: {
-  params: Promise<{ page: string }>
+  params: Promise<{ page: string[] }>
 }) {
   const { page: pageSlug } = await params;
-  const page = await getPageBySlug(pageSlug);
+  const page = await getPageBySlug(pageSlug.join("/"));
 
   if (!page) {
     return notFound();
@@ -66,7 +66,7 @@ export default async function Page({
       {page.mainImage && (
         <Image
           src={page.mainImage}
-          alt={page.title || ''}
+          alt={page.title || ""}
           width={1200}
           height={600}
           className="object-cover h-auto"
@@ -76,7 +76,6 @@ export default async function Page({
         && page.content.length > 0
         && (
           page.content
-            .filter(hasRequiredProps)
             .map(content =>
               <PageItem key={content._key}
                 content={content as PageItemProps['content']}

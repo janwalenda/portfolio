@@ -15,7 +15,7 @@ export async function getAllPages() {
 
     return pages.data || [];
   } catch (error) {
-    console.log("Error fetching pages:", error);
+    console.error("Error fetching pages:", error);
 
     return [];
   }

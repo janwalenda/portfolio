@@ -3,7 +3,7 @@
 import { Icon } from "@iconify/react";
 import {
   motion,
-  MotionValue,
+  type MotionValue,
   useScroll,
   useTransform,
   useReducedMotion,

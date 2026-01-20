@@ -1,6 +1,6 @@
-import { PortableText, PortableTextBlock, toPlainText } from "next-sanity";
+import { PortableText, type PortableTextBlock, toPlainText } from "next-sanity";
 import CodeBlock from "./CodeBlock";
-import { BlockContent } from "@/sanity.types";
+import { type BlockContent } from "@/sanity.types";
 import Image from "@/components/Image";
 import { H2, H3, H4, H5, H6 } from "./ui/heading";
 

@@ -90,21 +90,6 @@ export default function PageItem({ content }: PageItemProps) {
         <GridItem key={content._key} cards={content.components || []} />
       )
     }
-    // case "features": {
-    //   return (
-    //     <Features key={content._key} features={content.features} />
-    //   )
-    // }
-    // case "faqs": {
-    //   return (
-    //     <Faqs key={content._key} faqs={content.faqs} />
-    //   )
-    // }
-    // case "textBlock": {
-    //   return (
-    //     <ContentTextBlock key={content._key} content={content} />
-    //   )
-    // }
     default: {
       return null;
     }
