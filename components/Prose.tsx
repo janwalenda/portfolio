@@ -4,25 +4,26 @@ import { BlockContent } from "@/sanity.types";
 import Image from "@/components/Image";
 import { H2, H3, H4, H5, H6 } from "./ui/heading";
 
-export default function Prose({ body }: { body?: BlockContent }) {
+export default function Prose({ body, toc = true }: { body?: BlockContent, toc?: boolean }) {
   return (
-    <article className="prose prose-sm md:prose-xl lg:prose-2xl prose-primary max-w-full w-full">
-
+    <article className="prose prose-sm md:prose-xl lg:prose-xl prose-primary max-w-full w-full">
       {Array.isArray(body) && body.length > 0 && (
         <>
-          <ul className="list">
-            {body.map((block) => {
-              if (block._type !== 'block' || !block.style?.startsWith('h')) {
-                return null;
-              }
+          {toc && (
+            <ul className="list text-xl">
+              {body.map((block) => {
+                if (block._type !== 'block' || !block.style?.startsWith('h')) {
+                  return null;
+                }
 
-              return (
-                <li key={block._key}>
-                  <a href={`#${block._key}`} className="link link-primary">{toPlainText(block as PortableTextBlock)}</a>
-                </li>
-              )
-            })}
-          </ul>
+                return (
+                  <li key={block._key}>
+                    <a href={`#${block._key}`} className="link link-primary">{toPlainText(block as PortableTextBlock)}</a>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
           <PortableText value={body}
             components={{
               types: {

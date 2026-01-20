@@ -1,5 +1,5 @@
 import { Viewport, type Metadata } from 'next'
-import { Inter, Roboto_Mono } from 'next/font/google'
+import { Inter, Montserrat, Roboto_Mono } from 'next/font/google'
 import '../globals.css'
 import { SanityLive } from '@/sanity/lib/live'
 import Header from '@/components/Header'
@@ -13,14 +13,11 @@ import { draftMode } from 'next/headers'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import { DisableDraftMode } from '@/components/DisableDraftMode'
 
-const roboto = Roboto_Mono({
+const montserrat = Montserrat({
   subsets: ['latin'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-});
-
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
+})
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getConfig();
 
@@ -72,7 +69,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" data-theme="light">
-      <body className={`${inter.className} antialiased relative`}>
+      <body className={`${montserrat.className} antialiased relative`}>
         {/* Animated gradient background */}
         {config && <Header config={config} />}
         <WinterSeasonEvent />

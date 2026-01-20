@@ -1,10 +1,10 @@
 import type { Hero as HeroType } from "@/sanity.types";
 import { Hero, HeroContent, HeroOverlay } from "@/components/ui/hero";
 import Image from "@/components/Image";
-import { PortableText } from "next-sanity";
 import { variant } from "@/lib/variant";
 import { cn } from "@/lib/utils";
 import { H3 } from "./ui/heading";
+import Prose from "./Prose";
 
 export default function ContentHero({ content }: { content: HeroType }) {
   return (
@@ -46,11 +46,7 @@ export default function ContentHero({ content }: { content: HeroType }) {
           <div className="w-20 h-1 bg-primary rounded-box" />
 
           {/* Text Content */}
-          {Array.isArray(content.text) && (
-            <div className="prose prose-lg max-w-none text-base-content/90 leading-relaxed">
-              <PortableText value={content.text} />
-            </div>
-          )}
+          <Prose body={content.text} toc={false} />
         </article>
       </HeroContent>
     </Hero>
