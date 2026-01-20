@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-lora: "Lora", serif;
+  --font-roboto: "Roboto", sans-serif;
+}
+
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
