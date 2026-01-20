@@ -1,6 +1,6 @@
 import ContentHero from "./ContentHero";
 import ContentSplitImage from "./ContentSplitImage";
-import GridItem from "./GridItem";
+import GridItem, { type CardWithExpandedAction } from "./GridItem";
 
 export type PageItemProps = {
   content: {
@@ -87,7 +87,7 @@ export default function PageItem({ content }: PageItemProps) {
     }
     case "grid": {
       return (
-        <GridItem key={content._key} cards={content.components || []} />
+        <GridItem key={content._key} cards={(content.components || []) as CardWithExpandedAction[]} />
       )
     }
     default: {
