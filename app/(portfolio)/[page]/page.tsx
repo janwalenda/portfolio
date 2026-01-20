@@ -1,6 +1,6 @@
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
 import { notFound } from "next/navigation";
-import PageItem from "@/components/PageItem";
+import PageItem, { PageItemProps } from "@/components/PageItem";
 import Image from "@/components/Image";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
@@ -12,6 +12,7 @@ function hasRequiredProps(content: unknown): content is {
   return typeof content === 'object'
     && content !== null
     && '_type' in content
+    && typeof (content as any)._type === 'string'
     && '_key' in content;
 }
 
@@ -78,7 +79,7 @@ export default async function Page({
             .filter(hasRequiredProps)
             .map(content =>
               <PageItem key={content._key}
-                content={content}
+                content={content as PageItemProps['content']}
               />
             )
         )}

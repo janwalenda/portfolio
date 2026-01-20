@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Icon } from "@iconify/react";
 import { useMessageDisplayedStore } from "@/store/messageDisplayed";
 import { Snowflake } from "../lib/Snowflake";
+import { H3 } from "./ui/heading";
 
 export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEvent }) {
   const { messageDisplayed, setMessageDisplayed } = useMessageDisplayedStore();

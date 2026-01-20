@@ -1,9 +1,8 @@
-import { console } from "inspector";
 import ContentHero from "./ContentHero";
 import ContentSplitImage from "./ContentSplitImage";
 import GridItem from "./GridItem";
 
-type PageItemProps = {
+export type PageItemProps = {
   content: {
     _key: string;
     _type: "grid";
