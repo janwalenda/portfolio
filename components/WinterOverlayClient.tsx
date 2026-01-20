@@ -1,6 +1,6 @@
 "use client";
 
-import { SeasonEvent } from "@/sanity.types";
+import { type SeasonEvent } from "@/sanity.types";
 import dynamic from "next/dynamic";
 
 const WinterOverlay = dynamic(() => import("./WinterOverlay"), { ssr: false });

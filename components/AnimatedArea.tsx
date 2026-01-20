@@ -11,7 +11,7 @@ import {
 } from "motion/react"
 import { useRef } from "react"
 import { StartCard } from "./StartCard";
-import { Technology } from "@/sanity.types";
+import type { Technology } from "@/sanity.types";
 import { H2 } from "./ui/heading";
 
 function useParallax(value: MotionValue<number>, distance: number) {

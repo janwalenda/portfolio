@@ -1,4 +1,4 @@
-import { TextBlock } from "@/sanity.types";
+import { type TextBlock } from "@/sanity.types";
 import { H2 } from "./ui/heading";
 import Prose from "./Prose";
 

@@ -12,7 +12,7 @@ export default function Prose({ body, toc = true }: { body?: BlockContent, toc?:
           {toc && (
             <ul className="list text-xl">
               {body.map((block) => {
-                if (block._type !== 'block' || !block.style?.startsWith('h')) {
+                if (block._type !== "block" || !block.style?.startsWith("h")) {
                   return null;
                 }
 
@@ -29,7 +29,7 @@ export default function Prose({ body, toc = true }: { body?: BlockContent, toc?:
               types: {
                 image: ({ value }) => {
                   return <Image src={value}
-                    alt={value.alt || ' '}
+                    alt={value.alt || " "}
                     width={2000}
                     height={1600}
                   />

@@ -18,11 +18,11 @@ import { footerColBuilderType } from "./footerColBuilderType"
 import { textBlockType } from "./textBlockType"
 import { seoType } from "./seoType"
 import { seasonEventType } from "./seasonEventType"
-import { homepageType } from './homepageType'
-import { homepageHeroType } from './homepageHeroType'
-import { serviceType } from './serviceType'
-import { technologyType } from './technologyType'
-import { ctaSectionType } from './ctaSectionType'
+import { homepageType } from "./homepageType"
+import { homepageHeroType } from "./homepageHeroType"
+import { serviceType } from "./serviceType"
+import { technologyType } from "./technologyType"
+import { ctaSectionType } from "./ctaSectionType"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [

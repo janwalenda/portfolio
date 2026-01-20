@@ -6,7 +6,7 @@ import { imageURL } from "@/lib/imageURL";
 import Image from "next/image";
 import HeaderNavVertical from "./HeaderNavVertical";
 import Search from "./Search";
-import { H4, H6 } from "./ui/heading";
+import { H4 } from "./ui/heading";
 import { Button } from "./ui/button";
 
 async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT> }) {
@@ -25,7 +25,7 @@ async function Header({ config }: { config: NonNullable<GET_CONFIG_QUERY_RESULT>
             <Link href="/">
               {config?.title && (<H4>{config.title}</H4>)}
               {config?.headerLogo && (
-                <Image src={imageURL(config.headerLogo).url()} alt={config.headerLogoAlt || config.title || 'Header Logo'} width={100} height={100} />
+                <Image src={imageURL(config.headerLogo).url()} alt={config.headerLogoAlt || config.title || "Header Logo"} width={100} height={100} />
               )}
             </Link>
           </Button>

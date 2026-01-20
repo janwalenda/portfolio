@@ -1,5 +1,5 @@
 "use client";
-import { SeasonEvent } from "@/sanity.types";
+import { type SeasonEvent } from "@/sanity.types";
 import { useEffect, useRef } from "react";
 import { Modal } from "./ui/modal";
 import { Button } from "./ui/button";

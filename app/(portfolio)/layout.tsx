@@ -1,5 +1,5 @@
 import { type Viewport, type Metadata } from "next"
-import { Inter, Lora, Montserrat, Roboto, Roboto_Mono } from "next/font/google"
+import { Lora, Roboto } from "next/font/google"
 import "../globals.css"
 import { SanityLive } from "@/sanity/lib/live"
 import Header from "@/components/Header"
@@ -14,15 +14,15 @@ import { VisualEditing } from "next-sanity/visual-editing"
 import { DisableDraftMode } from "@/components/DisableDraftMode"
 
 const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-lora',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-lora",
 });
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-roboto',
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto",
 });
 
 export async function generateMetadata(): Promise<Metadata> {

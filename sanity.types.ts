@@ -914,7 +914,7 @@ export type GET_LINKS_QUERY_RESULT = Array<{
 
 // Source: sanity/lib/homepage/getHomepage.ts
 // Variable: homepageQuery
-// Query: *[_type == "homepage" && _id == "homepage"][0] {    heroSection {      badgeEnabled,      badgeText,      title,      subtitle,      image,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    servicesTitle,    servicesSubtitle,    services[] {      title,      description,      icon    },    techStackTitle,    techStackSubtitle,    techStack[] {      name,      icon,      level,      experience,      projects    },    selectedWorkTitle,    selectedWorkSubtitle,    selectedWorkCount,    ctaSection {      title,      subtitle,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    pageBuilder[] {      _type,      _key,      ...    }  }
+// Query: *[_type == "homepage" && _id == "homepage"][0] {    heroSection {      badgeEnabled,      badgeText,      title,      subtitle,      image,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    servicesTitle,    servicesSubtitle,    services[] {      _type,      title,      description,      icon    },    techStackTitle,    techStackSubtitle,    techStack[] {      _type,      name,      icon,      level,      experience,      projects    },    selectedWorkTitle,    selectedWorkSubtitle,    selectedWorkCount,    ctaSection {      title,      subtitle,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    pageBuilder[] {      _type,      _key,      ...    }  }
 export type HomepageQueryResult = {
   heroSection: {
     badgeEnabled: boolean | null;
@@ -949,6 +949,7 @@ export type HomepageQueryResult = {
   servicesTitle: string | null;
   servicesSubtitle: string | null;
   services: Array<{
+    _type: "service";
     title: string | null;
     description: string | null;
     icon: Icon | null;
@@ -956,6 +957,7 @@ export type HomepageQueryResult = {
   techStackTitle: string | null;
   techStackSubtitle: string | null;
   techStack: Array<{
+    _type: "technology";
     name: string | null;
     icon: Icon | null;
     level: "Advanced" | "Beginner" | "Expert" | "Intermediate" | null;
@@ -1279,7 +1281,7 @@ declare module "@sanity/client" {
     '\n    *[\n      _type == "post" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ': POST_BY_SLUG_QUERY_RESULT;
     '\n  *[\n    _type == "siteSettings"\n    && _id == "siteSettings"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n': GET_CONFIG_QUERY_RESULT;
     '\n    *[\n      _type == "link"\n    ] | order(name asc)\n  ': GET_LINKS_QUERY_RESULT;
-    '\n  *[_type == "homepage" && _id == "homepage"][0] {\n    heroSection {\n      badgeEnabled,\n      badgeText,\n      title,\n      subtitle,\n      image,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    servicesTitle,\n    servicesSubtitle,\n    services[] {\n      title,\n      description,\n      icon\n    },\n    techStackTitle,\n    techStackSubtitle,\n    techStack[] {\n      name,\n      icon,\n      level,\n      experience,\n      projects\n    },\n    selectedWorkTitle,\n    selectedWorkSubtitle,\n    selectedWorkCount,\n    ctaSection {\n      title,\n      subtitle,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    pageBuilder[] {\n      _type,\n      _key,\n      ...\n    }\n  }\n': HomepageQueryResult;
+    '\n  *[_type == "homepage" && _id == "homepage"][0] {\n    heroSection {\n      badgeEnabled,\n      badgeText,\n      title,\n      subtitle,\n      image,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    servicesTitle,\n    servicesSubtitle,\n    services[] {\n      _type,\n      title,\n      description,\n      icon\n    },\n    techStackTitle,\n    techStackSubtitle,\n    techStack[] {\n      _type,\n      name,\n      icon,\n      level,\n      experience,\n      projects\n    },\n    selectedWorkTitle,\n    selectedWorkSubtitle,\n    selectedWorkCount,\n    ctaSection {\n      title,\n      subtitle,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    pageBuilder[] {\n      _type,\n      _key,\n      ...\n    }\n  }\n': HomepageQueryResult;
     '\n    *[_type == "page"]\n': GET_ALL_PAGES_QUERY_RESULT;
     '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == "hero" => {\n          ...,\n        },\n        _type == "splitImage" => {\n          ...,\n        },\n        _type == "features" => {\n          ...,\n        },\n        _type == "faqs" => {\n          ...,\n          faqs[]->\n        },\n        _type == "grid" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == "textBlock" => {\n          ...,\n        }\n      }\n    }\n': GET_PAGE_DATA_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "seasonEvent" && defined(_id) && id == $id][0]\n': GET_ACTIVE_SEASON_EVENT_BY_ID_RESULT;

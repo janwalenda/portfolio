@@ -138,7 +138,14 @@ export default async function Home() {
       <AnimatedArea
         title={homepage.techStackTitle ?? undefined}
         subtitle={homepage.techStackSubtitle ?? undefined}
-        technologies={homepage.techStack ?? undefined}
+        technologies={homepage.techStack?.map((tech) => ({
+          ...tech,
+          name: tech.name ?? undefined,
+          icon: tech.icon ?? undefined,
+          level: tech.level ?? undefined,
+          experience: tech.experience ?? undefined,
+          projects: tech.projects ?? undefined,
+        }))}
       />
 
       {/* Selected Work Section */}

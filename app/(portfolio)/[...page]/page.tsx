@@ -1,20 +1,9 @@
 import { getPageBySlug } from "@/sanity/lib/page/getPageBySlug";
 import { notFound } from "next/navigation";
-import PageItem, { PageItemProps } from "@/components/PageItem";
+import PageItem, { type PageItemProps } from "@/components/PageItem";
 import Image from "@/components/Image";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
-
-// Type guard to filter out unknown/invalid content types
-function hasRequiredProps(content: unknown): content is {
-  _type: string; _key: string
-} {
-  return typeof content === 'object'
-    && content !== null
-    && '_type' in content
-    && typeof (content as any)._type === 'string'
-    && '_key' in content;
-}
 
 export async function generateMetadata({
   params
@@ -78,7 +67,7 @@ export default async function Page({
           page.content
             .map(content =>
               <PageItem key={content._key}
-                content={content as PageItemProps['content']}
+                content={content as PageItemProps["content"]}
               />
             )
         )}

@@ -1,5 +1,5 @@
-import type { StructureResolver } from 'sanity/structure'
-import { HomeIcon, Settings2Icon } from 'lucide-react'
+import type { StructureResolver } from "sanity/structure"
+import { HomeIcon, Settings2Icon } from "lucide-react"
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -7,14 +7,14 @@ export const structure: StructureResolver = (S) =>
     .title("CMS")
     .items([
       S.listItem()
-        .title('Homepage')
+        .title("Homepage")
         .icon(HomeIcon)
         .child(
           S.document()
-            .schemaType('homepage')
-            .documentId('homepage')),
+            .schemaType("homepage")
+            .documentId("homepage")),
       S.listItem()
-        .title('Config')
+        .title("Config")
         .icon(Settings2Icon)
         .child(
           S.document()

@@ -67,7 +67,7 @@ export type PageItemProps = {
   }
 }
 
-import { BlockContent, Card, SanityImageCrop, SanityImageHotspot, internalGroqTypeReferenceTo } from "@/sanity.types"
+import { type BlockContent, type Card, type SanityImageCrop, type SanityImageHotspot, type internalGroqTypeReferenceTo } from "@/sanity.types"
 
 export default function PageItem({ content }: PageItemProps) {
   if (!content) {
