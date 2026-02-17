@@ -1,6 +1,5 @@
 import { type Viewport, type Metadata } from "next"
-import { Lora, Roboto } from "next/font/google"
-import "../globals.css"
+import { DM_Serif_Display, Lora, Roboto_Mono } from "next/font/google"
 import { SanityLive } from "@/sanity/lib/live"
 import Header from "@/components/Header"
 import { getConfig } from "@/sanity/lib/config/getConfig"
@@ -14,13 +13,21 @@ import { VisualEditing } from "next-sanity/visual-editing"
 import { DisableDraftMode } from "@/components/DisableDraftMode"
 import { cn } from "@/lib/utils"
 
+import "../globals.css"
+
+const dmSerif = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--dm-serif-display",
+})
+
 const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--lora",
 });
 
-const roboto = Roboto({
+const roboto = Roboto_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--roboto",
@@ -76,9 +83,9 @@ export default async function RootLayout({
   const pages = await getAllPages();
 
   return (
-    <html lang="en" data-theme="light" className={cn(lora.variable, roboto.variable)}>
+    <html lang="en" data-theme="light" className={cn(lora.variable, roboto.variable, dmSerif.variable)}>
       <body className={cn(
-        "font-lora",
+        "font-roboto",
         "antialiased relative"
       )}>
         {/* Animated gradient background */}

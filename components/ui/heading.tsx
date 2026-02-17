@@ -10,7 +10,7 @@ export function H1({
 }) {
   const Comp = asChild ? Slot : "h1";
 
-  return <Comp className={cn("font-roboto text-4xl font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-4xl font-bold tracking-tight", className)} {...props} />
 }
 
 export function H2({
@@ -22,7 +22,7 @@ export function H2({
 }) {
   const Comp = asChild ? Slot : "h2";
 
-  return <Comp className={cn("font-roboto text-3xl font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-3xl font-bold tracking-tight", className)} {...props} />
 }
 
 export function H3({
@@ -34,7 +34,7 @@ export function H3({
 }) {
   const Comp = asChild ? Slot : "h3";
 
-  return <Comp className={cn("font-roboto text-2xl font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-2xl font-bold tracking-tight", className)} {...props} />
 }
 
 export function H4({
@@ -46,7 +46,7 @@ export function H4({
 }) {
   const Comp = asChild ? Slot : "h4";
 
-  return <Comp className={cn("font-roboto text-xl font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-xl font-bold tracking-tight", className)} {...props} />
 }
 
 export function H5({
@@ -58,7 +58,7 @@ export function H5({
 }) {
   const Comp = asChild ? Slot : "h5";
 
-  return <Comp className={cn("font-roboto text-lg font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-lg font-bold tracking-tight", className)} {...props} />
 }
 
 export function H6({
@@ -70,5 +70,5 @@ export function H6({
 }) {
   const Comp = asChild ? Slot : "h6";
 
-  return <Comp className={cn("font-roboto text-base font-bold tracking-tight", className)} {...props} />
+  return <Comp className={cn("font-dmSerifDisplay text-base font-bold tracking-tight", className)} {...props} />
 }

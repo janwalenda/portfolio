@@ -79,6 +79,7 @@
 @theme {
   --font-lora: var(--lora), serif;
   --font-roboto: var(--roboto), sans-serif;
+  --font-dmSerifDisplay: var(--dm-serif-display), serif;
 
   --color-reseda-green: #6a8d73ff;
   --color-light-yellow: #f4fdd9ff;
