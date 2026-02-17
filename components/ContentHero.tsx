@@ -1,10 +1,10 @@
 import type { Hero as HeroType } from "@/sanity.types";
 import { Hero, HeroContent, HeroOverlay } from "@/components/ui/hero";
 import Image from "@/components/Image";
-import { PortableText } from "next-sanity";
-import { imageURL } from "@/lib/imageURL";
 import { variant } from "@/lib/variant";
 import { cn } from "@/lib/utils";
+import { H3 } from "./ui/heading";
+import Prose from "./Prose";
 
 export default function ContentHero({ content }: { content: HeroType }) {
   return (
@@ -23,7 +23,7 @@ export default function ContentHero({ content }: { content: HeroType }) {
               className="w-full h-auto object-cover"
             />
             {/* Gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-base-100/90" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-base-100/90" />
           </figure>
         )}
 
@@ -38,19 +38,15 @@ export default function ContentHero({ content }: { content: HeroType }) {
           "transition-all duration-300"
         )}>
           {/* Title */}
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
+          <H3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
             {content.title}
-          </h3>
+          </H3>
 
           {/* Decorative Divider */}
           <div className="w-20 h-1 bg-primary rounded-box" />
 
           {/* Text Content */}
-          {Array.isArray(content.text) && (
-            <div className="prose prose-lg max-w-none text-base-content/90 leading-relaxed">
-              <PortableText value={content.text} />
-            </div>
-          )}
+          <Prose body={content.text} toc={false} />
         </article>
       </HeroContent>
     </Hero>

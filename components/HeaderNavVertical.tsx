@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react"
 import HeaderLinkComponent from "./HeaderLink"
-import { Link } from "@/sanity.types"
+import { type Link } from "@/sanity.types"
 
 export default async function HeaderNavVertical({ links }: { links: Link[] }) {
 

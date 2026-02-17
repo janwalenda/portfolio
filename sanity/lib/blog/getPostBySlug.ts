@@ -18,7 +18,7 @@ export async function getPostBySlug(slug: string) {
 
     return post.data || null;
   } catch (error) {
-    console.log("Error fetching post by slug", error);
+    console.error("Error fetching post by slug", error);
 
     return null;
   }

@@ -1,10 +1,10 @@
 "use client";
-import { CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem, CommandShortcut } from "./ui/command";
+import { CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem } from "./ui/command";
 import { useSearchStore } from "@/store/search";
 import { useRouter } from "next/navigation";
 import { useThemeStore } from "@/store/theme";
 import { Icon } from "@iconify/react";
-import { Page, Post } from "@/sanity.types";
+import { type Page, type Post } from "@/sanity.types";
 
 export default function CommandMenu({ pages, posts }: { pages: Page[], posts: Post[] }) {
   const { open, setOpen } = useSearchStore();

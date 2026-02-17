@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 
 function Hero({
   className,
-  style,
   asChild = false,
   ...props
 }: React.ComponentProps<"div"> & {
@@ -23,7 +22,7 @@ function Hero({
   )
 }
 
-function HeroContent({ children, className, ...props }: React.ComponentProps<'div'>) {
+function HeroContent({ children, className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="div"
@@ -35,7 +34,7 @@ function HeroContent({ children, className, ...props }: React.ComponentProps<'di
   )
 }
 
-function HeroOverlay({ children, className, ...props }: React.ComponentProps<'div'>) {
+function HeroOverlay({ children, className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="div"

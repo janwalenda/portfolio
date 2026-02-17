@@ -1,39 +1,39 @@
 "use client";
-import { SeasonEvent } from "@/sanity.types";
-import { useEffect, useRef, useState } from "react";
+import { type SeasonEvent } from "@/sanity.types";
+import { useEffect, useRef } from "react";
 import { Modal } from "./ui/modal";
 import { Button } from "./ui/button";
 import { Icon } from "@iconify/react";
 import { useMessageDisplayedStore } from "@/store/messageDisplayed";
 import { Snowflake } from "../lib/Snowflake";
+import { H3 } from "./ui/heading";
 
 export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEvent }) {
-  const [isMounted, setIsMounted] = useState(false);
   const { messageDisplayed, setMessageDisplayed } = useMessageDisplayedStore();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
 
     const canvas = canvasRef.current;
+
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
+
     if (!ctx) return;
 
     function resizeCanvas() {
       if (!canvas || !ctx) return;
       const dpr = window.devicePixelRatio || 1;
+
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       ctx.scale(dpr, dpr);
     }
-    window.addEventListener('resize', resizeCanvas);
+
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
 
@@ -62,12 +62,10 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isMounted]);
-
-  if (!isMounted) return null;
+  }, []);
 
   return (
     <>
@@ -78,7 +76,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
             <Icon icon="mdi:close" />
           </Button>
         </form>
-        <h3 className="text-2xl font-bold">{seasonEvent?.title}</h3>
+        <H3 className="text-2xl font-bold">{seasonEvent?.title}</H3>
         <p className="text-lg">{seasonEvent?.message}</p>
       </Modal>
     </>

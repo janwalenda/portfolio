@@ -1,5 +1,6 @@
-import { TextBlock } from "@/sanity.types";
-import { PortableText } from "next-sanity";
+import { type TextBlock } from "@/sanity.types";
+import { H2 } from "./ui/heading";
+import Prose from "./Prose";
 
 export default function ContentTextBlock({
   title,
@@ -7,11 +8,9 @@ export default function ContentTextBlock({
 }: TextBlock) {
   return (
     <div className="flex flex-col">
-      <h2>{title}</h2>
+      <H2>{title}</H2>
       <article className="prose max-w-full">
-        {Array.isArray(text) && (
-          <PortableText value={text} />
-        )}
+        <Prose body={text} toc={false} />
       </article>
     </div>
   )

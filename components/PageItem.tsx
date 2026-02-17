@@ -1,9 +1,8 @@
-import { console } from "inspector";
 import ContentHero from "./ContentHero";
 import ContentSplitImage from "./ContentSplitImage";
-import GridItem from "./GridItem";
+import GridItem, { type CardWithExpandedAction } from "./GridItem";
 
-type PageItemProps = {
+export type PageItemProps = {
   content: {
     _key: string;
     _type: "grid";
@@ -68,7 +67,7 @@ type PageItemProps = {
   }
 }
 
-import { BlockContent, Grid, Card, SanityImageCrop, SanityImageHotspot, internalGroqTypeReferenceTo, Page, PageBuilder } from "@/sanity.types"
+import { type BlockContent, type Card, type SanityImageCrop, type SanityImageHotspot, type internalGroqTypeReferenceTo } from "@/sanity.types"
 
 export default function PageItem({ content }: PageItemProps) {
   if (!content) {
@@ -81,31 +80,19 @@ export default function PageItem({ content }: PageItemProps) {
         <ContentHero key={content._key} content={content} />
       )
     }
+
     case "splitImage": {
       return (
         <ContentSplitImage key={content._key} content={content} />
       )
     }
+
     case "grid": {
       return (
-        <GridItem key={content._key} cards={content.components || []} />
+        <GridItem key={content._key} cards={(content.components || []) as CardWithExpandedAction[]} />
       )
     }
-    // case "features": {
-    //   return (
-    //     <Features key={content._key} features={content.features} />
-    //   )
-    // }
-    // case "faqs": {
-    //   return (
-    //     <Faqs key={content._key} faqs={content.faqs} />
-    //   )
-    // }
-    // case "textBlock": {
-    //   return (
-    //     <ContentTextBlock key={content._key} content={content} />
-    //   )
-    // }
+
     default: {
       return null;
     }

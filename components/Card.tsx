@@ -2,10 +2,11 @@ import { Card as CardComponent, CardAction, CardBody } from "@/components/ui/car
 import Image from "@/components/Image";
 import Link from "next/link";
 import type { Card } from "@/sanity.types";
+import { H2 } from "./ui/heading";
 
 export default function Card({ title, image, description, publishedAt, alt, url }: {
   title: string,
-  image: Card['mainImage'],
+  image: Card["mainImage"],
   description: string,
   publishedAt: string,
   alt: string,
@@ -24,34 +25,34 @@ export default function Card({ title, image, description, publishedAt, alt, url 
         </figure>
       )}
       <CardBody>
-        <h2 className="text-xl font-bold">{title}</h2>
+        <H2 className="text-xl font-bold">{title}</H2>
         <div className="w-20 h-1 bg-primary rounded-box" />
         <p>{description}</p>
         <small className="flex flex-col text-xs">
-          <time dateTime={publishedAt ?? ''}>
+          <time dateTime={publishedAt ?? ""}>
             From:
             {publishedAt
-              ? new Date(publishedAt).toLocaleDateString('en-UK', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+              ? new Date(publishedAt).toLocaleDateString("en-UK", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
               })
-              : 'Date not available'
+              : "Date not available"
             }
           </time>
-          <time dateTime={publishedAt ?? ''}>
+          <time dateTime={publishedAt ?? ""}>
             {publishedAt
-              ? new Date(publishedAt).toLocaleTimeString('en-UK', {
-                hour: '2-digit',
-                minute: '2-digit'
+              ? new Date(publishedAt).toLocaleTimeString("en-UK", {
+                hour: "2-digit",
+                minute: "2-digit"
               })
-              : 'Date not available'
+              : "Date not available"
             }
           </time>
         </small>
         <CardAction>
-          {Array.isArray(url) ? url.map((u, i) => (
-            <Link key={i} href={u.url || ''} className="btn btn-primary">{u.title}</Link>
+          {Array.isArray(url) ? url.map((u) => (
+            <Link key={u.url || ""} href={u.url || ""} className="btn btn-primary">{u.title}</Link>
           )) : url?.url && (
             <Link href={url.url} className="btn btn-primary">{url.title}</Link>
           )}

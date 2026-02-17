@@ -1,8 +1,12 @@
 import CardGrid from "./CardGrid";
-import { Link as LinkType, Card as CardType } from "@/sanity.types";
+import { type Link as LinkType, type Card as CardType } from "@/sanity.types";
 import Card from "./Card";
 
-export default async function GridItem({ cards }: { cards: CardType[] }) {
+export type CardWithExpandedAction = Omit<CardType, "action"> & {
+  action?: LinkType[] | null;
+}
+
+export default function GridItem({ cards }: { cards: CardWithExpandedAction[] }) {
   if (!cards) {
     return null;
   }
@@ -19,15 +23,15 @@ export default async function GridItem({ cards }: { cards: CardType[] }) {
           return (
             <Card
               key={card._id}
-              title={card.title || ''}
+              title={card.title || ""}
               image={card.mainImage}
-              alt={card.title || ''}
-              description={card.description || ''}
+              alt={card.title || ""}
+              description={card.description || ""}
               publishedAt={card._createdAt}
-              url={card.action && (card.action as unknown as LinkType[]).map(action => {
+              url={card.action?.map(action => {
                 return {
-                  url: action.slug ? `/${action.slug}` : action.url || '',
-                  title: action.title || '',
+                  url: action.slug ? `/${action.slug}` : action.url || "",
+                  title: action.title || "",
                 }
               }) || []}
             />

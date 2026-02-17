@@ -15,7 +15,7 @@ export async function getLinks() {
 
     return links.data || null;
   } catch (error) {
-    console.log("Error fetching links:", error);
+    console.error("Error fetching links:", error);
 
     return null;
   }

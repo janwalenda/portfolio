@@ -8,7 +8,7 @@ export async function GET() {
   return new Response(rssFeed, {
     status: 200,
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
+      "Content-Type": "application/xml; charset=utf-8",
     },
   });
 }

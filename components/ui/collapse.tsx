@@ -1,4 +1,4 @@
-import { cva, VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority"
 import { Slot } from "@radix-ui/react-slot"
 import { cn } from "@/lib/utils"
 
@@ -30,6 +30,7 @@ export function Collapse({
   }) {
 
   const Comp = asChild ? Slot : "details"
+
   return (
     <Comp
       data-slot="details"

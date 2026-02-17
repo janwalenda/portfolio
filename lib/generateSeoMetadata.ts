@@ -1,35 +1,6 @@
 import type { Seo, SiteSettings } from "@/sanity.types";
 import { imageURL } from "./imageURL";
-import { Metadata } from "next";
-
-interface SeoMetadata {
-  title: string;
-  description: string;
-  keywords?: string[];
-  openGraph: {
-    title: string;
-    description: string;
-    images?: Array<{
-      url: string;
-      alt?: string;
-      width?: number;
-      height?: number;
-    }>;
-  };
-  twitter: {
-    card: "summary" | "summary_large_image" | "app" | "player";
-    title: string;
-    description: string;
-    images?: string[];
-  };
-  alternates?: {
-    canonical?: string;
-  };
-  robots?: {
-    index: boolean;
-    follow: boolean;
-  };
-}
+import { type Metadata } from "next";
 
 /**
  * Merges page/post-specific SEO with default site SEO settings
@@ -98,9 +69,6 @@ export function generateSeoMetadata(
   // Handle images
   const ogImage = pageSeo?.ogImage || defaultSeo?.ogImage;
   const twitterImage = pageSeo?.twitterImage || pageSeo?.ogImage || defaultSeo?.twitterImage || defaultSeo?.ogImage;
-
-
-
 
   const openGraphImages = ogImage
     ? [

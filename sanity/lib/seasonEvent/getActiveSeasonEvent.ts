@@ -21,7 +21,7 @@ export async function getActiveSeasonEventById(id: string) {
 
     return seasonEvent.data;
   } catch (error) {
-    console.log("Error fetching season event by id:", error);
+    console.error("Error fetching season event by id:", error);
 
     return null;
   }

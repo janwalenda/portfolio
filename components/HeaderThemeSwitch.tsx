@@ -1,19 +1,9 @@
 "use client";
 import { Icon } from "@iconify/react";
 import { useThemeStore } from "@/store/theme";
-import { useState, useEffect } from "react";
 
 export default function HeaderThemeSwitch() {
   const { theme, setTheme } = useThemeStore();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
 
   const handleThemeChange = () => {
     const newTheme = theme === "dark" ? "light" : "dark";

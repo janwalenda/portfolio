@@ -1,16 +1,15 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
-import style from "styled-jsx/style"
 
 const buttonVariants = cva(
   "btn",
   {
     variants: {
       variant: {
-        default: "btn-primary",
+        default: "",
+        primary: "btn-primary",
         secondary: "btn-secondary",
         neutral: "btn-neutral",
         accent: "btn-accent",
@@ -54,17 +53,9 @@ const buttonVariants = cva(
 )
 
 type ButtonProps = React.ComponentProps<"button"> & VariantProps<typeof buttonVariants> & {
-  asLink?: false,
   asChild?: boolean,
 }
 
-type LinkProps = React.ComponentProps<"a"> & VariantProps<typeof buttonVariants> & {
-  asLink?: true,
-  asChild?: boolean,
-}
-
-function Button(props: ButtonProps): React.JSX.Element;
-function Button(props: LinkProps): React.JSX.Element;
 function Button({
   className,
   variant,
@@ -73,23 +64,9 @@ function Button({
   behavior,
   modifier,
   asChild = false,
-  asLink = false,
   ...props
-}: ButtonProps | LinkProps) {
+}: ButtonProps) {
   const Comp = asChild ? Slot : "button"
-
-  if (asLink) {
-    const { href, ...linkProps } = props as React.ComponentProps<"a"> & { href: string }
-    return (
-      <Link
-        href={href}
-        className={cn(buttonVariants({ variant, size, behavior, modifier, buttonStyle, className }))}
-        {...linkProps}
-      >
-        {props.children}
-      </Link>
-    )
-  }
 
   return (
     <Comp
