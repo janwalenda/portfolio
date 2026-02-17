@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { H2, H3 } from "./ui/heading";
+import { H2 } from "./ui/heading";
 
 export interface ServiceItem {
   title: string | null;
@@ -40,7 +40,7 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
           {services.map((service) => (
             <div
               key={service.title}
-              className="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="card bg-base-200 border"
             >
               <div className="card-body">
                 <div className="flex items-center gap-4 mb-2">
@@ -52,7 +52,7 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
                       />
                     </div>
                   )}
-                  <H3 className="card-title text-xl">{service.title}</H3>
+                  <H2 className="card-title text-xl">{service.title}</H2>
                 </div>
                 <p className="text-base-content/70">{service.description}</p>
               </div>

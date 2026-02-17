@@ -10,7 +10,6 @@ import {
   useSpring,
 } from "motion/react"
 import { useRef } from "react"
-import { StartCard } from "./StartCard";
 import type { Technology } from "@/sanity.types";
 import { H2 } from "./ui/heading";
 
@@ -35,7 +34,16 @@ export default function AnimatedArea({ title, subtitle, technologies }: Animated
     >
       <div className="max-w-6xl mx-auto px-6 py-20">
         {(title || subtitle) && (
-          <div className="text-center mb-12">
+          <div className="
+            text-center
+            mb-12
+            h-screen
+            flex
+            flex-col
+            items-center
+            justify-center
+            snap-center
+          ">
             {title && <H2 className="text-4xl font-bold mb-4">{title}</H2>}
             {subtitle && (
               <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
@@ -44,7 +52,6 @@ export default function AnimatedArea({ title, subtitle, technologies }: Animated
             )}
           </div>
         )}
-        <StartCard />
         <div role="list" className="contents">
           {technologies.map((tech) => (
             <TechCard key={tech.name} tech={tech} />
