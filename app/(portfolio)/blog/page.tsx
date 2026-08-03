@@ -18,7 +18,13 @@ export async function generateMetadata() {
     return null;
   }
 
-  return generateSeoMetadata(page.seo, config.defaultSeo, page.title, page.title);
+  return generateSeoMetadata(
+    page.seo,
+    config.defaultSeo,
+    page.title,
+    page.title,
+    "/blog"
+  );
 }
 
 export default async function Blog() {

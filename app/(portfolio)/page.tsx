@@ -31,7 +31,8 @@ export async function generateMetadata() {
     page.seo,
     config.defaultSeo,
     page.title,
-    page.title
+    page.title,
+    "/"
   );
 }
 

@@ -5,6 +5,10 @@ import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
 import Prose from "@/components/Prose";
 import { H1 } from "@/components/ui/heading";
+import JsonLd from "@/components/JsonLd";
+import { imageURL } from "@/lib/imageURL";
+
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
 
 export async function generateMetadata({ params }: { params: Promise<{ post: string }> }) {
   const { post: postSlug } = await params;
@@ -19,7 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ post: str
     return notFound();
   }
 
-  return generateSeoMetadata(post.seo, config.defaultSeo, post.title, post.description);
+  return generateSeoMetadata(
+    post.seo,
+    config.defaultSeo,
+    post.title,
+    post.description,
+    `/blog/${postSlug}`
+  );
 }
 
 export default async function Post({ params }: { params: Promise<{ post: string }> }) {
@@ -30,8 +40,43 @@ export default async function Post({ params }: { params: Promise<{ post: string 
     return notFound();
   }
 
+  const postUrl = `${SITE_URL}/blog/${postSlug}`;
+  const image =
+    post.mainImage
+      ? imageURL(post.mainImage).width(1200).height(630).url()
+      : post.seo?.ogImage
+        ? imageURL(post.seo.ogImage).width(1200).height(630).url()
+        : undefined;
+
+  const blogPosting = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description || post.seo?.metaDescription || undefined,
+    datePublished: post.publishedAt || undefined,
+    dateModified: post._updatedAt || undefined,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+    author: {
+      "@type": "Person",
+      name: "Jan Walenda",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Jan Walenda",
+      url: SITE_URL,
+    },
+    ...(image && { image }),
+    url: postUrl,
+    inLanguage: "en",
+  };
+
   return (
     <div className="flex flex-col items-center p-4 w-full">
+      <JsonLd data={blogPosting} />
       <div className="flex flex-col gap-4 max-w-5xl w-full">
         <H1 className="text-4xl font-bold">{post.title}</H1>
         <div className="w-20 h-1 bg-primary rounded-box" />

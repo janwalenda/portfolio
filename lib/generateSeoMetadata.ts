@@ -2,6 +2,8 @@ import type { Seo, SiteSettings } from "@/sanity.types";
 import { imageURL } from "./imageURL";
 import { type Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
+
 /**
  * Merges page/post-specific SEO with default site SEO settings
  * Page/post SEO takes precedence over defaults
@@ -10,19 +12,14 @@ export function generateSeoMetadata(
   pageSeo?: Seo | null,
   defaultSeo?: SiteSettings["defaultSeo"],
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
+  path?: string
 ): Metadata {
-  // Determine final values with fallback chain: page SEO > default SEO > fallbacks
-
-
-
-
-
   const metaTitle =
     pageSeo?.metaTitle ||
     defaultSeo?.metaTitle ||
     fallbackTitle ||
-    "Website";
+    "Jan Walenda";
 
   const metaDescription =
     pageSeo?.metaDescription ||
@@ -36,7 +33,7 @@ export function generateSeoMetadata(
     defaultSeo?.ogTitle ||
     defaultSeo?.metaTitle ||
     fallbackTitle ||
-    "Website";
+    "Jan Walenda";
 
   const ogDescription =
     pageSeo?.ogDescription ||
@@ -54,7 +51,7 @@ export function generateSeoMetadata(
     defaultSeo?.ogTitle ||
     defaultSeo?.metaTitle ||
     fallbackTitle ||
-    "Website";
+    "Jan Walenda";
 
   const twitterDescription =
     pageSeo?.twitterDescription ||
@@ -66,39 +63,51 @@ export function generateSeoMetadata(
     fallbackDescription ||
     "";
 
-  // Handle images
   const ogImage = pageSeo?.ogImage || defaultSeo?.ogImage;
-  const twitterImage = pageSeo?.twitterImage || pageSeo?.ogImage || defaultSeo?.twitterImage || defaultSeo?.ogImage;
+  const twitterImage =
+    pageSeo?.twitterImage ||
+    pageSeo?.ogImage ||
+    defaultSeo?.twitterImage ||
+    defaultSeo?.ogImage;
 
   const openGraphImages = ogImage
     ? [
-      {
-        url: imageURL(ogImage).width(1200).height(630).url(),
-        alt: ogImage.alt || metaTitle,
-        width: 1200,
-        height: 630,
-      },
-    ]
+        {
+          url: imageURL(ogImage).width(1200).height(630).url(),
+          alt: ogImage.alt || metaTitle,
+          width: 1200,
+          height: 630,
+        },
+      ]
     : undefined;
 
   const twitterImages = twitterImage
     ? [imageURL(twitterImage).width(1200).height(675).url()]
     : undefined;
 
-  // Handle keywords
   const keywords = pageSeo?.metaKeywords || defaultSeo?.metaKeywords;
 
-  // Handle robots directives
   const noIndex = pageSeo?.noIndex ?? defaultSeo?.noIndex ?? false;
   const noFollow = pageSeo?.noFollow ?? defaultSeo?.noFollow ?? false;
 
-  // Handle canonical URL
-  const canonicalUrl = pageSeo?.canonicalUrl || defaultSeo?.canonicalUrl;
+  const manualCanonical = pageSeo?.canonicalUrl || defaultSeo?.canonicalUrl;
+  const canonicalUrl =
+    manualCanonical ||
+    (path !== undefined
+      ? new URL(path.startsWith("/") ? path : `/${path}`, SITE_URL).toString()
+      : undefined);
 
-  // Twitter card type
   const twitterCard =
-    (pageSeo?.twitterCard as "summary" | "summary_large_image" | "app" | "player") ||
-    (defaultSeo?.twitterCard as "summary" | "summary_large_image" | "app" | "player") ||
+    (pageSeo?.twitterCard as
+      | "summary"
+      | "summary_large_image"
+      | "app"
+      | "player") ||
+    (defaultSeo?.twitterCard as
+      | "summary"
+      | "summary_large_image"
+      | "app"
+      | "player") ||
     "summary_large_image";
 
   return {

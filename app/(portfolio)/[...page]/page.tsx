@@ -22,11 +22,14 @@ export async function generateMetadata({
     return notFound();
   }
 
+  const slugPath = `/${pageSlug.join("/")}`
+
   return generateSeoMetadata(
     page.seo,
     config.defaultSeo,
     page.title,
-    page.title
+    page.title,
+    slugPath
   );
 }
 
