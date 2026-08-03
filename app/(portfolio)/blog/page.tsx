@@ -23,7 +23,7 @@ export async function generateMetadata() {
     config.defaultSeo,
     page.title,
     page.title,
-    "/blog"
+    "/blog",
   );
 }
 
@@ -31,24 +31,28 @@ export default async function Blog() {
   const posts = await getAllPosts("desc");
 
   return (
-    <div className="
+    <div
+      className="
       flex 
       flex-col 
       p-4 
       gap-4 
       items-center 
       justify-center
-    ">
-      <div className="
+    "
+    >
+      <div
+        className="
         flex 
         flex-col 
         gap-4 
         items-start 
         justify-center
-      ">
+      "
+      >
         <H1 className="text-4xl font-bold">Blog</H1>
         <BlogGrid>
-          {posts.map(post => (
+          {posts.map((post) => (
             <BlogCard key={post._id} post={post} />
           ))}
         </BlogGrid>

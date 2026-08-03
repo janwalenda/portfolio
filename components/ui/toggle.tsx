@@ -1,43 +1,41 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const toggleVariants = cva(
-  "toggle",
-  {
-    variants: {
-      variant: {
-        default: "toggle-primary",
-        secondary: "toggle-secondary",
-        neutral: "toggle-neutral",
-        accent: "toggle-accent",
-        info: "toggle-info",
-        success: "toggle-success",
-        warning: "toggle-warning",
-        error: "toggle-error",
-        ghost: "toggle-ghost",
-      },
-      size: {
-        default: "toggle-md",
-        xs: "toggle-xs",
-        sm: "toggle-sm",
-        lg: "toggle-lg",
-        xl: "toggle-xl",
-        icon: "toggle-square",
-      },
+const toggleVariants = cva("toggle", {
+  variants: {
+    variant: {
+      default: "toggle-primary",
+      secondary: "toggle-secondary",
+      neutral: "toggle-neutral",
+      accent: "toggle-accent",
+      info: "toggle-info",
+      success: "toggle-success",
+      warning: "toggle-warning",
+      error: "toggle-error",
+      ghost: "toggle-ghost",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    size: {
+      default: "toggle-md",
+      xs: "toggle-xs",
+      sm: "toggle-sm",
+      lg: "toggle-lg",
+      xl: "toggle-xl",
+      icon: "toggle-square",
     },
-  }
-)
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
-type ToggleProps = React.ComponentProps<"input"> & VariantProps<typeof toggleVariants> & {
-  asLink?: false,
-  asChild?: boolean,
-}
+type ToggleProps = React.ComponentProps<"input"> &
+  VariantProps<typeof toggleVariants> & {
+    asLink?: false;
+    asChild?: boolean;
+  };
 
 function Toggle({
   className,
@@ -46,7 +44,7 @@ function Toggle({
   asChild = false,
   ...props
 }: ToggleProps) {
-  const Comp = asChild ? Slot : "input"
+  const Comp = asChild ? Slot : "input";
 
   return (
     <Comp
@@ -55,7 +53,7 @@ function Toggle({
       className={cn(toggleVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }
 
-export { Toggle, toggleVariants, type ToggleProps }
+export { Toggle, toggleVariants, type ToggleProps };

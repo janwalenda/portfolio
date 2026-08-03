@@ -1,6 +1,6 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de"
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -11,5 +11,5 @@ export default function robots(): MetadataRoute.Robots {
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
-  }
+  };
 }

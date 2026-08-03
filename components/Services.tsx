@@ -38,10 +38,7 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="card bg-base-200 border"
-            >
+            <div key={service.title} className="card bg-base-200 border">
               <div className="card-body">
                 <div className="flex items-center gap-4 mb-2">
                   {service.icon?.name && (
@@ -63,4 +60,3 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
     </section>
   );
 }
-

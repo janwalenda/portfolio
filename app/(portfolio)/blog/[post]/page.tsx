@@ -10,7 +10,11 @@ import { imageURL } from "@/lib/imageURL";
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
 
-export async function generateMetadata({ params }: { params: Promise<{ post: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ post: string }>;
+}) {
   const { post: postSlug } = await params;
   const post = await getPostBySlug(postSlug);
   const config = await getConfig();
@@ -28,11 +32,15 @@ export async function generateMetadata({ params }: { params: Promise<{ post: str
     config.defaultSeo,
     post.title,
     post.description,
-    `/blog/${postSlug}`
+    `/blog/${postSlug}`,
   );
 }
 
-export default async function Post({ params }: { params: Promise<{ post: string }> }) {
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ post: string }>;
+}) {
   const { post: postSlug } = await params;
   const post = await getPostBySlug(postSlug);
 
@@ -41,12 +49,11 @@ export default async function Post({ params }: { params: Promise<{ post: string 
   }
 
   const postUrl = `${SITE_URL}/blog/${postSlug}`;
-  const image =
-    post.mainImage
-      ? imageURL(post.mainImage).width(1200).height(630).url()
-      : post.seo?.ogImage
-        ? imageURL(post.seo.ogImage).width(1200).height(630).url()
-        : undefined;
+  const image = post.mainImage
+    ? imageURL(post.mainImage).width(1200).height(630).url()
+    : post.seo?.ogImage
+      ? imageURL(post.seo.ogImage).width(1200).height(630).url()
+      : undefined;
 
   const blogPosting = {
     "@context": "https://schema.org",
@@ -78,12 +85,15 @@ export default async function Post({ params }: { params: Promise<{ post: string 
     <div className="flex flex-col items-center p-4 w-full">
       <JsonLd data={blogPosting} />
       <div className="flex flex-col gap-4 max-w-5xl w-full">
-        <H1 className="text-4xl font-bold">{post.title}</H1>
+        <H1 className="text-3xl md:text-4xl font-bold leading-tight">
+          {post.title}
+        </H1>
         <div className="w-20 h-1 bg-primary rounded-box" />
-        <p className="text-lg">{post.description}</p>
+        <p className="text-base md:text-lg text-base-content/70 leading-relaxed">
+          {post.description}
+        </p>
         {post.mainImage && (
           <div className="hover-3d">
-
             <figure>
               <Image
                 src={post.mainImage}

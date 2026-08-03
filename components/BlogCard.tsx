@@ -1,7 +1,11 @@
 import { type GET_ALL_POSTS_QUERY_ASC_RESULT } from "@/sanity.types";
 import Card from "./Card";
 
-export default function BlogCard({ post }: { post: GET_ALL_POSTS_QUERY_ASC_RESULT[number] }) {
+export default function BlogCard({
+  post,
+}: {
+  post: GET_ALL_POSTS_QUERY_ASC_RESULT[number];
+}) {
   return (
     <Card
       key={post._id}
@@ -12,8 +16,8 @@ export default function BlogCard({ post }: { post: GET_ALL_POSTS_QUERY_ASC_RESUL
       publishedAt={post.publishedAt!}
       url={{
         url: `/blog/${post.slug?.current}`,
-        title: "Read More"
+        title: "Read More",
       }}
     />
-  )
+  );
 }

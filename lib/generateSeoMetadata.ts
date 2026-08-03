@@ -13,7 +13,7 @@ export function generateSeoMetadata(
   defaultSeo?: SiteSettings["defaultSeo"],
   fallbackTitle?: string,
   fallbackDescription?: string,
-  path?: string
+  path?: string,
 ): Metadata {
   const metaTitle =
     pageSeo?.metaTitle ||
@@ -99,15 +99,9 @@ export function generateSeoMetadata(
 
   const twitterCard =
     (pageSeo?.twitterCard as
-      | "summary"
-      | "summary_large_image"
-      | "app"
-      | "player") ||
+      "summary" | "summary_large_image" | "app" | "player") ||
     (defaultSeo?.twitterCard as
-      | "summary"
-      | "summary_large_image"
-      | "app"
-      | "player") ||
+      "summary" | "summary_large_image" | "app" | "player") ||
     "summary_large_image";
 
   return {

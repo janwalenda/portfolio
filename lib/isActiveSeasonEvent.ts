@@ -7,6 +7,8 @@ export function isActiveSeasonEvent(seasonEvent: SeasonEvent) {
     return false;
   }
 
-  return today >= new Date(seasonEvent.startDate)
-    && today <= new Date(seasonEvent.endDate);
+  return (
+    today >= new Date(seasonEvent.startDate) &&
+    today <= new Date(seasonEvent.endDate)
+  );
 }

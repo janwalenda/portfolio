@@ -9,22 +9,22 @@ export const pageBuilderType = defineType({
     defineArrayMember({
       title: "Hero",
       name: "hero",
-      type: "hero"
+      type: "hero",
     }),
     defineArrayMember({
       title: "Split Image",
       name: "splitImage",
-      type: "splitImage"
+      type: "splitImage",
     }),
     defineArrayMember({
       title: "Features",
       name: "features",
-      type: "features"
+      type: "features",
     }),
     defineArrayMember({
       title: "FAQs",
       name: "faqs",
-      type: "faqs"
+      type: "faqs",
     }),
     defineArrayMember({
       title: "Grid",
@@ -34,7 +34,7 @@ export const pageBuilderType = defineType({
     defineArrayMember({
       title: "Text Block",
       name: "textBlocks",
-      type: "textBlock"
+      type: "textBlock",
     }),
   ],
 });

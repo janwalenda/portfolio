@@ -12,9 +12,10 @@ const GET_ALL_POSTS_QUERY_DESC = defineQuery(`
 export async function getAllPosts(direction: "asc" | "desc" = "asc") {
   try {
     const posts = await sanityFetch({
-      query: direction === "asc"
-        ? GET_ALL_POSTS_QUERY_ASC
-        : GET_ALL_POSTS_QUERY_DESC,
+      query:
+        direction === "asc"
+          ? GET_ALL_POSTS_QUERY_ASC
+          : GET_ALL_POSTS_QUERY_DESC,
     });
 
     return posts.data || [];

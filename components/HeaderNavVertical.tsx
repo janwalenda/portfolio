@@ -1,9 +1,8 @@
-import { Icon } from "@iconify/react"
-import HeaderLinkComponent from "./HeaderLink"
-import { type Link } from "@/sanity.types"
+import { Icon } from "@iconify/react";
+import HeaderLinkComponent from "./HeaderLink";
+import { type Link } from "@/sanity.types";
 
 export default async function HeaderNavVertical({ links }: { links: Link[] }) {
-
   return (
     <details className="md:hidden">
       <summary className="btn btn-ghost">
@@ -13,14 +12,14 @@ export default async function HeaderNavVertical({ links }: { links: Link[] }) {
         <ul className="menu menu-vertical">
           {links.map((link) => {
             return (
-              <HeaderLinkComponent key={link._id} {...link} >
+              <HeaderLinkComponent key={link._id} {...link}>
                 {link.icon && link.icon.name && <Icon icon={link.icon.name} />}
                 {link.title}
               </HeaderLinkComponent>
-            )
+            );
           })}
         </ul>
       </nav>
     </details>
-  )
-} 
+  );
+}

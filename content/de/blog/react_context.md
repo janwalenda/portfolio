@@ -3,7 +3,15 @@ title: "React Context API"
 description: "Der stille Held, der Prop-Drilling in die Knie zwingt"
 date: 2024-11-11
 author: Jan Walenda
-tags: ["React", "Webentwicklung", "JavaScript", "Frameworks", "Components", "Context"]
+tags:
+  [
+    "React",
+    "Webentwicklung",
+    "JavaScript",
+    "Frameworks",
+    "Components",
+    "Context",
+  ]
 thumbnailUrl: "/images/blog/react-context.png"
 thumbnailAlt: "React Logo und der Titel: Context"
 ---
@@ -22,13 +30,13 @@ Ganz simpel ausgedrückt: Der React Context ist ein Mechanismus, der es dir erla
 
 Mit Context verwandelst du einen Teil deines Gebäudes in eine **durchgängige Daten-Pipeline**. Du legst die Daten oben rein, und **jedes Component, das den Context abonniert hat, kann sie direkt abrufen**, egal wie tief es steckt.
 
-Das klingt nach **Redux** oder **Zustand**, oder? **Falsch\!** 🛑 Context allein ist kein Ersatz für komplexe globale State-Management-Lösungen. Er bietet dir lediglich den **Transportmechanismus**. Der State (z.B. der `useState` oder `useReducer` Hook) muss immer noch *irgendwo* **erstellt** und **verwaltet** werden, typischerweise in deinem Provider-Component.
+Das klingt nach **Redux** oder **Zustand**, oder? **Falsch\!** 🛑 Context allein ist kein Ersatz für komplexe globale State-Management-Lösungen. Er bietet dir lediglich den **Transportmechanismus**. Der State (z.B. der `useState` oder `useReducer` Hook) muss immer noch _irgendwo_ **erstellt** und **verwaltet** werden, typischerweise in deinem Provider-Component.
 
 Context ist dann genial, wenn du Daten brauchst, die **global für große Teile der Anwendung** sind, sich aber **nicht ständig ändern**. Beste Beispiele sind:
 
-  * **Themes** (hell/dunkel-Modus)
-  * **Aktueller Benutzer** und Authentifizierungsstatus
-  * **Sprache** oder Lokalisierungseinstellungen
+- **Themes** (hell/dunkel-Modus)
+- **Aktueller Benutzer** und Authentifizierungsstatus
+- **Sprache** oder Lokalisierungseinstellungen
 
 ### Die drei magischen Schritte zum Context-Glück
 
@@ -40,10 +48,10 @@ Mit `React.createContext()` definierst du das Gefäß für deine Daten. Ich nenn
 
 ```javascript
 // context/ThemeContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 // Der eigentliche Context
-const ThemeContext = createContext(); 
+const ThemeContext = createContext();
 
 // ... und hier ist der Provider (Schritt 2)
 ```
@@ -57,15 +65,15 @@ Der **Provider** (`ThemeContext.Provider`) ist das Component, das du **um den Te
 
 export const ThemeProvider = ({ children }) => {
   // Der State, den wir global verfügbar machen wollen
-  const [theme, setTheme] = useState('light'); 
+  const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme(current => (current === 'light' ? 'dark' : 'light'));
+    setTheme((current) => (current === "light" ? "dark" : "light"));
   };
 
-  const contextValue = { 
-    theme, 
-    toggleTheme 
+  const contextValue = {
+    theme,
+    toggleTheme,
   };
 
   return (
@@ -82,16 +90,22 @@ Früher (die dunklen Zeiten\!) mussten wir einen `<ThemeContext.Consumer>` verwe
 
 ```javascript
 // components/ThemedButton.jsx
-import React, { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext'; // Importiere den Context
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext"; // Importiere den Context
 
 const ThemedButton = () => {
   // BOOM! Direkter Zugriff, ohne Props!
-  const { theme, toggleTheme } = useContext(ThemeContext); 
-  
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <button onClick={toggleTheme} style={{ background: theme === 'dark' ? '#333' : '#eee', color: theme === 'dark' ? 'white' : 'black' }}>
-      Schalte auf {theme === 'dark' ? 'Hell' : 'Dunkel'}
+    <button
+      onClick={toggleTheme}
+      style={{
+        background: theme === "dark" ? "#333" : "#eee",
+        color: theme === "dark" ? "white" : "black",
+      }}
+    >
+      Schalte auf {theme === "dark" ? "Hell" : "Dunkel"}
     </button>
   );
 };

@@ -1,27 +1,36 @@
 "use client";
+
 import { Icon } from "@iconify/react";
-import { useThemeStore } from "@/store/theme";
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
 
 export default function HeaderThemeSwitch() {
-  const { theme, setTheme } = useThemeStore();
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+  const { resolvedTheme, setTheme } = useTheme();
 
-  const handleThemeChange = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
+  if (!mounted) {
+    return <span className="btn btn-ghost btn-square size-10" aria-hidden />;
+  }
 
-    setTheme(newTheme);
-  };
+  const isDark = resolvedTheme === "dark";
 
   return (
-    <label className="swap swap-rotate btn btn-ghost">
-      <input
-        type="checkbox"
-        className="theme-controller"
-        value="dark"
-        checked={theme === "dark"}
-        onChange={handleThemeChange}
+    <button
+      type="button"
+      className="swap swap-rotate btn btn-ghost"
+      aria-label={isDark ? "Hellmodus aktivieren" : "Dunkelmodus aktivieren"}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+    >
+      <Icon
+        icon={isDark ? "heroicons:sun" : "heroicons:moon"}
+        className="size-5 fill-current"
       />
-      <Icon icon="heroicons:sun" className="swap-off size-5 fill-current" />
-      <Icon icon="heroicons:moon" className="swap-on size-5 fill-current" />
-    </label>
-  )
+    </button>
+  );
 }

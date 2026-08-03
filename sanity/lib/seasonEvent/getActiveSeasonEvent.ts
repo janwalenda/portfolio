@@ -7,7 +7,6 @@ const GET_ACTIVE_SEASON_EVENT_BY_ID = defineQuery(`
 `);
 
 export async function getActiveSeasonEventById(id: string) {
-
   try {
     const seasonEvent = await sanityFetch({
       query: GET_ACTIVE_SEASON_EVENT_BY_ID,
@@ -17,7 +16,8 @@ export async function getActiveSeasonEventById(id: string) {
       },
     });
 
-    if (!seasonEvent.data || !isActiveSeasonEvent(seasonEvent.data)) return null;
+    if (!seasonEvent.data || !isActiveSeasonEvent(seasonEvent.data))
+      return null;
 
     return seasonEvent.data;
   } catch (error) {

@@ -1,14 +1,14 @@
-import type { MetadataRoute } from "next"
-import { getAllPages } from "@/sanity/lib/page/getAllPages"
-import { getAllPosts } from "@/sanity/lib/blog/getAllPosts"
+import type { MetadataRoute } from "next";
+import { getAllPages } from "@/sanity/lib/page/getAllPages";
+import { getAllPosts } from "@/sanity/lib/blog/getAllPosts";
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de"
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [pages, posts] = await Promise.all([
     getAllPages(),
     getAllPosts("desc"),
-  ])
+  ]);
 
   const pageEntries: MetadataRoute.Sitemap = pages
     .filter((page) => page.slug?.current && page.slug.current !== "home")
@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: page._updatedAt ? new Date(page._updatedAt) : undefined,
       changeFrequency: "monthly" as const,
       priority: page.slug!.current === "blog" ? 0.9 : 0.7,
-    }))
+    }));
 
   const postEntries: MetadataRoute.Sitemap = posts
     .filter((post) => post.slug?.current)
@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           : undefined,
       changeFrequency: "monthly" as const,
       priority: 0.8,
-    }))
+    }));
 
   return [
     {
@@ -41,5 +41,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...pageEntries,
     ...postEntries,
-  ]
+  ];
 }

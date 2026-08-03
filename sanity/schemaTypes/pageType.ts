@@ -33,7 +33,8 @@ export const pageType = defineType({
       name: "seo",
       title: "SEO",
       type: "seo",
-      description: "SEO metadata for this page. If not set, default SEO settings from Site Settings will be used.",
+      description:
+        "SEO metadata for this page. If not set, default SEO settings from Site Settings will be used.",
     }),
   ],
   preview: {

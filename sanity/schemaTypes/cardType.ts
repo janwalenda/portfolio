@@ -27,6 +27,6 @@ export const cardType = defineType({
       name: "action",
       type: "array",
       of: [{ type: "reference", to: { type: "link" } }],
-    })
+    }),
   ],
 });

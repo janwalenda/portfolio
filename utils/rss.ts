@@ -1,19 +1,21 @@
-
 import { imageURL } from "@/lib/imageURL";
 import { type GET_ALL_POSTS_QUERY_DESC_RESULT } from "@/sanity.types";
 import RSS from "rss";
-import { toHTML } from "@portabletext/to-html"
+import { toHTML } from "@portabletext/to-html";
 
-export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESC_RESULT>) {
-  const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-
+export default async function generateRssFeed(
+  allPosts: NonNullable<GET_ALL_POSTS_QUERY_DESC_RESULT>,
+) {
+  const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const feedOptions: RSS.FeedOptions = {
     title: "Blog posts | RSS Feed",
     description: "Welcome to this blog posts!",
     site_url: site_url,
     feed_url: `${site_url}/blog/rss`,
-    image_url: allPosts[0].mainImage ? imageURL(allPosts[0].mainImage).url() : "",
+    image_url: allPosts[0].mainImage
+      ? imageURL(allPosts[0].mainImage).url()
+      : "",
     pubDate: new Date(),
     copyright: `All rights reserved ${new Date().getFullYear()}`,
     language: "en",
@@ -28,33 +30,50 @@ export default async function generateRssFeed(allPosts: NonNullable<GET_ALL_POST
       description: post.description || "",
       author: "Jan Walenda",
       url: `${site_url}/blog/${post.slug?.current}`,
-      date: post.publishedAt
-        ? new Date(post.publishedAt)
-        : new Date(),
+      date: post.publishedAt ? new Date(post.publishedAt) : new Date(),
       guid: post._id,
-      enclosure: post.mainImage ? {
-        url: imageURL(post.mainImage).format("png").url(),
-        type: "image/png",
-      } : undefined,
+      enclosure: post.mainImage
+        ? {
+            url: imageURL(post.mainImage).format("png").url(),
+            type: "image/png",
+          }
+        : undefined,
       categories: post.seo?.metaKeywords,
       custom_elements: [
         {
           "content:encoded": post.body
             ? toHTML(post.body, {
-              components: {
-                types: {
-                  image: ({ value }) => {
-                    return `<img src="${imageURL(value).format("png").url()}" alt="${value.alt}"/>`;
+                components: {
+                  types: {
+                    image: ({ value }) => {
+                      const caption = value.caption
+                        ? `<figcaption>${value.caption}</figcaption>`
+                        : "";
+
+                      return `<figure><img src="${imageURL(value).format("png").url()}" alt="${value.alt || ""}"/>${caption}</figure>`;
+                    },
+                    code: ({ value }) => {
+                      return `<pre><code>${value.code}</code></pre>`;
+                    },
+                    callout: ({ value }) => {
+                      const title = value.title
+                        ? `<strong>${value.title}</strong>`
+                        : "";
+
+                      return `<aside><p>${title}</p><p>${value.body || ""}</p></aside>`;
+                    },
                   },
-                  code: ({ value }) => {
-                    return `<pre><code>${value.code}</code></pre>`
+                  marks: {
+                    code: ({ children }) => `<code>${children}</code>`,
+                  },
+                  block: {
+                    blockquote: ({ children }) =>
+                      `<blockquote>${children}</blockquote>`,
                   },
                 },
-
-              }
-            })
+              })
             : "",
-        }
+        },
       ],
     });
   });

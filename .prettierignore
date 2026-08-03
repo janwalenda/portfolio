@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+coverage
+.vercel
+.netlify
+public
+sanity.types.ts
+package-lock.json
+*.min.js
+pnpm-lock.yaml
+yarn.lock

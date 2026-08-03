@@ -49,7 +49,7 @@ export const linkType = defineType({
         title: title,
         subtitle: slug?.current,
         media: icon ? <Icon icon={icon.name} /> : TagIcon,
-      }
-    }
-  }
-})
+      };
+    },
+  },
+});

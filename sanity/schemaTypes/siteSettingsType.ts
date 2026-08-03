@@ -20,7 +20,7 @@ export const siteSettingsType = defineType({
     {
       name: "header",
       title: "Header",
-      icon: HeadingIcon
+      icon: HeadingIcon,
     },
     {
       name: "themes",
@@ -29,7 +29,7 @@ export const siteSettingsType = defineType({
     {
       name: "footer",
       title: "Footer",
-      icon: ArrowDown
+      icon: ArrowDown,
     },
   ],
   fields: [
@@ -49,7 +49,8 @@ export const siteSettingsType = defineType({
       name: "defaultSeo",
       title: "Default SEO Settings",
       type: "seo",
-      description: "Default SEO metadata for all pages. Can be overridden on individual pages and posts.",
+      description:
+        "Default SEO metadata for all pages. Can be overridden on individual pages and posts.",
       group: "seo",
     }),
     defineField({
@@ -61,8 +62,8 @@ export const siteSettingsType = defineType({
           type: "reference",
           to: {
             type: "link",
-          }
-        }
+          },
+        },
       ],
       group: "header",
     }),
@@ -85,9 +86,9 @@ export const siteSettingsType = defineType({
       of: [
         {
           type: "footerColBuilder",
-        }
+        },
       ],
       group: "footer",
     }),
   ],
-})
+});

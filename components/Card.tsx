@@ -1,22 +1,50 @@
-import { Card as CardComponent, CardAction, CardBody } from "@/components/ui/card";
+import {
+  Card as CardComponent,
+  CardAction,
+  CardBody,
+} from "@/components/ui/card";
 import Image from "@/components/Image";
 import Link from "next/link";
-import type { Card } from "@/sanity.types";
+import type { Card as CardType } from "@/sanity.types";
 import { H2 } from "./ui/heading";
 
-export default function Card({ title, image, description, publishedAt, alt, url }: {
-  title: string,
-  image: Card["mainImage"],
-  description: string,
-  publishedAt: string,
-  alt: string,
-  url: { url: string, title: string } | { url: string, title: string }[]
+type CardUrl = { url: string; title: string };
+
+function formatDate(value: string) {
+  return new Date(value).toLocaleDateString("en-UK", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+function formatTime(value: string) {
+  return new Date(value).toLocaleTimeString("en-UK", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+export default function Card(props: {
+  title: string;
+  image: CardType["mainImage"];
+  description: string;
+  publishedAt: string;
+  alt: string;
+  url: CardUrl | CardUrl[];
 }) {
+  const { title, image, description, publishedAt, alt, url } = props;
+  const urls = Array.isArray(url) ? url : url?.url ? [url] : [];
+
   return (
-    <CardComponent cardStyle="border" className="bg-base-200 border-base-content">
+    <CardComponent
+      cardStyle="border"
+      className="bg-base-200 border-base-content"
+    >
       {image && (
         <figure className="h-72">
-          <Image src={image}
+          <Image
+            src={image}
             alt={alt}
             width={1000}
             height={1000}
@@ -30,34 +58,20 @@ export default function Card({ title, image, description, publishedAt, alt, url 
         <p>{description}</p>
         <small className="flex flex-col text-xs">
           <time dateTime={publishedAt ?? ""}>
-            From:
-            {publishedAt
-              ? new Date(publishedAt).toLocaleDateString("en-UK", {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })
-              : "Date not available"
-            }
+            From:{publishedAt ? formatDate(publishedAt) : "Date not available"}
           </time>
           <time dateTime={publishedAt ?? ""}>
-            {publishedAt
-              ? new Date(publishedAt).toLocaleTimeString("en-UK", {
-                hour: "2-digit",
-                minute: "2-digit"
-              })
-              : "Date not available"
-            }
+            {publishedAt ? formatTime(publishedAt) : "Date not available"}
           </time>
         </small>
         <CardAction>
-          {Array.isArray(url) ? url.map((u) => (
-            <Link key={u.url || ""} href={u.url || ""} className="btn btn-primary">{u.title}</Link>
-          )) : url?.url && (
-            <Link href={url.url} className="btn btn-primary">{url.title}</Link>
-          )}
+          {urls.map((u) => (
+            <Link key={u.url} href={u.url} className="btn btn-primary">
+              {u.title}
+            </Link>
+          ))}
         </CardAction>
       </CardBody>
     </CardComponent>
-  )
+  );
 }

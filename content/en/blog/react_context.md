@@ -3,7 +3,15 @@ title: "React Context API"
 description: "The silent hero that brings prop drilling to its knees"
 date: 2024-11-11
 author: Jan Walenda
-tags: ["React", "Web Development", "JavaScript", "Frameworks", "Components", "Context"]
+tags:
+  [
+    "React",
+    "Web Development",
+    "JavaScript",
+    "Frameworks",
+    "Components",
+    "Context",
+  ]
 thumbnailUrl: "/images/blog/react-context.png"
 thumbnailAlt: "React Logo and title context"
 ---
@@ -22,13 +30,13 @@ Simply put: React Context is a mechanism that allows you to **pass data through 
 
 With Context you turn a part of that building into a **continuous data pipeline**. You put the data in at the top, and **any component that subscribes to the Context can access it directly**, no matter how deep it sits.
 
-Sounds like **Redux** or **Zustand**, right? **Wrong!** 🛑 Context alone is not a replacement for complex global state-management libraries. It only provides the **transport mechanism**. The state (e.g., created with `useState` or `useReducer`) still needs to be *created* and *managed* somewhere, typically inside your Provider component.
+Sounds like **Redux** or **Zustand**, right? **Wrong!** 🛑 Context alone is not a replacement for complex global state-management libraries. It only provides the **transport mechanism**. The state (e.g., created with `useState` or `useReducer`) still needs to be _created_ and _managed_ somewhere, typically inside your Provider component.
 
 Context shines when you need data that is **global for large parts of the application** but **doesn't change constantly**. Great examples are:
 
-  * **Themes** (light/dark mode)
-  * **Current user** and authentication status
-  * **Language** or localization settings
+- **Themes** (light/dark mode)
+- **Current user** and authentication status
+- **Language** or localization settings
 
 ### The three magical steps to Context bliss
 
@@ -40,10 +48,10 @@ Use `React.createContext()` to define the container for your data. I like to cal
 
 ```javascript
 // context/ThemeContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 
 // The actual Context
-const ThemeContext = createContext(); 
+const ThemeContext = createContext();
 
 // ... and here is the Provider (step 2)
 ```
@@ -57,15 +65,15 @@ The **Provider** (`ThemeContext.Provider`) is the component you **wrap around th
 
 export const ThemeProvider = ({ children }) => {
   // The state we want to make globally available
-  const [theme, setTheme] = useState('light'); 
+  const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme(current => (current === 'light' ? 'dark' : 'light'));
+    setTheme((current) => (current === "light" ? "dark" : "light"));
   };
 
-  const contextValue = { 
-    theme, 
-    toggleTheme 
+  const contextValue = {
+    theme,
+    toggleTheme,
   };
 
   return (
@@ -82,16 +90,22 @@ In the past (the dark times!) we had to use a `<ThemeContext.Consumer>`. Today w
 
 ```javascript
 // components/ThemedButton.jsx
-import React, { useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext'; // Import the context
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext"; // Import the context
 
 const ThemedButton = () => {
   // BOOM! Direct access, no props!
-  const { theme, toggleTheme } = useContext(ThemeContext); 
-  
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <button onClick={toggleTheme} style={{ background: theme === 'dark' ? '#333' : '#eee', color: theme === 'dark' ? 'white' : 'black' }}>
-      Switch to {theme === 'dark' ? 'Light' : 'Dark'}
+    <button
+      onClick={toggleTheme}
+      style={{
+        background: theme === "dark" ? "#333" : "#eee",
+        color: theme === "dark" ? "white" : "black",
+      }}
+    >
+      Switch to {theme === "dark" ? "Light" : "Dark"}
     </button>
   );
 };

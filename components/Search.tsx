@@ -8,26 +8,24 @@ import { Icon } from "@iconify/react";
 export default function Search() {
   const { open, setOpen } = useSearchStore();
 
-
   // Toggle the menu when ⌘K is pressed
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen(!open)
+        e.preventDefault();
+        setOpen(!open);
       }
-    }
+    };
 
-    document.addEventListener("keydown", down)
+    document.addEventListener("keydown", down);
 
-    return () => document.removeEventListener("keydown", down)
-  }, [open, setOpen])
-
+    return () => document.removeEventListener("keydown", down);
+  }, [open, setOpen]);
 
   return (
     <Button variant="ghost" size="sm" onClick={() => setOpen(!open)}>
       <Icon icon="heroicons:magnifying-glass" className="size-5" />
       <kbd className="hidden md:inline kbd kbd-primary">Cmd + K</kbd>
     </Button>
-  )
+  );
 }

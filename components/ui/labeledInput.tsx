@@ -1,40 +1,37 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const inputVariants = cva(
-  "input",
-  {
-    variants: {
-      variant: {
-        default: "input-primary",
-        secondary: "input-secondary",
-        neutral: "input-neutral",
-        accent: "input-accent",
-        info: "input-info",
-        success: "input-success",
-        warning: "input-warning",
-        error: "input-error",
-      },
-      style: {
-        ghost: "input-ghost",
-      },
-      size: {
-        default: "input-md",
-        xs: "input-xs",
-        sm: "input-sm",
-        lg: "input-lg",
-        xl: "input-xl",
-      },
+const inputVariants = cva("input", {
+  variants: {
+    variant: {
+      default: "input-primary",
+      secondary: "input-secondary",
+      neutral: "input-neutral",
+      accent: "input-accent",
+      info: "input-info",
+      success: "input-success",
+      warning: "input-warning",
+      error: "input-error",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    style: {
+      ghost: "input-ghost",
     },
-  }
-)
+    size: {
+      default: "input-md",
+      xs: "input-xs",
+      sm: "input-sm",
+      lg: "input-lg",
+      xl: "input-xl",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
 function LabeledInput({
   className,
@@ -47,11 +44,11 @@ function LabeledInput({
   ...props
 }: React.ComponentProps<"input"> &
   VariantProps<typeof inputVariants> & {
-    asChild?: boolean,
-    startIcon?: React.ReactNode,
-    endIcon?: React.ReactNode,
+    asChild?: boolean;
+    startIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
   }) {
-  const Comp = asChild ? Slot : "label"
+  const Comp = asChild ? Slot : "label";
 
   return (
     <Comp
@@ -62,7 +59,7 @@ function LabeledInput({
       <input {...props} />
       {endIcon && endIcon}
     </Comp>
-  )
+  );
 }
 
-export { LabeledInput, inputVariants as buttonVariants }
+export { LabeledInput, inputVariants as buttonVariants };

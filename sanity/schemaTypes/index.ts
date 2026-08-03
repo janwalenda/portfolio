@@ -1,32 +1,34 @@
-import { type SchemaTypeDefinition } from "sanity"
-import { siteSettingsType } from "./siteSettingsType"
-import { linkType } from "./linkType"
-import { heroType } from "./heroType"
-import { faqType } from "./faqType"
-import { faqsType } from "./faqsType"
-import { featuresType } from "./featuresType"
-import { pageBuilderType } from "./pageBuilderType"
-import { pageType } from "./pageType"
-import { blockContentType } from "./blockContentType"
-import { splitImageType } from "./splitImageType"
-import { categoryType } from "./categoryType"
-import { authorType } from "./authorType"
-import { postType } from "./postType"
-import { cardType } from "./cardType"
-import { gridType } from "./gridType"
-import { footerColBuilderType } from "./footerColBuilderType"
-import { textBlockType } from "./textBlockType"
-import { seoType } from "./seoType"
-import { seasonEventType } from "./seasonEventType"
-import { homepageType } from "./homepageType"
-import { homepageHeroType } from "./homepageHeroType"
-import { serviceType } from "./serviceType"
-import { technologyType } from "./technologyType"
-import { ctaSectionType } from "./ctaSectionType"
+import { type SchemaTypeDefinition } from "sanity";
+import { siteSettingsType } from "./siteSettingsType";
+import { linkType } from "./linkType";
+import { heroType } from "./heroType";
+import { faqType } from "./faqType";
+import { faqsType } from "./faqsType";
+import { featuresType } from "./featuresType";
+import { pageBuilderType } from "./pageBuilderType";
+import { pageType } from "./pageType";
+import { blockContentType } from "./blockContentType";
+import { splitImageType } from "./splitImageType";
+import { categoryType } from "./categoryType";
+import { authorType } from "./authorType";
+import { postType } from "./postType";
+import { cardType } from "./cardType";
+import { gridType } from "./gridType";
+import { footerColBuilderType } from "./footerColBuilderType";
+import { textBlockType } from "./textBlockType";
+import { seoType } from "./seoType";
+import { seasonEventType } from "./seasonEventType";
+import { homepageType } from "./homepageType";
+import { homepageHeroType } from "./homepageHeroType";
+import { serviceType } from "./serviceType";
+import { technologyType } from "./technologyType";
+import { ctaSectionType } from "./ctaSectionType";
+import { calloutType } from "./calloutType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     blockContentType,
+    calloutType,
     siteSettingsType,
     splitImageType,
     linkType,
@@ -52,5 +54,4 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     technologyType,
     ctaSectionType,
   ],
-}
-
+};

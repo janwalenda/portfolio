@@ -1,46 +1,55 @@
 "use client";
-import { CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandSeparator, CommandItem } from "./ui/command";
+
+import {
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandSeparator,
+  CommandItem,
+} from "./ui/command";
 import { useSearchStore } from "@/store/search";
 import { useRouter } from "next/navigation";
-import { useThemeStore } from "@/store/theme";
+import { useTheme } from "next-themes";
 import { Icon } from "@iconify/react";
 import { type Page, type Post } from "@/sanity.types";
 
-export default function CommandMenu({ pages, posts }: { pages: Page[], posts: Post[] }) {
+export default function CommandMenu({
+  pages,
+  posts,
+}: {
+  pages: Page[];
+  posts: Post[];
+}) {
   const { open, setOpen } = useSearchStore();
   const router = useRouter();
-  const { theme, setTheme } = useThemeStore();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
-  const handleThemeChange = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-
-    setTheme(newTheme);
+  const go = (path: string) => () => {
     setOpen(false);
+    router.replace(path);
   };
 
-  const handlePageSelect = (page: Page) => {
-    return () => {
-      setOpen(false);
-      router.replace(`/${page.slug?.current}`)
-    };
+  // Mount only when open to avoid Radix useId hydration mismatches
+  // (e.g. Sanity Presentation Mode changes the React tree).
+  if (!open) {
+    return null;
   }
-
-  const handlePostSelect = (post: Post) => {
-    return () => {
-      setOpen(false);
-      router.replace(`/blog/${post.slug?.current}`);
-    };
-  }
-
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} className="bg-base-200 rounded-box">
+    <CommandDialog
+      open={open}
+      onOpenChange={setOpen}
+      className="bg-base-200 rounded-box"
+    >
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Pages">
           {pages.map((page) => (
-            <CommandItem key={page._id} onSelect={handlePageSelect(page)}>
+            <CommandItem key={page._id} onSelect={go(`/${page.slug?.current}`)}>
               <span>{page.title}</span>
             </CommandItem>
           ))}
@@ -48,26 +57,30 @@ export default function CommandMenu({ pages, posts }: { pages: Page[], posts: Po
         <CommandSeparator />
         <CommandGroup heading="Posts">
           {posts.map((post) => (
-            <CommandItem key={post._id} onSelect={handlePostSelect(post)}>
+            <CommandItem
+              key={post._id}
+              onSelect={go(`/blog/${post.slug?.current}`)}
+            >
               <span>{post.title}</span>
             </CommandItem>
           ))}
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">
-          <CommandItem onSelect={handleThemeChange}>
+          <CommandItem
+            onSelect={() => {
+              setTheme(isDark ? "light" : "dark");
+              setOpen(false);
+            }}
+          >
             <span>Toggle Theme</span>
-            {theme === "dark"
-              ? (
-                <Icon icon="heroicons:sun-solid" className="size-5 fill-accent-content" />
-              )
-              : (
-                <Icon icon="heroicons:moon-solid" className="size-5 fill-accent-content" />
-              )}
+            <Icon
+              icon={isDark ? "heroicons:sun-solid" : "heroicons:moon-solid"}
+              className="size-5 fill-accent-content"
+            />
           </CommandItem>
         </CommandGroup>
       </CommandList>
     </CommandDialog>
-  )
-
+  );
 }

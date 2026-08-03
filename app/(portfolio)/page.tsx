@@ -32,7 +32,7 @@ export async function generateMetadata() {
     config.defaultSeo,
     page.title,
     page.title,
-    "/"
+    "/",
   );
 }
 
@@ -98,25 +98,34 @@ export default async function Home() {
 
               <div className="flex flex-wrap gap-4 justify-center mt-6">
                 {hero.primaryCta && (
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="neutral"
-                  >
-                    <Link href={hero.primaryCta.url || (hero.primaryCta.slug?.current ? `/${hero.primaryCta.slug.current}` : "#")}>
+                  <Button asChild size="lg" variant="neutral">
+                    <Link
+                      href={
+                        hero.primaryCta.url ||
+                        (hero.primaryCta.slug?.current
+                          ? `/${hero.primaryCta.slug.current}`
+                          : "#")
+                      }
+                    >
                       {hero.primaryCta.title}
                     </Link>
                   </Button>
                 )}
                 {hero.secondaryCta && (
-                  <Button
-                    asChild
-                    size="lg"
-                    variant="accent"
-                  >
-                    <Link href={hero.secondaryCta.url || (hero.secondaryCta.slug?.current ? `/${hero.secondaryCta.slug.current}` : "#")}>
+                  <Button asChild size="lg" variant="accent">
+                    <Link
+                      href={
+                        hero.secondaryCta.url ||
+                        (hero.secondaryCta.slug?.current
+                          ? `/${hero.secondaryCta.slug.current}`
+                          : "#")
+                      }
+                    >
                       {hero.secondaryCta.icon?.name && (
-                        <Icon icon={hero.secondaryCta.icon.name} className="size-5" />
+                        <Icon
+                          icon={hero.secondaryCta.icon.name}
+                          className="size-5"
+                        />
                       )}
                       {hero.secondaryCta.title}
                     </Link>
@@ -155,7 +164,9 @@ export default async function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               {homepage.selectedWorkTitle && (
-                <H2 className="text-4xl font-bold mb-4">{homepage.selectedWorkTitle}</H2>
+                <H2 className="text-4xl font-bold mb-4">
+                  {homepage.selectedWorkTitle}
+                </H2>
               )}
               {homepage.selectedWorkSubtitle && (
                 <p className="text-lg text-base-content/70">
@@ -200,21 +211,24 @@ export default async function Home() {
               </H2>
             )}
             {cta.subtitle && (
-              <p className="text-xl text-base-100/90 mb-8">
-                {cta.subtitle}
-              </p>
+              <p className="text-xl text-base-100/90 mb-8">{cta.subtitle}</p>
             )}
             <div className="flex flex-wrap gap-4 justify-center">
               {cta.primaryCta && (
-                <Button
-                  asChild
-                  variant="neutral"
-                  size="xl"
-                  className="gap-2"
-                >
-                  <Link href={cta.primaryCta.url || (cta.primaryCta.slug?.current ? `/${cta.primaryCta.slug.current}` : "#")}>
+                <Button asChild variant="neutral" size="xl" className="gap-2">
+                  <Link
+                    href={
+                      cta.primaryCta.url ||
+                      (cta.primaryCta.slug?.current
+                        ? `/${cta.primaryCta.slug.current}`
+                        : "#")
+                    }
+                  >
                     {cta.primaryCta.icon?.name && (
-                      <Icon icon={cta.primaryCta.icon.name} className="size-6" />
+                      <Icon
+                        icon={cta.primaryCta.icon.name}
+                        className="size-6"
+                      />
                     )}
                     {cta.primaryCta.title}
                   </Link>
@@ -228,9 +242,19 @@ export default async function Home() {
                   buttonStyle="outline"
                   className="gap-2 text-base-100 border-base-100 hover:bg-base-100 hover:text-primary"
                 >
-                  <Link href={cta.secondaryCta.url || (cta.secondaryCta.slug?.current ? `/${cta.secondaryCta.slug.current}` : "#")}>
+                  <Link
+                    href={
+                      cta.secondaryCta.url ||
+                      (cta.secondaryCta.slug?.current
+                        ? `/${cta.secondaryCta.slug.current}`
+                        : "#")
+                    }
+                  >
                     {cta.secondaryCta.icon?.name && (
-                      <Icon icon={cta.secondaryCta.icon.name} className="size-6" />
+                      <Icon
+                        icon={cta.secondaryCta.icon.name}
+                        className="size-6"
+                      />
                     )}
                     {cta.secondaryCta.title}
                   </Link>

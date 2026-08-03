@@ -1,48 +1,46 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const inputVariants = cva(
-  "input",
-  {
-    variants: {
-      variant: {
-        default: "input-primary",
-        primary: "input-primary",
-        secondary: "input-secondary",
-        neutral: "input-neutral",
-        accent: "input-accent",
-        info: "input-info",
-        success: "input-success",
-        warning: "input-warning",
-        error: "input-error",
-      },
-      style: {
-        ghost: "input-ghost",
-      },
-      sizeVariant: {
-        default: "input-md",
-        md: "input-md",
-        xs: "input-xs",
-        sm: "input-sm",
-        lg: "input-lg",
-        xl: "input-xl",
-      },
+const inputVariants = cva("input", {
+  variants: {
+    variant: {
+      default: "input-primary",
+      primary: "input-primary",
+      secondary: "input-secondary",
+      neutral: "input-neutral",
+      accent: "input-accent",
+      info: "input-info",
+      success: "input-success",
+      warning: "input-warning",
+      error: "input-error",
     },
-    defaultVariants: {
-      variant: "default",
-      sizeVariant: "default",
+    style: {
+      ghost: "input-ghost",
     },
-  }
-)
+    sizeVariant: {
+      default: "input-md",
+      md: "input-md",
+      xs: "input-xs",
+      sm: "input-sm",
+      lg: "input-lg",
+      xl: "input-xl",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    sizeVariant: "default",
+  },
+});
 
-type Variant = VariantProps<typeof inputVariants>
+type Variant = VariantProps<typeof inputVariants>;
 
-type InputProps = React.ComponentProps<"input"> & Variant & {
-  asChild?: boolean
-}
+type InputProps = React.ComponentProps<"input"> &
+  Variant & {
+    asChild?: boolean;
+  };
 
 function Input({
   className,
@@ -52,7 +50,7 @@ function Input({
   asChild = false,
   ...props
 }: InputProps) {
-  const Comp = asChild ? Slot : "input"
+  const Comp = asChild ? Slot : "input";
 
   return (
     <Comp
@@ -60,7 +58,7 @@ function Input({
       className={cn(inputVariants({ variant, sizeVariant, style, className }))}
       {...props}
     />
-  )
+  );
 }
 
-export { Input, inputVariants, type InputProps }
+export { Input, inputVariants, type InputProps };

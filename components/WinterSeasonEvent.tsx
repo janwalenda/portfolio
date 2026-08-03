@@ -9,7 +9,5 @@ export default async function WinterSeasonEvent() {
 
   if (!isActiveSeasonEvent(seasonEvent)) return null;
 
-  return (
-    <WinterOverlayClient seasonEvent={seasonEvent} />
-  )
+  return <WinterOverlayClient seasonEvent={seasonEvent} />;
 }

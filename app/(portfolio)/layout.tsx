@@ -1,28 +1,29 @@
-import { type Viewport, type Metadata } from "next"
-import { DM_Serif_Display, Lora, Roboto_Mono } from "next/font/google"
-import { SanityLive } from "@/sanity/lib/live"
-import Header from "@/components/Header"
-import { getConfig } from "@/sanity/lib/config/getConfig"
-import Footer from "@/components/Footer"
-import CommandMenu from "@/components/CommandMenu"
-import { getAllPosts } from "@/sanity/lib/blog/getAllPosts"
-import { getAllPages } from "@/sanity/lib/page/getAllPages"
-import WinterSeasonEvent from "@/components/WinterSeasonEvent"
-import { draftMode } from "next/headers"
-import { VisualEditing } from "next-sanity/visual-editing"
-import { DisableDraftMode } from "@/components/DisableDraftMode"
-import { cn } from "@/lib/utils"
-import JsonLd from "@/components/JsonLd"
+import { type Viewport, type Metadata } from "next";
+import { DM_Serif_Display, Lora, Roboto_Mono } from "next/font/google";
+import { SanityLive } from "@/sanity/lib/live";
+import Header from "@/components/Header";
+import { getConfig } from "@/sanity/lib/config/getConfig";
+import Footer from "@/components/Footer";
+import CommandMenu from "@/components/CommandMenu";
+import { getAllPosts } from "@/sanity/lib/blog/getAllPosts";
+import { getAllPages } from "@/sanity/lib/page/getAllPages";
+import WinterSeasonEvent from "@/components/WinterSeasonEvent";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
+import { cn } from "@/lib/utils";
+import JsonLd from "@/components/JsonLd";
+import ThemeProvider from "@/components/ThemeProvider";
 
-import "../globals.css"
+import "../globals.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de"
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://janwalenda.de";
 
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--dm-serif-display",
-})
+});
 
 const lora = Lora({
   subsets: ["latin"],
@@ -38,15 +39,15 @@ const roboto = Roboto_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const config = await getConfig();
-  const defaultSeo = config?.defaultSeo
+  const defaultSeo = config?.defaultSeo;
   const title =
     defaultSeo?.metaTitle ||
     config?.title ||
-    "Jan Walenda – Frontend-Entwickler Hamburg"
+    "Jan Walenda – Frontend-Entwickler Hamburg";
   const description =
     defaultSeo?.metaDescription ||
     config?.description ||
-    "Frontend-Freelancer in Hamburg für React, Next.js, WordPress und TYPO3."
+    "Frontend-Freelancer in Hamburg für React, Next.js, WordPress und TYPO3.";
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -81,7 +82,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description,
       card: "summary_large_image",
     },
-  }
+  };
 }
 
 export const viewport: Viewport = {
@@ -89,32 +90,32 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   colorScheme: "light dark",
-}
+};
 
 function getSameAsLinks(
-  config: NonNullable<Awaited<ReturnType<typeof getConfig>>>
+  config: NonNullable<Awaited<ReturnType<typeof getConfig>>>,
 ): string[] {
   const links =
-    config.footerColumns?.flatMap((column) => column.links || []) || []
+    config.footerColumns?.flatMap((column) => column.links || []) || [];
 
   return links
     .map((link) => link?.url)
-    .filter((url): url is string => Boolean(url?.startsWith("http")))
+    .filter((url): url is string => Boolean(url?.startsWith("http")));
 }
 
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   const config = await getConfig();
   const posts = await getAllPosts();
   const pages = await getAllPages();
-  const sameAs = config ? getSameAsLinks(config) : []
+  const sameAs = config ? getSameAsLinks(config) : [];
   const siteDescription =
     config?.defaultSeo?.metaDescription ||
     config?.description ||
-    "Frontend-Freelancer in Hamburg für React, Next.js, WordPress und TYPO3."
+    "Frontend-Freelancer in Hamburg für React, Next.js, WordPress und TYPO3.";
 
   const structuredData = [
     {
@@ -154,20 +155,23 @@ export default async function RootLayout({
       ],
       ...(sameAs.length > 0 && { sameAs }),
     },
-  ]
+  ];
 
   return (
-    <html lang="de" data-theme="light" className={cn(lora.variable, roboto.variable, dmSerif.variable)}>
-      <body className={cn(
-        "font-roboto",
-        "antialiased relative"
-      )}>
-        <JsonLd data={structuredData} />
-        {config && <Header config={config} />}
-        <WinterSeasonEvent />
-        <CommandMenu pages={pages} posts={posts} />
-        <main id="content"
-          className="
+    <html
+      lang="de"
+      className={cn(lora.variable, roboto.variable, dmSerif.variable)}
+      suppressHydrationWarning
+    >
+      <body className={cn("font-roboto", "antialiased relative")}>
+        <ThemeProvider>
+          <JsonLd data={structuredData} />
+          {config && <Header config={config} />}
+          <WinterSeasonEvent />
+          <CommandMenu pages={pages} posts={posts} />
+          <main
+            id="content"
+            className="
             bg-base-100 
             relative 
             border-b 
@@ -177,18 +181,20 @@ export default async function RootLayout({
             items-center 
             justify-center 
             min-h-screen
-          ">
-          {children}
-        </main>
-        {config && <Footer config={config} />}
-        <SanityLive />
-        {(await draftMode()).isEnabled && (
-          <>
-            <DisableDraftMode />
-            <VisualEditing />
-          </>
-        )}
+          "
+          >
+            {children}
+          </main>
+          {config && <Footer config={config} />}
+          <SanityLive />
+          {(await draftMode()).isEnabled && (
+            <>
+              <DisableDraftMode />
+              <VisualEditing />
+            </>
+          )}
+        </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

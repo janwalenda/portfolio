@@ -35,7 +35,6 @@ const GET_PAGE_DATA_BY_SLUG_QUERY = defineQuery(`
 `);
 
 export async function getPageBySlug(slug: string) {
-
   try {
     const page = await sanityFetch({
       query: GET_PAGE_DATA_BY_SLUG_QUERY,

@@ -61,7 +61,8 @@ export const postType = defineType({
       name: "seo",
       title: "SEO",
       type: "seo",
-      description: "SEO metadata for this blog post. If not set, default SEO settings from Site Settings will be used.",
+      description:
+        "SEO metadata for this blog post. If not set, default SEO settings from Site Settings will be used.",
     }),
   ],
 

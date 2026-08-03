@@ -4,9 +4,13 @@ import Card from "./Card";
 
 export type CardWithExpandedAction = Omit<CardType, "action"> & {
   action?: LinkType[] | null;
-}
+};
 
-export default function GridItem({ cards }: { cards: CardWithExpandedAction[] }) {
+export default function GridItem({
+  cards,
+}: {
+  cards: CardWithExpandedAction[];
+}) {
   if (!cards) {
     return null;
   }
@@ -14,8 +18,7 @@ export default function GridItem({ cards }: { cards: CardWithExpandedAction[] })
   return (
     <div className="w-full flex items-center justify-center">
       <CardGrid>
-        {cards.map(card => {
-
+        {cards.map((card) => {
           if (!card) {
             return null;
           }
@@ -28,17 +31,18 @@ export default function GridItem({ cards }: { cards: CardWithExpandedAction[] })
               alt={card.title || ""}
               description={card.description || ""}
               publishedAt={card._createdAt}
-              url={card.action?.map(action => {
-                return {
-                  url: action.slug ? `/${action.slug}` : action.url || "",
-                  title: action.title || "",
-                }
-              }) || []}
+              url={
+                card.action?.map((action) => {
+                  return {
+                    url: action.slug ? `/${action.slug}` : action.url || "",
+                    title: action.title || "",
+                  };
+                }) || []
+              }
             />
-          )
+          );
         })}
       </CardGrid>
-
     </div>
-  )
+  );
 }

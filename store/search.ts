@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 type Search = {
   open: boolean;
   setOpen: (open: boolean) => void;
-}
+};
 
 export const useSearchStore = create<Search>()(
   persist(
@@ -14,6 +14,6 @@ export const useSearchStore = create<Search>()(
     }),
     {
       name: "search-store",
-    }
-  )
+    },
+  ),
 );

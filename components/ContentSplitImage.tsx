@@ -6,13 +6,21 @@ import { cn } from "@/lib/utils";
 import { variant } from "@/lib/variant";
 import { H3 } from "./ui/heading";
 
-export default function ContentSplitImage({ content }: { content: SplitImage }) {
+export default function ContentSplitImage({
+  content,
+}: {
+  content: SplitImage;
+}) {
   return (
-    <Card modifier={"side"} className={cn("md:w-9/12", variant({ variant: content.variant }))}>
+    <Card
+      modifier={"side"}
+      className={cn("md:w-9/12", variant({ variant: content.variant }))}
+    >
       {content.orientation === "imageLeft" ? (
         <>
           <figure>
-            <Image src={imageURL(content.image!).width(1200).height(600).url()}
+            <Image
+              src={imageURL(content.image!).width(1200).height(600).url()}
               width={1200}
               height={600}
               alt=""
@@ -28,7 +36,8 @@ export default function ContentSplitImage({ content }: { content: SplitImage }) 
             <H3 className="text-2xl font-bold">{content.title}</H3>
           </CardBody>
           <figure>
-            <Image src={imageURL(content.image!).width(1200).height(600).url()}
+            <Image
+              src={imageURL(content.image!).width(1200).height(600).url()}
               width={1200}
               height={600}
               alt=""
@@ -37,5 +46,5 @@ export default function ContentSplitImage({ content }: { content: SplitImage }) 
         </>
       )}
     </Card>
-  )
+  );
 }

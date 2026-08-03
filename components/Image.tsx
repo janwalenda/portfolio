@@ -6,18 +6,13 @@ type ImageProps = Omit<NextImageProps, "src"> & {
   src: SanityImageSource;
   width?: number;
   height?: number;
-}
+};
 
-export default function Image({
-  src,
-  width,
-  height,
-  ...props
-}: ImageProps) {
+export default function Image({ src, width, height, ...props }: ImageProps) {
   const imgSrc = imageURL(src);
 
   if (width) {
-    imgSrc.width(width)
+    imgSrc.width(width);
   }
 
   if (height) {
@@ -25,11 +20,6 @@ export default function Image({
   }
 
   return (
-    <NextImage
-      {...props}
-      width={width}
-      height={height}
-      src={imgSrc.url()}
-    />
-  )
+    <NextImage {...props} width={width} height={height} src={imgSrc.url()} />
+  );
 }

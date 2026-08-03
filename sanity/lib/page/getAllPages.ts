@@ -6,7 +6,6 @@ const GET_ALL_PAGES_QUERY = defineQuery(`
 `);
 
 export async function getAllPages() {
-
   try {
     const pages = await sanityFetch({
       query: GET_ALL_PAGES_QUERY,

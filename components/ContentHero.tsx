@@ -9,7 +9,9 @@ import Prose from "./Prose";
 export default function ContentHero({ content }: { content: HeroType }) {
   return (
     <Hero className="md:min-h-screen w-full relative overflow-hidden">
-      <HeroOverlay className={cn("bg-primary", variant({ variant: content.variant }))} />
+      <HeroOverlay
+        className={cn("bg-primary", variant({ variant: content.variant }))}
+      />
 
       <HeroContent className="flex-col gap-0 max-w-6xl w-full p-0">
         {/* Image Section with Gradient Overlay */}
@@ -28,15 +30,17 @@ export default function ContentHero({ content }: { content: HeroType }) {
         )}
 
         {/* Content Section with Glassmorphism Effect */}
-        <article className={cn(
-          "relative z-10 w-full",
-          "bg-base-100/95 backdrop-blur-sm",
-          "p-6 md:p-10 lg:p-12",
-          content.image && "-mt-16 md:-mt-20",
-          "shadow-2xl",
-          "flex flex-col gap-4",
-          "transition-all duration-300"
-        )}>
+        <article
+          className={cn(
+            "relative z-10 w-full",
+            "bg-base-100/95 backdrop-blur-sm",
+            "p-6 md:p-10 lg:p-12",
+            content.image && "-mt-16 md:-mt-20",
+            "shadow-2xl",
+            "flex flex-col gap-4",
+            "transition-all duration-300",
+          )}
+        >
           {/* Title */}
           <H3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
             {content.title}
@@ -50,5 +54,5 @@ export default function ContentHero({ content }: { content: HeroType }) {
         </article>
       </HeroContent>
     </Hero>
-  )
-} 
+  );
+}

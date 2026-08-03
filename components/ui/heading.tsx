@@ -1,74 +1,11 @@
-import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { createHeading } from "./createHeading";
 
-export function H1({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h1"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h1";
-
-  return <Comp className={cn("font-dmSerifDisplay text-4xl font-bold", className)} {...props} />
-}
-
-export function H2({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h2"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h2";
-
-  return <Comp className={cn("font-dmSerifDisplay text-3xl font-bold", className)} {...props} />
-}
-
-export function H3({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h3"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h3";
-
-  return <Comp className={cn("font-dmSerifDisplay text-2xl font-bold", className)} {...props} />
-}
-
-export function H4({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h4"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h4";
-
-  return <Comp className={cn("font-dmSerifDisplay text-xl font-bold", className)} {...props} />
-}
-
-export function H5({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h5"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h5";
-
-  return <Comp className={cn("font-dmSerifDisplay text-lg font-bold", className)} {...props} />
-}
-
-export function H6({
-  className,
-  asChild,
-  ...props
-}: React.ComponentProps<"h6"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "h6";
-
-  return <Comp className={cn("font-dmSerifDisplay text-base font-bold", className)} {...props} />
-}
+export const H1 = createHeading("h1", "font-dmSerifDisplay text-4xl font-bold");
+export const H2 = createHeading("h2", "font-dmSerifDisplay text-3xl font-bold");
+export const H3 = createHeading("h3", "font-dmSerifDisplay text-2xl font-bold");
+export const H4 = createHeading("h4", "font-dmSerifDisplay text-xl font-bold");
+export const H5 = createHeading("h5", "font-dmSerifDisplay text-lg font-bold");
+export const H6 = createHeading(
+  "h6",
+  "font-dmSerifDisplay text-base font-bold",
+);

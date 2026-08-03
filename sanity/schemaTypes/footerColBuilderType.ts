@@ -14,7 +14,7 @@ export const footerColBuilderType = defineType({
       name: "links",
       title: "Links",
       type: "array",
-      of: [{ type: "reference", to: { type: "link" } }]
+      of: [{ type: "reference", to: { type: "link" } }],
     }),
   ],
-})
+});

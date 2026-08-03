@@ -40,7 +40,7 @@ export const splitImageType = defineType({
       return {
         title,
         subtitle: "Text and Image",
-        media
+        media,
       };
     },
   },

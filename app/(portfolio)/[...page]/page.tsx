@@ -6,9 +6,9 @@ import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: Promise<{ page: string[] }>
+  params: Promise<{ page: string[] }>;
 }) {
   const { page: pageSlug } = await params;
   const page = await getPageBySlug(pageSlug.join("/"));
@@ -22,21 +22,21 @@ export async function generateMetadata({
     return notFound();
   }
 
-  const slugPath = `/${pageSlug.join("/")}`
+  const slugPath = `/${pageSlug.join("/")}`;
 
   return generateSeoMetadata(
     page.seo,
     config.defaultSeo,
     page.title,
     page.title,
-    slugPath
+    slugPath,
   );
 }
 
 export default async function Page({
-  params
+  params,
 }: {
-  params: Promise<{ page: string[] }>
+  params: Promise<{ page: string[] }>;
 }) {
   const { page: pageSlug } = await params;
   const page = await getPageBySlug(pageSlug.join("/"));
@@ -46,7 +46,8 @@ export default async function Page({
   }
 
   return (
-    <div className="
+    <div
+      className="
       w-full 
       flex 
       flex-col 
@@ -54,7 +55,8 @@ export default async function Page({
       items-center 
       justify-center 
       relative p-4
-    ">
+    "
+    >
       {page.mainImage && (
         <Image
           src={page.mainImage}
@@ -64,16 +66,14 @@ export default async function Page({
           className="object-cover h-auto"
         />
       )}
-      {Array.isArray(page.content)
-        && page.content.length > 0
-        && (
-          page.content
-            .map(content =>
-              <PageItem key={content._key}
-                content={content as PageItemProps["content"]}
-              />
-            )
-        )}
+      {Array.isArray(page.content) &&
+        page.content.length > 0 &&
+        page.content.map((content) => (
+          <PageItem
+            key={content._key}
+            content={content as PageItemProps["content"]}
+          />
+        ))}
     </div>
   );
 }

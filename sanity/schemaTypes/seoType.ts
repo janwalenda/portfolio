@@ -11,18 +11,24 @@ export const seoType = defineType({
       name: "metaTitle",
       title: "Meta Title",
       type: "string",
-      description: "Title for search engines and social media. Optimal length: 50-60 characters.",
+      description:
+        "Title for search engines and social media. Optimal length: 50-60 characters.",
       validation: (Rule) =>
-        Rule.max(60).warning("Titles longer than 60 characters may be truncated in search results"),
+        Rule.max(60).warning(
+          "Titles longer than 60 characters may be truncated in search results",
+        ),
     }),
     defineField({
       name: "metaDescription",
       title: "Meta Description",
       type: "text",
       rows: 3,
-      description: "Description for search engines and social media. Optimal length: 150-160 characters.",
+      description:
+        "Description for search engines and social media. Optimal length: 150-160 characters.",
       validation: (Rule) =>
-        Rule.max(160).warning("Descriptions longer than 160 characters may be truncated in search results"),
+        Rule.max(160).warning(
+          "Descriptions longer than 160 characters may be truncated in search results",
+        ),
     }),
     defineField({
       name: "metaKeywords",
@@ -38,7 +44,8 @@ export const seoType = defineType({
       name: "ogImage",
       title: "Open Graph Image",
       type: "image",
-      description: "Image for social media sharing. Recommended size: 1200x630px",
+      description:
+        "Image for social media sharing. Recommended size: 1200x630px",
       options: {
         hotspot: true,
       },
@@ -55,18 +62,24 @@ export const seoType = defineType({
       name: "ogTitle",
       title: "Open Graph Title",
       type: "string",
-      description: "Title for social media (Facebook, LinkedIn). If empty, metaTitle will be used.",
+      description:
+        "Title for social media (Facebook, LinkedIn). If empty, metaTitle will be used.",
       validation: (Rule) =>
-        Rule.max(60).warning("Titles longer than 60 characters may be truncated"),
+        Rule.max(60).warning(
+          "Titles longer than 60 characters may be truncated",
+        ),
     }),
     defineField({
       name: "ogDescription",
       title: "Open Graph Description",
       type: "text",
       rows: 3,
-      description: "Description for social media. If empty, metaDescription will be used.",
+      description:
+        "Description for social media. If empty, metaDescription will be used.",
       validation: (Rule) =>
-        Rule.max(160).warning("Descriptions longer than 160 characters may be truncated"),
+        Rule.max(160).warning(
+          "Descriptions longer than 160 characters may be truncated",
+        ),
     }),
     defineField({
       name: "twitterCard",
@@ -88,24 +101,31 @@ export const seoType = defineType({
       name: "twitterTitle",
       title: "Twitter Title",
       type: "string",
-      description: "Title for Twitter. If empty, ogTitle or metaTitle will be used.",
+      description:
+        "Title for Twitter. If empty, ogTitle or metaTitle will be used.",
       validation: (Rule) =>
-        Rule.max(60).warning("Titles longer than 60 characters may be truncated"),
+        Rule.max(60).warning(
+          "Titles longer than 60 characters may be truncated",
+        ),
     }),
     defineField({
       name: "twitterDescription",
       title: "Twitter Description",
       type: "text",
       rows: 3,
-      description: "Description for Twitter. If empty, ogDescription or metaDescription will be used.",
+      description:
+        "Description for Twitter. If empty, ogDescription or metaDescription will be used.",
       validation: (Rule) =>
-        Rule.max(160).warning("Descriptions longer than 160 characters may be truncated"),
+        Rule.max(160).warning(
+          "Descriptions longer than 160 characters may be truncated",
+        ),
     }),
     defineField({
       name: "twitterImage",
       title: "Twitter Image",
       type: "image",
-      description: "Specific image for Twitter. If empty, ogImage will be used. Recommended size: 1200x675px",
+      description:
+        "Specific image for Twitter. If empty, ogImage will be used. Recommended size: 1200x675px",
       options: {
         hotspot: true,
       },
@@ -121,7 +141,8 @@ export const seoType = defineType({
       name: "canonicalUrl",
       title: "Canonical URL",
       type: "url",
-      description: "The canonical URL for this page (optional). Use to prevent duplicate content issues.",
+      description:
+        "The canonical URL for this page (optional). Use to prevent duplicate content issues.",
     }),
     defineField({
       name: "noIndex",

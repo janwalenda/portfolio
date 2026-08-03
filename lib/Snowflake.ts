@@ -9,7 +9,10 @@ export class Snowflake {
   canvas: HTMLCanvasElement | null;
   ctx: CanvasRenderingContext2D | null;
 
-  constructor(canvas: HTMLCanvasElement | null, ctx: CanvasRenderingContext2D | null) {
+  constructor(
+    canvas: HTMLCanvasElement | null,
+    ctx: CanvasRenderingContext2D | null,
+  ) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.x = Math.random() * (this.canvas?.width ?? 0);

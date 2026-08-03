@@ -8,14 +8,16 @@ import { useMessageDisplayedStore } from "@/store/messageDisplayed";
 import { Snowflake } from "../lib/Snowflake";
 import { H3 } from "./ui/heading";
 
-export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEvent }) {
+export default function WinterOverlay({
+  seasonEvent,
+}: {
+  seasonEvent?: SeasonEvent;
+}) {
   const { messageDisplayed, setMessageDisplayed } = useMessageDisplayedStore();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-
   useEffect(() => {
-
     const canvas = canvasRef.current;
 
     if (!canvas) return;
@@ -36,7 +38,6 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-
     // Schneeflocken erstellen
     const snowflakes: Snowflake[] = [];
 
@@ -51,7 +52,7 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-      snowflakes.forEach(snowflake => {
+      snowflakes.forEach((snowflake) => {
         snowflake.fall();
         snowflake.draw();
       });
@@ -69,8 +70,15 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
 
   return (
     <>
-      <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-10" />
-      <Modal backdrop open={!messageDisplayed} onClose={() => setMessageDisplayed(true)}>
+      <canvas
+        ref={canvasRef}
+        className="fixed top-0 left-0 w-full h-full pointer-events-none z-10"
+      />
+      <Modal
+        backdrop
+        open={!messageDisplayed}
+        onClose={() => setMessageDisplayed(true)}
+      >
         <form method="dialog" className="flex items-center justify-end">
           <Button type="submit" size={"sm"}>
             <Icon icon="mdi:close" />
@@ -80,5 +88,5 @@ export default function WinterOverlay({ seasonEvent }: { seasonEvent?: SeasonEve
         <p className="text-lg">{seasonEvent?.message}</p>
       </Modal>
     </>
-  )
+  );
 }
