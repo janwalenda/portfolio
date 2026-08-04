@@ -29,6 +29,7 @@ export async function getConfig() {
   try {
     const config = await sanityFetch({
       query: GET_CONFIG_QUERY,
+      perspective: "published",
     });
 
     return config.data || null;

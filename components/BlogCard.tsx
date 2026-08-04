@@ -16,7 +16,7 @@ export default function BlogCard({
       publishedAt={post.publishedAt!}
       url={{
         url: `/blog/${post.slug?.current}`,
-        title: "Read More",
+        title: "Weiterlesen",
       }}
     />
   );

@@ -11,6 +11,7 @@ export async function getPostBySlug(slug: string) {
   try {
     const post = await sanityFetch({
       query: POST_BY_SLUG_QUERY,
+      perspective: "published",
       params: {
         slug,
       },

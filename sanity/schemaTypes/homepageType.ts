@@ -46,7 +46,7 @@ export const homepageType = defineType({
       name: "servicesTitle",
       title: "Services Section Title",
       type: "string",
-      initialValue: "What I Offer",
+      initialValue: "Was ich fuer dich umsetze",
       group: "services",
     }),
     defineField({
@@ -69,7 +69,7 @@ export const homepageType = defineType({
       name: "techStackTitle",
       title: "Tech Stack Section Title",
       type: "string",
-      initialValue: "Technologies I Master",
+      initialValue: "Technologien und Werkzeuge",
       group: "techStack",
     }),
     defineField({
@@ -92,7 +92,7 @@ export const homepageType = defineType({
       name: "selectedWorkTitle",
       title: "Selected Work Section Title",
       type: "string",
-      initialValue: "Selected Work",
+      initialValue: "Ausgewaehlte Projekte",
       group: "selectedWork",
     }),
     defineField({
@@ -104,7 +104,7 @@ export const homepageType = defineType({
     }),
     defineField({
       name: "selectedWorkCount",
-      title: "Number of Posts to Show",
+      title: "Anzahl der Karten",
       type: "number",
       initialValue: 6,
       validation: (Rule) => Rule.min(1).max(12),
