@@ -28,7 +28,7 @@ export async function getHomePageData() {
 
   return {
     homepage,
-    latestPosts: posts.slice(0, 3),
+    latestPosts: posts.slice(0, selectedWorkCount),
     projectCards: getProjectCards(projectsPage, selectedWorkCount),
   };
 }

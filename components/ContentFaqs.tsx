@@ -4,7 +4,8 @@ import { Collapse, CollapseContent, CollapseTitle } from "./ui/collapse";
 import { H2 } from "./ui/heading";
 
 type ContentFaq = {
-  _key: string;
+  _id?: string;
+  _key?: string;
   title?: string;
   body?: BlockContent;
 };
@@ -32,7 +33,7 @@ export default function ContentFaqs({
         <div className="flex flex-col gap-4">
           {faqs.map((faq) => (
             <Collapse
-              key={faq._key}
+              key={faq._id ?? faq._key ?? faq.title ?? "faq-item"}
               className="rounded-box border border-base-content/10 bg-base-200"
             >
               <CollapseTitle className="text-lg">{faq.title}</CollapseTitle>
