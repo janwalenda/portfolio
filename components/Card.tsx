@@ -11,7 +11,7 @@ import { H2 } from "./ui/heading";
 type CardUrl = { url: string; title: string };
 
 function formatDate(value: string) {
-  return new Date(value).toLocaleDateString("en-UK", {
+  return new Date(value).toLocaleDateString("de-DE", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -19,7 +19,7 @@ function formatDate(value: string) {
 }
 
 function formatTime(value: string) {
-  return new Date(value).toLocaleTimeString("en-UK", {
+  return new Date(value).toLocaleTimeString("de-DE", {
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -58,10 +58,10 @@ export default function Card(props: {
         <p>{description}</p>
         <small className="flex flex-col text-xs">
           <time dateTime={publishedAt ?? ""}>
-            From:{publishedAt ? formatDate(publishedAt) : "Date not available"}
+            Datum: {publishedAt ? formatDate(publishedAt) : "Kein Datum"}
           </time>
           <time dateTime={publishedAt ?? ""}>
-            {publishedAt ? formatTime(publishedAt) : "Date not available"}
+            {publishedAt ? formatTime(publishedAt) : "Keine Uhrzeit"}
           </time>
         </small>
         <CardAction>

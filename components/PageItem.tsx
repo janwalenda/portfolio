@@ -1,5 +1,8 @@
 import ContentHero from "./ContentHero";
 import ContentSplitImage from "./ContentSplitImage";
+import ContentFeatures from "./ContentFeatures";
+import ContentFaqs from "./ContentFaqs";
+import ContentTextBlock from "./ContentTextBlock";
 import GridItem, { type CardWithExpandedAction } from "./GridItem";
 import { type PageItemProps } from "../lib/pageItemTypes";
 
@@ -26,6 +29,18 @@ export default function PageItem({ content }: PageItemProps) {
           cards={(content.components || []) as CardWithExpandedAction[]}
         />
       );
+    }
+
+    case "features": {
+      return <ContentFeatures key={content._key} {...content} />;
+    }
+
+    case "faqs": {
+      return <ContentFaqs key={content._key} {...content} />;
+    }
+
+    case "textBlock": {
+      return <ContentTextBlock key={content._key} {...content} />;
     }
 
     default: {

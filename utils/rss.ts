@@ -9,16 +9,16 @@ export default async function generateRssFeed(
   const site_url = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   const feedOptions: RSS.FeedOptions = {
-    title: "Blog posts | RSS Feed",
-    description: "Welcome to this blog posts!",
+    title: "Blogbeitraege | RSS-Feed",
+    description: "Aktuelle Blogbeitraege von Jan Walenda.",
     site_url: site_url,
     feed_url: `${site_url}/blog/rss`,
     image_url: allPosts[0].mainImage
       ? imageURL(allPosts[0].mainImage).url()
       : "",
     pubDate: new Date(),
-    copyright: `All rights reserved ${new Date().getFullYear()}`,
-    language: "en",
+    copyright: `Alle Rechte vorbehalten ${new Date().getFullYear()}`,
+    language: "de",
   };
 
   const feed = new RSS(feedOptions);

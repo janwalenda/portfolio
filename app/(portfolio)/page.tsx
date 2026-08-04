@@ -14,6 +14,25 @@ import Services from "@/components/Services";
 import { getHomepage } from "@/sanity/lib/homepage/getHomepage";
 import { H1, H2 } from "@/components/ui/heading";
 import Link from "next/link";
+import PageItem, { type PageItemProps } from "@/components/PageItem";
+import GridItem, { type CardWithExpandedAction } from "@/components/GridItem";
+
+function getProjectCards(
+  projectsPage: Awaited<ReturnType<typeof getPageBySlug>>,
+  selectedWorkCount: number,
+) {
+  if (!projectsPage?.content) {
+    return [];
+  }
+
+  return projectsPage.content
+    .filter((content) => content._type === "grid")
+    .flatMap((content) =>
+      content._type === "grid" ? (content.components ?? []) : [],
+    )
+    .filter(Boolean)
+    .slice(0, selectedWorkCount) as CardWithExpandedAction[];
+}
 
 export async function generateMetadata() {
   const page = await getPageBySlug("home");
@@ -38,21 +57,25 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const homepage = await getHomepage();
+  const projectsPage = await getPageBySlug("projects");
   const posts = await getAllPosts("desc");
-  const postCount = homepage?.selectedWorkCount || 6;
-  const latestPosts = posts.slice(0, postCount);
+  const selectedWorkCount = homepage?.selectedWorkCount || 6;
+  const latestPosts = posts.slice(0, 3);
 
   // If no homepage data, render empty
   if (!homepage) {
     return (
       <div className="w-full flex flex-col min-h-screen items-center justify-center">
-        <p className="text-base-content/50">No homepage content configured.</p>
+        <p className="text-base-content/50">
+          Es sind noch keine Inhalte fuer die Startseite konfiguriert.
+        </p>
       </div>
     );
   }
 
   const hero = homepage.heroSection;
   const cta = homepage.ctaSection;
+  const projectCards = getProjectCards(projectsPage, selectedWorkCount);
 
   return (
     <div className="w-full flex flex-col">
@@ -159,7 +182,7 @@ export default async function Home() {
       />
 
       {/* Selected Work Section */}
-      {(homepage.selectedWorkTitle || latestPosts.length > 0) && (
+      {(homepage.selectedWorkTitle || projectCards.length > 0) && (
         <section id="selected-work" className="w-full py-20 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
@@ -175,28 +198,55 @@ export default async function Home() {
               )}
             </div>
 
-            {latestPosts.length > 0 ? (
+            {projectCards.length > 0 ? (
               <>
-                <CardGrid className="w-full mb-8">
-                  {latestPosts.map((post) => (
-                    <BlogCard key={post._id} post={post} />
-                  ))}
-                </CardGrid>
-
-                <div className="text-center">
-                  <Button asChild variant="default" size="lg" className="gap-2">
-                    <Link href="/blog">
-                      View All Posts
-                      <Icon icon="heroicons:arrow-right" className="size-5" />
-                    </Link>
-                  </Button>
-                </div>
+                <GridItem cards={projectCards} />
               </>
             ) : (
               <div className="text-center text-base-content/50">
-                <p>No projects yet. Check back soon!</p>
+                <p>Noch keine Projekte hinterlegt. Schau bald wieder vorbei.</p>
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* Additional Homepage Sections */}
+      {Array.isArray(homepage.pageBuilder) &&
+        homepage.pageBuilder.length > 0 &&
+        homepage.pageBuilder.map((content) => (
+          <PageItem
+            key={content._key}
+            content={content as PageItemProps["content"]}
+          />
+        ))}
+
+      {/* Blog Section */}
+      {latestPosts.length > 0 && (
+        <section id="blog" className="w-full py-20 px-6 bg-base-200/40">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <H2 className="text-4xl font-bold mb-4">Aus dem Blog</H2>
+              <p className="text-lg text-base-content/70">
+                Artikel zu Frontend, CMS-Modernisierung, Performance und
+                technischen Entscheidungen.
+              </p>
+            </div>
+
+            <CardGrid className="w-full mb-8">
+              {latestPosts.map((post) => (
+                <BlogCard key={post._id} post={post} />
+              ))}
+            </CardGrid>
+
+            <div className="text-center">
+              <Button asChild variant="default" size="lg" className="gap-2">
+                <Link href="/blog">
+                  Alle Beitraege ansehen
+                  <Icon icon="heroicons:arrow-right" className="size-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       )}

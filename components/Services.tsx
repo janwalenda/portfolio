@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { H2 } from "./ui/heading";
+import { H2, H3 } from "./ui/heading";
 
 export interface ServiceItem {
   title: string | null;
@@ -23,7 +23,7 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
   }
 
   return (
-    <section className="w-full py-20 px-6 bg-base-100">
+    <section id="leistungen" className="w-full py-20 px-6 bg-base-100">
       <div className="max-w-6xl mx-auto">
         {(title || subtitle) && (
           <div className="text-center mb-12">
@@ -49,7 +49,7 @@ export default function Services({ title, subtitle, services }: ServicesProps) {
                       />
                     </div>
                   )}
-                  <H2 className="card-title text-xl">{service.title}</H2>
+                  <H3 className="card-title text-xl">{service.title}</H3>
                 </div>
                 <p className="text-base-content/70">{service.description}</p>
               </div>
