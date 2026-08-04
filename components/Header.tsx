@@ -23,7 +23,7 @@ async function Header({
   return (
     <header className="navbar bg-base-100/30 backdrop-blur-lg border-b-base-content border-b sticky top-0 z-50">
       <a href="#content" className="sr-only focus:not-sr-only">
-        Skip to main content
+        Zum Inhalt springen
       </a>
       <div className="flex flex-row items-center flex-1">
         <div className="flex-1">

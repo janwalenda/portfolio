@@ -12,23 +12,22 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
+export type LinkReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "link";
+};
+
 export type CtaSection = {
   _type: "ctaSection";
   title?: string;
   subtitle?: string;
-  primaryCta?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "link";
-  };
-  secondaryCta?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "link";
-  };
+  primaryCta?: LinkReference;
+  secondaryCta?: LinkReference;
 };
 
 export type Technology = {
@@ -47,6 +46,13 @@ export type Service = {
   icon?: Icon;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
 export type HomepageHero = {
   _type: "homepageHero";
   badgeEnabled?: boolean;
@@ -54,29 +60,14 @@ export type HomepageHero = {
   title?: string;
   subtitle?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
-  primaryCta?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "link";
-  };
-  secondaryCta?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "link";
-  };
+  primaryCta?: LinkReference;
+  secondaryCta?: LinkReference;
 };
 
 export type Homepage = {
@@ -123,7 +114,9 @@ export type PageBuilder = Array<
   | ({
       _key: string;
     } & Grid)
-  | unknown // Unable to locate the referenced type "textBlocks" in schema
+  | ({
+      _key: string;
+    } & TextBlock)
 >;
 
 export type Icon = {
@@ -166,12 +159,7 @@ export type Seo = {
   metaDescription?: string;
   metaKeywords?: Array<string>;
   ogImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -184,12 +172,7 @@ export type Seo = {
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -204,25 +187,28 @@ export type Seo = {
 export type FooterColBuilder = {
   _type: "footerColBuilder";
   title?: string;
-  links?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "link";
-  }>;
+  links?: Array<
+    {
+      _key: string;
+    } & LinkReference
+  >;
+};
+
+export type CardReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "card";
 };
 
 export type Grid = {
   _type: "grid";
   title?: string;
-  components?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "card";
-  }>;
+  components?: Array<
+    {
+      _key: string;
+    } & CardReference
+  >;
 };
 
 export type TextBlock = {
@@ -240,24 +226,31 @@ export type Card = {
   title?: string;
   description?: string;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
-  action?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "link";
-  }>;
+  action?: Array<
+    {
+      _key: string;
+    } & LinkReference
+  >;
+};
+
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
+
+export type CategoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
 };
 
 export type Post = {
@@ -269,32 +262,20 @@ export type Post = {
   title?: string;
   description?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
@@ -309,7 +290,7 @@ export type BlockContent = Array<
         _key: string;
       }>;
       style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-      listItem?: "bullet";
+      listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
         _type: "link";
@@ -322,17 +303,16 @@ export type BlockContent = Array<
   | ({
       _key: string;
     } & Code)
+  | ({
+      _key: string;
+    } & Callout)
   | {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
+      caption?: string;
       _type: "image";
       _key: string;
     }
@@ -353,12 +333,7 @@ export type Author = {
   name?: string;
   slug?: Slug;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -406,12 +381,7 @@ export type Page = {
   slug?: Slug;
   content?: PageBuilder;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -431,16 +401,21 @@ export type Features = {
   }>;
 };
 
+export type FaqReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "faq";
+};
+
 export type Faqs = {
   _type: "faqs";
   title?: string;
-  faqs?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "faq";
-  }>;
+  faqs?: Array<
+    {
+      _key: string;
+    } & FaqReference
+  >;
 };
 
 export type Faq = {
@@ -468,12 +443,7 @@ export type Hero = {
     | "base";
   text?: BlockContent;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -508,12 +478,7 @@ export type SplitImage = {
     | "base";
   title?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -530,20 +495,13 @@ export type SiteSettings = {
   title?: string;
   description?: string;
   defaultSeo?: Seo;
-  headerLinks?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "link";
-  }>;
+  headerLinks?: Array<
+    {
+      _key: string;
+    } & LinkReference
+  >;
   headerLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -555,6 +513,13 @@ export type SiteSettings = {
       _key: string;
     } & FooterColBuilder
   >;
+};
+
+export type Callout = {
+  _type: "callout";
+  tone?: "info" | "tip" | "warning";
+  title?: string;
+  body?: string;
 };
 
 export type Code = {
@@ -662,9 +627,11 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | LinkReference
   | CtaSection
   | Technology
   | Service
+  | SanityImageAssetReference
   | HomepageHero
   | Homepage
   | PageBuilder
@@ -674,9 +641,12 @@ export type AllSanitySchemaTypes =
   | SeasonEvent
   | Seo
   | FooterColBuilder
+  | CardReference
   | Grid
   | TextBlock
   | Card
+  | AuthorReference
+  | CategoryReference
   | Post
   | BlockContent
   | Slug
@@ -684,12 +654,14 @@ export type AllSanitySchemaTypes =
   | Category
   | Page
   | Features
+  | FaqReference
   | Faqs
   | Faq
   | Hero
   | Link
   | SplitImage
   | SiteSettings
+  | Callout
   | Code
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -699,14 +671,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;
-
-type ArrayOf<T> = Array<
-  T & {
-    _key: string;
-  }
->;
 
 // Source: sanity/lib/blog/getAllPosts.ts
 // Variable: GET_ALL_POSTS_QUERY_ASC
@@ -720,32 +684,20 @@ export type GET_ALL_POSTS_QUERY_ASC_RESULT = Array<{
   title?: string;
   description?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
@@ -763,32 +715,20 @@ export type GET_ALL_POSTS_QUERY_DESC_RESULT = Array<{
   title?: string;
   description?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
@@ -806,32 +746,20 @@ export type POST_BY_SLUG_QUERY_RESULT = {
   title?: string;
   description?: string;
   slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
+  author?: AuthorReference;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  categories?: Array<
+    {
+      _key: string;
+    } & CategoryReference
+  >;
   publishedAt?: string;
   body?: BlockContent;
   seo?: Seo;
@@ -864,12 +792,7 @@ export type GET_CONFIG_QUERY_RESULT = {
     } | null;
   }> | null;
   headerLogo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -914,7 +837,7 @@ export type GET_LINKS_QUERY_RESULT = Array<{
 
 // Source: sanity/lib/homepage/getHomepage.ts
 // Variable: homepageQuery
-// Query: *[_type == "homepage" && _id == "homepage"][0] {    heroSection {      badgeEnabled,      badgeText,      title,      subtitle,      image,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    servicesTitle,    servicesSubtitle,    services[] {      _type,      title,      description,      icon    },    techStackTitle,    techStackSubtitle,    techStack[] {      _type,      name,      icon,      level,      experience,      projects    },    selectedWorkTitle,    selectedWorkSubtitle,    selectedWorkCount,    ctaSection {      title,      subtitle,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    pageBuilder[] {      _type,      _key,      ...    }  }
+// Query: *[_type == "homepage" && _id == "homepage"][0] {    heroSection {      badgeEnabled,      badgeText,      title,      subtitle,      image,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    servicesTitle,    servicesSubtitle,    services[] {      _type,      title,      description,      icon    },    techStackTitle,    techStackSubtitle,    techStack[] {      _type,      name,      icon,      level,      experience,      projects    },    selectedWorkTitle,    selectedWorkSubtitle,    selectedWorkCount,    ctaSection {      title,      subtitle,      primaryCta-> {        title,        slug,        url,        icon      },      secondaryCta-> {        title,        slug,        url,        icon      }    },    pageBuilder[] {      _key,      _type,      _type == "hero" => {        ...,      },      _type == "splitImage" => {        ...,      },      _type == "features" => {        ...,      },      _type == "faqs" => {        ...,        faqs[]->      },      _type == "grid" => {        ...,        components[]-> {          ...,          action[]->        }      },      _type == "textBlock" => {        ...,      }    }  }
 export type HomepageQueryResult = {
   heroSection: {
     badgeEnabled: boolean | null;
@@ -922,12 +845,7 @@ export type HomepageQueryResult = {
     title: string | null;
     subtitle: string | null;
     image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -985,20 +903,22 @@ export type HomepageQueryResult = {
   } | null;
   pageBuilder: Array<
     | {
-        _type: "faqs";
         _key: string;
+        _type: "faqs";
         title?: string;
-        faqs?: Array<{
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "faq";
-        }>;
+        faqs: Array<{
+          _id: string;
+          _type: "faq";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          body?: BlockContent;
+        }> | null;
       }
     | {
-        _type: "features";
         _key: string;
+        _type: "features";
         title?: string;
         features?: Array<{
           title?: string;
@@ -1008,20 +928,40 @@ export type HomepageQueryResult = {
         }>;
       }
     | {
-        _type: "grid";
         _key: string;
+        _type: "grid";
         title?: string;
-        components?: Array<{
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          _key: string;
-          [internalGroqTypeReferenceTo]?: "card";
-        }>;
+        components: Array<{
+          _id: string;
+          _type: "card";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          description?: string;
+          mainImage?: {
+            asset?: SanityImageAssetReference;
+            media?: unknown;
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            _type: "image";
+          };
+          action: Array<{
+            _id: string;
+            _type: "link";
+            _createdAt: string;
+            _updatedAt: string;
+            _rev: string;
+            title?: string;
+            slug?: Slug;
+            url?: string;
+            icon?: Icon;
+          }> | null;
+        }> | null;
       }
     | {
-        _type: "hero";
         _key: string;
+        _type: "hero";
         title?: string;
         variant?:
           | "accent"
@@ -1035,12 +975,7 @@ export type HomepageQueryResult = {
           | "warning";
         text?: BlockContent;
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
@@ -1048,8 +983,8 @@ export type HomepageQueryResult = {
         };
       }
     | {
-        _type: "splitImage";
         _key: string;
+        _type: "splitImage";
         orientation?: "imageLeft" | "imageRight";
         variant?:
           | "accent"
@@ -1063,19 +998,19 @@ export type HomepageQueryResult = {
           | "warning";
         title?: string;
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
         };
       }
-    | unknown
+    | {
+        _key: string;
+        _type: "textBlock";
+        title?: string;
+        text?: BlockContent;
+      }
   > | null;
 } | null;
 
@@ -1092,12 +1027,7 @@ export type GET_ALL_PAGES_QUERY_RESULT = Array<{
   slug?: Slug;
   content?: PageBuilder;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1118,10 +1048,6 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
   title?: string;
   slug?: Slug;
   content: Array<
-    | {
-        _key: string;
-        _type: null;
-      }
     | {
         _key: string;
         _type: "faqs";
@@ -1160,12 +1086,7 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
           title?: string;
           description?: string;
           mainImage?: {
-            asset?: {
-              _ref: string;
-              _type: "reference";
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-            };
+            asset?: SanityImageAssetReference;
             media?: unknown;
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
@@ -1200,12 +1121,7 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
           | "warning";
         text?: BlockContent;
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
@@ -1228,26 +1144,22 @@ export type GET_PAGE_DATA_BY_SLUG_QUERY_RESULT = {
           | "warning";
         title?: string;
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
           media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
         };
       }
+    | {
+        _key: string;
+        _type: "textBlock";
+        title?: string;
+        text?: BlockContent;
+      }
   > | null;
   mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -1281,7 +1193,7 @@ declare module "@sanity/client" {
     '\n    *[\n      _type == "post" && slug.current == $slug\n    ] | order(publishedAt asc)[0]\n  ': POST_BY_SLUG_QUERY_RESULT;
     '\n  *[\n    _type == "siteSettings"\n    && _id == "siteSettings"\n  ][0] {\n    ...,\n    headerLinks[]-> {\n      ...,\n      icon {\n        ...\n      }\n    },\n    footerColumns[] {\n      ...,\n      links[]-> {\n        ...,\n        icon {\n          ...\n        }\n      }\n    }\n  }\n': GET_CONFIG_QUERY_RESULT;
     '\n    *[\n      _type == "link"\n    ] | order(name asc)\n  ': GET_LINKS_QUERY_RESULT;
-    '\n  *[_type == "homepage" && _id == "homepage"][0] {\n    heroSection {\n      badgeEnabled,\n      badgeText,\n      title,\n      subtitle,\n      image,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    servicesTitle,\n    servicesSubtitle,\n    services[] {\n      _type,\n      title,\n      description,\n      icon\n    },\n    techStackTitle,\n    techStackSubtitle,\n    techStack[] {\n      _type,\n      name,\n      icon,\n      level,\n      experience,\n      projects\n    },\n    selectedWorkTitle,\n    selectedWorkSubtitle,\n    selectedWorkCount,\n    ctaSection {\n      title,\n      subtitle,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    pageBuilder[] {\n      _type,\n      _key,\n      ...\n    }\n  }\n': HomepageQueryResult;
+    '\n  *[_type == "homepage" && _id == "homepage"][0] {\n    heroSection {\n      badgeEnabled,\n      badgeText,\n      title,\n      subtitle,\n      image,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    servicesTitle,\n    servicesSubtitle,\n    services[] {\n      _type,\n      title,\n      description,\n      icon\n    },\n    techStackTitle,\n    techStackSubtitle,\n    techStack[] {\n      _type,\n      name,\n      icon,\n      level,\n      experience,\n      projects\n    },\n    selectedWorkTitle,\n    selectedWorkSubtitle,\n    selectedWorkCount,\n    ctaSection {\n      title,\n      subtitle,\n      primaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      },\n      secondaryCta-> {\n        title,\n        slug,\n        url,\n        icon\n      }\n    },\n    pageBuilder[] {\n      _key,\n      _type,\n      _type == "hero" => {\n        ...,\n      },\n      _type == "splitImage" => {\n        ...,\n      },\n      _type == "features" => {\n        ...,\n      },\n      _type == "faqs" => {\n        ...,\n        faqs[]->\n      },\n      _type == "grid" => {\n        ...,\n        components[]-> {\n          ...,\n          action[]->\n        }\n      },\n      _type == "textBlock" => {\n        ...,\n      }\n    }\n  }\n': HomepageQueryResult;
     '\n    *[_type == "page"]\n': GET_ALL_PAGES_QUERY_RESULT;
     '\n    *[_type == "page" && slug.current == $slug][0]{\n      ...,\n      content[] {\n        _key,\n        _type,\n        _type == "hero" => {\n          ...,\n        },\n        _type == "splitImage" => {\n          ...,\n        },\n        _type == "features" => {\n          ...,\n        },\n        _type == "faqs" => {\n          ...,\n          faqs[]->\n        },\n        _type == "grid" => {\n          ...,\n          components[]-> {\n            ...,\n            action[]->,\n          }\n        },\n        _type == "textBlock" => {\n          ...,\n        }\n      }\n    }\n': GET_PAGE_DATA_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "seasonEvent" && defined(_id) && id == $id][0]\n': GET_ACTIVE_SEASON_EVENT_BY_ID_RESULT;

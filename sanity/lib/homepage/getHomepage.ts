@@ -60,9 +60,31 @@ const homepageQuery = defineQuery(`
       }
     },
     pageBuilder[] {
-      _type,
       _key,
-      ...
+      _type,
+      _type == "hero" => {
+        ...,
+      },
+      _type == "splitImage" => {
+        ...,
+      },
+      _type == "features" => {
+        ...,
+      },
+      _type == "faqs" => {
+        ...,
+        faqs[]->
+      },
+      _type == "grid" => {
+        ...,
+        components[]-> {
+          ...,
+          action[]->
+        }
+      },
+      _type == "textBlock" => {
+        ...,
+      }
     }
   }
 `);
@@ -70,6 +92,7 @@ const homepageQuery = defineQuery(`
 export async function getHomepage() {
   const { data } = await sanityFetch({
     query: homepageQuery,
+    perspective: "published",
   });
 
   return data;

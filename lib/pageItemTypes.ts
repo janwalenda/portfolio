@@ -91,5 +91,11 @@ export type PageItemProps = {
           crop?: SanityImageCrop;
           _type: "image";
         };
+      }
+    | {
+        _key: string;
+        _type: "textBlock";
+        title?: string;
+        text?: BlockContent;
       };
 };

@@ -11,6 +11,7 @@ export async function getLinks() {
   try {
     const links = await sanityFetch({
       query: GET_LINKS_QUERY,
+      perspective: "published",
     });
 
     return links.data || null;

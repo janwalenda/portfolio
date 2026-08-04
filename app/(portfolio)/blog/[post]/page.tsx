@@ -78,7 +78,7 @@ export default async function Post({
     },
     ...(image && { image }),
     url: postUrl,
-    inLanguage: "en",
+    inLanguage: "de-DE",
   };
 
   return (

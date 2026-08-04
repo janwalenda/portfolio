@@ -16,6 +16,7 @@ export async function getAllPosts(direction: "asc" | "desc" = "asc") {
         direction === "asc"
           ? GET_ALL_POSTS_QUERY_ASC
           : GET_ALL_POSTS_QUERY_DESC,
+      perspective: "published",
     });
 
     return posts.data || [];

@@ -44,10 +44,10 @@ export default function CommandMenu({
       onOpenChange={setOpen}
       className="bg-base-200 rounded-box"
     >
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder="Befehl eingeben oder suchen..." />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Pages">
+        <CommandEmpty>Keine Ergebnisse gefunden.</CommandEmpty>
+        <CommandGroup heading="Seiten">
           {pages.map((page) => (
             <CommandItem key={page._id} onSelect={go(`/${page.slug?.current}`)}>
               <span>{page.title}</span>
@@ -55,7 +55,7 @@ export default function CommandMenu({
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Posts">
+        <CommandGroup heading="Beiträge">
           {posts.map((post) => (
             <CommandItem
               key={post._id}
@@ -66,14 +66,14 @@ export default function CommandMenu({
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Settings">
+        <CommandGroup heading="Einstellungen">
           <CommandItem
             onSelect={() => {
               setTheme(isDark ? "light" : "dark");
               setOpen(false);
             }}
           >
-            <span>Toggle Theme</span>
+            <span>Theme wechseln</span>
             <Icon
               icon={isDark ? "heroicons:sun-solid" : "heroicons:moon-solid"}
               className="size-5 fill-accent-content"

@@ -15,7 +15,7 @@ export const homepageHeroType = defineType({
       name: "badgeText",
       title: "Badge Text",
       type: "string",
-      initialValue: "Available for new projects",
+      initialValue: "Aktuell Kapazitaet fuer neue Projekte",
       hidden: ({ parent }) => !parent?.badgeEnabled,
     }),
     defineField({
