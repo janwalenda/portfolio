@@ -94,7 +94,7 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ["components/**/*.{tsx,jsx}"],
+    files: ["./**/*.{tsx,jsx}"],
     rules: {
       // Keep UI components focused and easy to scan
       "max-lines": [
