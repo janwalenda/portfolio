@@ -24,7 +24,9 @@ export default function ContentFeatures({
               key={feature._key}
               className="rounded-box border border-base-content/10 bg-base-200 p-6"
             >
-              {feature.title && <H3 className="mb-3 text-2xl">{feature.title}</H3>}
+              {feature.title && (
+                <H3 className="mb-3 text-2xl">{feature.title}</H3>
+              )}
               {feature.text && (
                 <p className="text-base leading-relaxed text-base-content/75">
                   {feature.text}

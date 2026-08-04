@@ -1,9 +1,21 @@
-import { type Faqs } from "@/sanity.types";
+import { type BlockContent } from "@/sanity.types";
 import Prose from "./Prose";
 import { Collapse, CollapseContent, CollapseTitle } from "./ui/collapse";
 import { H2 } from "./ui/heading";
 
-export default function ContentFaqs({ title, faqs }: Pick<Faqs, "title" | "faqs">) {
+type ContentFaq = {
+  _key: string;
+  title?: string;
+  body?: BlockContent;
+};
+
+export default function ContentFaqs({
+  title,
+  faqs,
+}: {
+  title?: string;
+  faqs?: ContentFaq[];
+}) {
   if (!faqs || faqs.length === 0) {
     return null;
   }
@@ -20,7 +32,7 @@ export default function ContentFaqs({ title, faqs }: Pick<Faqs, "title" | "faqs"
         <div className="flex flex-col gap-4">
           {faqs.map((faq) => (
             <Collapse
-              key={faq._id ?? faq._key}
+              key={faq._key}
               className="rounded-box border border-base-content/10 bg-base-200"
             >
               <CollapseTitle className="text-lg">{faq.title}</CollapseTitle>
