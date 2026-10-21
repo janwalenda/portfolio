@@ -4,6 +4,7 @@ import PageItem, { type PageItemProps } from "@/components/PageItem";
 import Image from "@/components/Image";
 import { generateSeoMetadata } from "@/lib/generateSeoMetadata";
 import { getConfig } from "@/sanity/lib/config/getConfig";
+import { H1 } from "@/components/ui/heading";
 
 export async function generateMetadata({
   params,
@@ -45,6 +46,12 @@ export default async function Page({
     return notFound();
   }
 
+  const firstContent = Array.isArray(page.content) ? page.content[0] : null;
+  const heroOwnsPageTitle =
+    firstContent?._type === "hero" &&
+    Boolean(firstContent.title) &&
+    firstContent.title === page.title;
+
   return (
     <div
       className="
@@ -57,10 +64,13 @@ export default async function Page({
       relative p-4
     "
     >
+      {page.title && !heroOwnsPageTitle && (
+        <H1 className="text-4xl md:text-5xl font-bold">{page.title}</H1>
+      )}
       {page.mainImage && (
         <Image
           src={page.mainImage}
-          alt={page.title || ""}
+          alt=""
           width={1200}
           height={600}
           className="object-cover h-auto"
@@ -72,6 +82,9 @@ export default async function Page({
           <PageItem
             key={content._key}
             content={content as PageItemProps["content"]}
+            isPageTitleHero={
+              heroOwnsPageTitle && content._key === firstContent?._key
+            }
           />
         ))}
     </div>

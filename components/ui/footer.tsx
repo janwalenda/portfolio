@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
-import { H6 } from "./heading";
 
 type FooterProps = React.ComponentProps<"div"> & {
   asChild?: boolean;
@@ -39,7 +38,9 @@ export function FooterColumn({
 }: FooterColumnProps) {
   return (
     <nav className={cn("footer-column", className)} {...props}>
-      <H6 className="footer-title">{title}</H6>
+      <p className="footer-title font-dmSerifDisplay text-base font-bold">
+        {title}
+      </p>
       {children}
     </nav>
   );
