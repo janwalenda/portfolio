@@ -8,6 +8,7 @@ import {
 import CommandMenu from "./CommandMenu";
 import { DisableDraftMode } from "./DisableDraftMode";
 import Footer from "./Footer";
+import GoatCounter from "./GoatCounter";
 import Header from "./Header";
 import JsonLd from "./JsonLd";
 import ThemeProvider from "./ThemeProvider";
@@ -44,6 +45,7 @@ export default async function PortfolioLayoutShell({
           {children}
         </main>
         {config && <Footer config={config} />}
+        <GoatCounter />
         <SanityLive />
         {isDraftMode && (
           <>

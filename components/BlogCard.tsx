@@ -11,7 +11,11 @@ export default function BlogCard({
       key={post._id}
       title={post.title!}
       image={post.mainImage!}
-      alt={post.mainImage?.alt || post.title || ""}
+      alt={
+        post.mainImage?.alt && post.mainImage.alt !== post.title
+          ? post.mainImage.alt
+          : ""
+      }
       description={post.description!}
       publishedAt={post.publishedAt!}
       url={{

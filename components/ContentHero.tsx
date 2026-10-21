@@ -3,10 +3,18 @@ import { Hero, HeroContent, HeroOverlay } from "@/components/ui/hero";
 import Image from "@/components/Image";
 import { variant } from "@/lib/variant";
 import { cn } from "@/lib/utils";
-import { H3 } from "./ui/heading";
+import { H1, H2 } from "./ui/heading";
 import Prose from "./Prose";
 
-export default function ContentHero({ content }: { content: HeroType }) {
+export default function ContentHero({
+  content,
+  asPageTitle = false,
+}: {
+  content: HeroType;
+  asPageTitle?: boolean;
+}) {
+  const Title = asPageTitle ? H1 : H2;
+
   return (
     <Hero className="md:min-h-screen w-full relative overflow-hidden">
       <HeroOverlay
@@ -21,7 +29,7 @@ export default function ContentHero({ content }: { content: HeroType }) {
               src={content.image}
               width={1200}
               height={600}
-              alt={content.title || "Hero image"}
+              alt=""
               className="w-full h-auto object-cover"
             />
             {/* Gradient overlay for better text readability */}
@@ -42,9 +50,9 @@ export default function ContentHero({ content }: { content: HeroType }) {
           )}
         >
           {/* Title */}
-          <H3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
+          <Title className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
             {content.title}
-          </H3>
+          </Title>
 
           {/* Decorative Divider */}
           <div className="w-20 h-1 bg-primary rounded-box" />
