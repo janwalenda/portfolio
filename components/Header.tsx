@@ -6,7 +6,6 @@ import { imageURL } from "@/lib/imageURL";
 import Image from "next/image";
 import HeaderNavVertical from "./HeaderNavVertical";
 import Search from "./Search";
-import { H4 } from "./ui/heading";
 import { Button } from "./ui/button";
 
 async function Header({
@@ -20,6 +19,11 @@ async function Header({
     icon: link.icon ?? undefined,
   }));
 
+  const showTitle = Boolean(config?.title);
+  const logoAlt =
+    config?.headerLogoAlt ||
+    (showTitle ? "Logo" : config?.title || "Header Logo");
+
   return (
     <header className="navbar bg-base-100/30 backdrop-blur-lg border-b-base-content border-b sticky top-0 z-50">
       <a href="#content" className="sr-only focus:not-sr-only">
@@ -29,11 +33,15 @@ async function Header({
         <div className="flex-1">
           <Button asChild>
             <Link href="/">
-              {config?.title && <H4>{config.title}</H4>}
+              {showTitle && (
+                <span className="font-dmSerifDisplay text-xl font-bold">
+                  {config.title}
+                </span>
+              )}
               {config?.headerLogo && (
                 <Image
                   src={imageURL(config.headerLogo).url()}
-                  alt={config.headerLogoAlt || config.title || "Header Logo"}
+                  alt={logoAlt}
                   width={100}
                   height={100}
                 />

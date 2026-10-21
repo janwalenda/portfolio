@@ -8,14 +8,23 @@ import { type PageItemProps } from "../lib/pageItemTypes";
 
 export type { PageItemProps };
 
-export default function PageItem({ content }: PageItemProps) {
+export default function PageItem({
+  content,
+  isPageTitleHero = false,
+}: PageItemProps & { isPageTitleHero?: boolean }) {
   if (!content) {
     return null;
   }
 
   switch (content._type) {
     case "hero": {
-      return <ContentHero key={content._key} content={content} />;
+      return (
+        <ContentHero
+          key={content._key}
+          content={content}
+          asPageTitle={isPageTitleHero}
+        />
+      );
     }
 
     case "splitImage": {

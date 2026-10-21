@@ -28,7 +28,7 @@ export default function GridItem({
               key={card._id}
               title={card.title || ""}
               image={card.mainImage}
-              alt={card.title || ""}
+              alt=""
               description={card.description || ""}
               publishedAt={card._createdAt}
               url={
