@@ -9,6 +9,7 @@ export async function generateMetadata({
   params: Promise<{ page: string[] }>;
 }) {
   const { page: pageSlug } = await params;
+
   return getCmsPageMetadata(pageSlug);
 }
 

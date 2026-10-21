@@ -5,10 +5,7 @@ import { notFound } from "next/navigation";
 
 export async function getCmsPageMetadata(pageSlug: string[]) {
   const slug = pageSlug.join("/");
-  const [page, config] = await Promise.all([
-    getPageBySlug(slug),
-    getConfig(),
-  ]);
+  const [page, config] = await Promise.all([getPageBySlug(slug), getConfig()]);
 
   if (!page || !config) {
     return notFound();
