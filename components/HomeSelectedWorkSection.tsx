@@ -25,7 +25,7 @@ export default function HomeSelectedWorkSection({
           )}
         </div>
         {projectCards.length > 0 ? (
-          <GridItem cards={projectCards} />
+          <GridItem cards={projectCards} titleAs="h3" />
         ) : (
           <div className="text-center text-base-content/50">
             <p>Noch keine Projekte hinterlegt. Schau bald wieder vorbei.</p>

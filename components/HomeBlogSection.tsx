@@ -27,7 +27,7 @@ export default function HomeBlogSection({
         </div>
         <CardGrid className="w-full mb-8">
           {posts.map((post) => (
-            <BlogCard key={post._id} post={post} />
+            <BlogCard key={post._id} post={post} titleAs="h3" />
           ))}
         </CardGrid>
         <div className="text-center">

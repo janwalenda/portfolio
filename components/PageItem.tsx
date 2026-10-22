@@ -11,7 +11,11 @@ export type { PageItemProps };
 export default function PageItem({
   content,
   isPageTitleHero = false,
-}: PageItemProps & { isPageTitleHero?: boolean }) {
+  hideTextBlockTitle = false,
+}: PageItemProps & {
+  isPageTitleHero?: boolean;
+  hideTextBlockTitle?: boolean;
+}) {
   if (!content) {
     return null;
   }
@@ -49,7 +53,13 @@ export default function PageItem({
     }
 
     case "textBlock": {
-      return <ContentTextBlock key={content._key} {...content} />;
+      return (
+        <ContentTextBlock
+          key={content._key}
+          {...content}
+          hideTitle={hideTextBlockTitle}
+        />
+      );
     }
 
     default: {

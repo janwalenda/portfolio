@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# local accessibility audit artifacts
+.a11y-reports/
