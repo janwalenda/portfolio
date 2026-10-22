@@ -27,18 +27,30 @@ alwaysApply: true
 
 Do **not** commit directly to `main`. Do **not** use `main` as the base for normal feature PRs.
 
+## Pre-deploy quality gate (mandatory)
+
+**Before every push that can reach production** (release merge to `main`, hotfix to `main`, or any commit about to be released):
+
+1. `npm run lint` — must exit 0
+2. `npm run format:check` — must exit 0
+
+Do **not** merge to `main`, tag, or `git push origin main` if either fails. Fix first, then re-run both. Netlify `prebuild` runs the same checks and will fail the deploy otherwise — catch it locally.
+
+Also run lint + format:check before pushing topic branches that are about to be merged into `develop` for a release (same commands).
+
 ## Release to production
 
 When the user asks to release:
 
 1. Ensure `develop` is clean and pushed.
-2. On `develop`, optionally:  
+2. **Run the pre-deploy quality gate** (`npm run lint` && `npm run format:check`) on the commit that will become the release — abort if either fails.
+3. On `develop`, optionally:  
    `git merge --no-ff <branch> -m "merge: prepare X.Y.Z release from <topic>"`  
    (if the work is not already on `develop`).
-3. `git checkout main && git pull`
-4. `git merge --no-ff develop -m "release: X.Y.Z"`
-5. `git tag -a X.Y.Z -m "X.Y.Z"`
-6. `git push origin main && git push origin X.Y.Z` (and `develop` if it moved).
+4. `git checkout main && git pull`
+5. `git merge --no-ff develop -m "release: X.Y.Z"`
+6. `git tag -a X.Y.Z -m "X.Y.Z"`
+7. `git push origin main && git push origin X.Y.Z` (and `develop` if it moved).
 
 Bump **patch** for hotfixes/formatting; **minor** for features (a11y, analytics, content tooling). Match existing tags (`1.2.0`, `1.2.1`, …).
 
@@ -53,4 +65,4 @@ Bump **patch** for hotfixes/formatting; **minor** for features (a11y, analytics,
 
 - Ask before force-push; never force-push `main`/`develop` unless the user explicitly requests it.
 - `gh` PRs for features: `--base develop`. Release PRs `develop` → `main` only when asked to release.
-- Run lint/prettier (`npm run lint`, `npm run format:check`) before pushing release-bound commits — Netlify `prebuild` enforces them.
+- **Never skip the pre-deploy quality gate** (lint + prettier) before a release or production push.
