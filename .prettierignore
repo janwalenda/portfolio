@@ -11,3 +11,5 @@ package-lock.json
 *.min.js
 pnpm-lock.yaml
 yarn.lock
+.tools
+.a11y-reports

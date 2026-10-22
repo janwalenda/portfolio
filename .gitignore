@@ -46,3 +46,6 @@ next-env.d.ts
 
 # local accessibility audit artifacts
 .a11y-reports/
+
+# local browser extensions (WAVE etc.) for DevTools MCP
+.tools/
