@@ -15,11 +15,9 @@ export default function BlogCard({
       key={post._id}
       title={title}
       image={post.mainImage!}
-      alt={
-        post.mainImage?.alt && post.mainImage.alt !== post.title
-          ? post.mainImage.alt
-          : ""
-      }
+      // Title is visible beside the image; empty alt avoids WAVE alt_redundant
+      // when Sanity alt equals or prefixes the post title.
+      alt=""
       description={post.description!}
       publishedAt={post.publishedAt!}
       titleAs={titleAs}
