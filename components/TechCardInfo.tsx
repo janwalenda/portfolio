@@ -25,13 +25,15 @@ export function TechCardInfo({
             <span className="text-base-content/50 text-sm uppercase tracking-wider">
               Level
             </span>
-            <p className={`text-2xl font-bold ${levelColor}`}>{tech.level}</p>
+            <div className={`text-2xl font-bold ${levelColor}`}>
+              {tech.level}
+            </div>
           </div>
           <div>
             <span className="text-base-content/50 text-sm uppercase tracking-wider">
               Experience
             </span>
-            <p className="text-xl font-semibold">{tech.experience}</p>
+            <div className="text-xl font-semibold">{tech.experience}</div>
           </div>
           {tech.projects && tech.projects.length > 0 && (
             <div>

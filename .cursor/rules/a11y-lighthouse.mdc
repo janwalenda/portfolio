@@ -1,0 +1,85 @@
+---
+description: Accessibility audits with Chrome DevTools, Lighthouse, and follow-up fixes for janwalenda.de
+alwaysApply: true
+---
+
+# Accessibility & Lighthouse (portfolio)
+
+Barrierefreiheit ist Produktfokus (BFSG / WCAG). Bei A11y-Fragen, Releases mit UI-Impact oder „check the site“: **messen, nicht raten**.
+
+## Tools
+
+Use Chrome DevTools MCP (`plugin-devtools-for-agents-chrome-devtools`) when available:
+
+1. `navigate_page` / `new_page` → target URL
+2. `lighthouse_audit` with `mode: "navigation"`, `device: "desktop"` and/or `"mobile"`, `outputDirPath` under `.a11y-reports/<page-slug>/`
+3. `evaluate_script` for heading outline, landmarks, orphan inputs, tap sizes (see a11y-debugging skill snippets)
+4. `list_console_messages` with `types: ["issue"]`, `includePreservedMessages: true`
+
+Also follow the **a11y-debugging** skill (web.dev guidelines) when present.
+
+## Pages to cover (minimum)
+
+| Path | Notes |
+|------|--------|
+| `/` | Home — headings inflation, blog teasers |
+| `/about-me` | |
+| `/projects` | |
+| `/blog` | Generic „Weiterlesen“ links |
+| `/contact` | |
+| `/datenschutz` | |
+| One blog post **with code blocks** | e.g. `/blog/contrast-color-is-here-and-it-s-baseline` — CodeBlock copy button |
+
+Always run **desktop + mobile** on at least Home and one blog post with code.
+
+## Budgets (gatekeeper)
+
+- Desktop Accessibility: **100** on core pages
+- Mobile Accessibility: **≥ 95**
+- Blog posts with code: aim **≥ 95** after CodeBlock/Search fixes (was 89 when unnamed)
+
+Failing SEO audits like `link-text` (generic „Weiterlesen“) still matter for a11y of link purpose — fix even if Accessibility score is 100.
+
+## Extract failures (do not load full JSON into context)
+
+```bash
+node -e "
+const r=require('./.a11y-reports/<page>/report.json');
+const a11y=new Set((r.categories.accessibility?.auditRefs||[]).map(x=>x.id));
+console.log('a11y', Math.round((r.categories.accessibility?.score||0)*100));
+for (const a of Object.values(r.audits).filter(a=>a.score!=null && a.score<1 && a11y.has(a.id))) {
+  console.log(JSON.stringify({id:a.id,title:a.title,n:(a.details?.items||[]).length}));
+}
+"
+```
+
+Structure check: write `structure-<page>.json` via `evaluate_script` (h1 count, heading list, skips, orphan inputs).
+
+## Known hotspots in this codebase
+
+| Issue | Where |
+|-------|--------|
+| Icon-only controls need `aria-label` | `Search.tsx`, `CodeBlock.tsx` |
+| Nested checkbox in button breaks `label`/`button-name` | Avoid DaisyUI swap+checkbox pattern for copy |
+| Card/tech titles under section `h2` → use `h3` | `Card` `titleAs`, `TechCard`, homepage sections |
+| Generic „Weiterlesen“ | `BlogCard` → `aria-label` with post title |
+| Redundant page/textBlock titles | `CmsPageContent` + `ContentTextBlock` `hideTitle` |
+| Footer tap size | `min-h-11` / padding on footer links |
+
+## Reporting
+
+For durable, multi-page audits: produce a **Canvas** (`.canvas.tsx`) with scores, prioritized findings (P0–P3), WCAG refs, file paths, and a fix backlog. Raw reports live in `.a11y-reports/` (gitignored).
+
+## Automation (preferred direction)
+
+When adding CI:
+
+1. **PR:** axe-core (or Lighthouse) against local `next build && next start` — fail on P0 (`button-name`, `label`, missing names).
+2. **Post-deploy / nightly:** Lighthouse CI against production URLs with budgets above; upload JSON/HTML artifacts.
+3. Page list = table above (+ sample post with code).
+
+Do not treat Lighthouse 100 as “done” without checking outline and named controls on mobile.
+
+## After fixes
+
+Re-run Lighthouse on affected pages (desktop + mobile) before calling the work done. Release via git-flow (`develop` → `main`) when the user asks.

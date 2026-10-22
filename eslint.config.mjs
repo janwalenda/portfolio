@@ -20,6 +20,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "public/**",
     "sanity.types.ts",
+    ".tools/**",
+    ".a11y-reports/**",
   ]),
   {
     plugins: {
