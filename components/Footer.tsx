@@ -22,7 +22,7 @@ export default function Footer({
                   key={link._id}
                   href={link.slug?.current || link.url || ""}
                   target={link.url ? "_blank" : "_self"}
-                  className="link flex flex-row gap-2 items-center"
+                  className="link flex flex-row gap-2 items-center min-h-11 py-2"
                 >
                   {link.icon && <Icon icon={link.icon.name || ""} />}
                   <span>{link.title}</span>

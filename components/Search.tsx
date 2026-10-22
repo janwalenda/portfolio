@@ -23,9 +23,19 @@ export default function Search() {
   }, [open, setOpen]);
 
   return (
-    <Button variant="ghost" size="sm" onClick={() => setOpen(!open)}>
-      <Icon icon="heroicons:magnifying-glass" className="size-5" />
-      <kbd className="hidden md:inline kbd kbd-primary">Cmd + K</kbd>
+    <Button
+      type="button"
+      variant="ghost"
+      size="sm"
+      onClick={() => setOpen(!open)}
+      aria-label={open ? "Suche schließen" : "Suche öffnen"}
+      aria-expanded={open}
+      aria-haspopup="dialog"
+    >
+      <Icon icon="heroicons:magnifying-glass" className="size-5" aria-hidden />
+      <kbd className="hidden md:inline kbd kbd-primary" aria-hidden>
+        Cmd + K
+      </kbd>
     </Button>
   );
 }

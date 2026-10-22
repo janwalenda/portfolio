@@ -6,24 +6,10 @@ import {
 import Image from "@/components/Image";
 import Link from "next/link";
 import type { Card as CardType } from "@/sanity.types";
-import { H2 } from "./ui/heading";
+import { formatDate, formatTime } from "@/lib/formatDateTime";
+import { H2, H3 } from "./ui/heading";
 
-type CardUrl = { url: string; title: string };
-
-function formatDate(value: string) {
-  return new Date(value).toLocaleDateString("de-DE", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
-function formatTime(value: string) {
-  return new Date(value).toLocaleTimeString("de-DE", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
+type CardUrl = { url: string; title: string; ariaLabel?: string };
 
 export default function Card(props: {
   title: string;
@@ -32,9 +18,20 @@ export default function Card(props: {
   publishedAt: string;
   alt: string;
   url: CardUrl | CardUrl[];
+  /** Use h3 when the card sits under a section h2 (e.g. homepage). */
+  titleAs?: "h2" | "h3";
 }) {
-  const { title, image, description, publishedAt, alt, url } = props;
+  const {
+    title,
+    image,
+    description,
+    publishedAt,
+    alt,
+    url,
+    titleAs = "h2",
+  } = props;
   const urls = Array.isArray(url) ? url : url?.url ? [url] : [];
+  const Title = titleAs === "h3" ? H3 : H2;
 
   return (
     <CardComponent
@@ -53,7 +50,7 @@ export default function Card(props: {
         </figure>
       )}
       <CardBody>
-        <H2 className="text-xl font-bold">{title}</H2>
+        <Title className="text-xl font-bold">{title}</Title>
         <div className="w-20 h-1 bg-primary rounded-box" />
         <p>{description}</p>
         <small className="flex flex-col text-xs">
@@ -66,7 +63,12 @@ export default function Card(props: {
         </small>
         <CardAction>
           {urls.map((u) => (
-            <Link key={u.url} href={u.url} className="btn btn-primary">
+            <Link
+              key={u.url}
+              href={u.url}
+              className="btn btn-primary"
+              aria-label={u.ariaLabel}
+            >
               {u.title}
             </Link>
           ))}

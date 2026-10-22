@@ -11,7 +11,7 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 import type { Technology } from "@/sanity.types";
-import { H2 } from "./ui/heading";
+import { H3 } from "./ui/heading";
 import { TechCardInfo } from "./TechCardInfo";
 
 function useParallax(value: MotionValue<number>, distance: number) {
@@ -56,12 +56,13 @@ export function TechCard({ tech }: { tech: Technology }) {
         }}
         className="flex items-center justify-center z-10"
       >
-        <H2 className="gap-2 px-6 py-4 text-2xl font-bold flex items-center flex-col">
+        <H3 className="gap-2 px-6 py-4 text-2xl font-bold flex items-center flex-col">
           <span className="flex items-center gap-2">
             {tech.icon?.name && (
               <Icon
                 icon={tech.icon.name}
                 className="size-6 hover:animate-spin"
+                aria-hidden
               />
             )}
             {tech.name}
@@ -69,8 +70,9 @@ export function TechCard({ tech }: { tech: Technology }) {
           <motion.div
             className="h-1 bg-primary rounded-box w-full"
             style={{ scaleX }}
+            aria-hidden
           />
-        </H2>
+        </H3>
       </motion.div>
       <TechCardInfo
         tech={tech}

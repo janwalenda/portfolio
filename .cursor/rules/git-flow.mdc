@@ -1,0 +1,56 @@
+---
+description: Portfolio git-flow — develop as integration, main for releases
+alwaysApply: true
+---
+
+# Git flow (janwalenda/portfolio)
+
+## Branches
+
+- **`develop`**: default integration branch. All features and fixes land here first.
+- **`main`**: production / Netlify. Only via explicit **release** merges from `develop` (or hotfixes that are then synced back).
+- Feature/fix branches: short-lived, branched from **`develop`**, never from `main` unless it is an urgent hotfix.
+
+## Branch naming
+
+- Features: `feat/<short-slug>` (e.g. `feat/goatcounter-analytics`)
+- Fixes: `fix/<short-slug>` (e.g. `fix/a11y-p0-p1-audit`)
+- Hotfixes against production: `hotfix/<semver>` (e.g. `hotfix/1.2.2`)
+
+## Day-to-day work
+
+1. `git checkout develop && git pull origin develop`
+2. `git checkout -b feat/…` or `fix/…`
+3. Commit with conventional, concise messages (focus on why).
+4. Push the branch; open PRs with **base `develop`** (not `main`).
+5. Merge into `develop` (merge commit with `--no-ff` is fine and matches history).
+
+Do **not** commit directly to `main`. Do **not** use `main` as the base for normal feature PRs.
+
+## Release to production
+
+When the user asks to release:
+
+1. Ensure `develop` is clean and pushed.
+2. On `develop`, optionally:  
+   `git merge --no-ff <branch> -m "merge: prepare X.Y.Z release from <topic>"`  
+   (if the work is not already on `develop`).
+3. `git checkout main && git pull`
+4. `git merge --no-ff develop -m "release: X.Y.Z"`
+5. `git tag -a X.Y.Z -m "X.Y.Z"`
+6. `git push origin main && git push origin X.Y.Z` (and `develop` if it moved).
+
+Bump **patch** for hotfixes/formatting; **minor** for features (a11y, analytics, content tooling). Match existing tags (`1.2.0`, `1.2.1`, …).
+
+## Hotfix already on `main`
+
+1. Branch `hotfix/X.Y.Z` from `main` (or from `develop` if it already contains the fix).
+2. Fix → merge into `develop` with `merge: prepare X.Y.Z release from …`
+3. Merge `develop` → `main` as `release: X.Y.Z`, tag, push.
+4. Keep `develop` and `main` aligned after the release.
+
+## Agent reminders
+
+- Ask before force-push; never force-push `main`/`develop` unless the user explicitly requests it.
+- `gh` PRs for features: `--base develop`. Release PRs `develop` → `main` only when asked to release.
+- Run lint/prettier (`npm run lint`, `npm run format:check`) before pushing release-bound commits — Netlify `prebuild` enforces them.

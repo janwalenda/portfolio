@@ -24,13 +24,17 @@ export default function CodeBlock({
         <code>{value.code}</code>
       </pre>
       <Button
+        type="button"
         variant="default"
-        className="absolute right-2 top-2 z-10 transition-all duration-300 swap swap-rotate"
+        className="absolute right-2 top-2 z-10 transition-all duration-300"
         onClick={handleClick}
+        aria-label={copied ? "Code kopiert" : "Code kopieren"}
       >
-        <input type="checkbox" checked={copied} onChange={() => {}} />
-        <Icon icon="heroicons:check" className="size-6 swap-on" />
-        <Icon icon="heroicons:clipboard-document" className="size-6 swap-off" />
+        <Icon
+          icon={copied ? "heroicons:check" : "heroicons:clipboard-document"}
+          className="size-6"
+          aria-hidden
+        />
       </Button>
     </div>
   );
