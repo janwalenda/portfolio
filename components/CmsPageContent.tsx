@@ -28,15 +28,23 @@ export default function CmsPageContent({ page }: { page: CmsPage }) {
       )}
       {Array.isArray(page.content) &&
         page.content.length > 0 &&
-        page.content.map((content) => (
-          <PageItem
-            key={content._key}
-            content={content as PageItemProps["content"]}
-            isPageTitleHero={
-              heroOwnsPageTitle && content._key === firstContent?._key
-            }
-          />
-        ))}
+        page.content.map((content) => {
+          const hideRedundantTextTitle =
+            content._type === "textBlock" &&
+            Boolean(page.title) &&
+            content.title === page.title;
+
+          return (
+            <PageItem
+              key={content._key}
+              content={content as PageItemProps["content"]}
+              isPageTitleHero={
+                heroOwnsPageTitle && content._key === firstContent?._key
+              }
+              hideTextBlockTitle={hideRedundantTextTitle}
+            />
+          );
+        })}
     </div>
   );
 }

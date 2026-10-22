@@ -8,8 +8,10 @@ export type CardWithExpandedAction = Omit<CardType, "action"> & {
 
 export default function GridItem({
   cards,
+  titleAs = "h2",
 }: {
   cards: CardWithExpandedAction[];
+  titleAs?: "h2" | "h3";
 }) {
   if (!cards) {
     return null;
@@ -31,6 +33,7 @@ export default function GridItem({
               alt=""
               description={card.description || ""}
               publishedAt={card._createdAt}
+              titleAs={titleAs}
               url={
                 card.action?.map((action) => {
                   return {
